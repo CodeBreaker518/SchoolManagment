@@ -1,0 +1,25 @@
+{
+  "name": "schoolmanagment",
+  "version": "1.0.0",
+  "description": "school managment for professors & subjects",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Javascript, mysql, php, materialize"
+  ],
+  "author": {
+    "name": "Diego perez perez ",
+    "email": "diegoperezperez518@gmail.com",
+    "url": "https://github.com/CodeBreaker518"
+  },
+  "contributors": [
+    {
+      "name": "Jair Chávez Islas",
+      "email": "chamaco_03@hotmail.es",
+      "url": "https://github.com/Jair0305"
+    }
+  ],
+  "license": "MIT"
+}
