@@ -1,0 +1,16 @@
+/* SIGN UP */
+.card .card-content .card-title {
+  margin-bottom: 50px;
+}
+
+/* SIGN UP & LOGIN CONTAINER ALIGN VERTICALLY & HORIZONTALLY */
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.form-card {
+  width: 100%;
+}
