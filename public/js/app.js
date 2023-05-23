@@ -1,3 +1,8 @@
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.collapsible');
+  var instances = M.Collapsible.init(elems);
+});
+
 document.addEventListener('DOMContentLoaded', () => {
   const select = document.getElementById('rol')
   const professorFields = document.getElementById('professor-fields')
@@ -25,3 +30,4 @@ togglePassword.addEventListener('click', () => {
     passwordInput.setAttribute('type', 'password')
   }
 })
+

@@ -33,3 +33,51 @@
 .toggle-password:hover {
   opacity: 1;
 }
+
+.main-container
+{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.left-content
+{
+  height: 100vh;
+  width: 15%;
+}
+.side-bar
+{
+  width: 15%;
+  height: 100vh;
+}
+
+.collection
+{
+  margin-top: 8vh;
+  height: 92vh;
+}
+.collection-item
+{
+  height: 10%;
+}
+
+.right-content
+{
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  height: 100vh;
+}
+.navbar
+{
+  height: 8vh;
+  width: 100%;
+}
+.dashboard-container
+{
+  height: 92vh;
+  width: 100%;
+  background-color: aqua;
+}
