@@ -14,14 +14,28 @@ CREATE TABLE IF NOT EXISTS teachers
     PRIMARY KEY (teach_id)
 );
 
+CREATE TABLE IF NOT EXISTS students
+(
+	stu_id INT NOT NULL AUTO_INCREMENT,
+    stu_name VARCHAR(100) NOT NULL,
+    stu_email VARCHAR(100) NOT NULL,
+	stu_phone VARCHAR(10) NOT NULL,
+    
+    PRIMARY KEY (stu_id)
+);
+
 CREATE TABLE IF NOT EXISTS courses
 (
 	cour_id INT NOT NULL AUTO_INCREMENT,
     cour_name VARCHAR(20),
     cour_date DATE NOT NULL, # Formato: YYYY-MM-DD
     cour_hour TIME NOT NULL, # Formato: 09:30:45
-    teacher_id INT,    
+    teacher_id INT,
+    student_id INT,
 	
+    
     PRIMARY KEY (cour_id),
-	FOREIGN KEY (teacher_id) REFERENCES teachers(teach_id) 
+	FOREIGN KEY (teacher_id) REFERENCES teachers(teach_id),
+    FOREIGN KEY (student_id) REFERENCES students(stu_id)
 );
+
