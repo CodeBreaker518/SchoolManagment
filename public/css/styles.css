@@ -14,3 +14,27 @@
 .form-card {
   width: 100%;
 }
+
+.sidenav
+{
+  background-color: aquamarine !important;
+}
+
+.main-container
+{
+  display: flex;
+}
+
+.left-container
+{
+  background-color: brown;
+  height: auto;
+  width: 30%;
+}
+
+.rigth-container
+{
+  background-color: blue;
+  height: auto;
+  width: 70%;
+}
