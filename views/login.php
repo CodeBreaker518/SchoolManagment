@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="../public/css/materialize.min.css">
   <!-- including materialize icons -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <!-- Font awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- styles.css -->
   <link rel="stylesheet" href="../public/css/styles.css">
 
@@ -29,10 +31,11 @@
                   </div>
                   <div class="input-field">
                     <input type="password" id="password" name="password" required>
+                    <i class="toggle-password fa-sharp fa-solid fa-eye"></i>
                     <label for="password">Password</label>
                   </div>
                   <div class="card-action">
-                    <button class="btn waves-effect waves-light" type="submit" name="action">Iniciar sesión
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Log In
                       <i class="material-icons right">send</i>
                     </button>
                   </div>
@@ -55,3 +58,4 @@
   <script src="../public/js/materialize.min.js"></script>
 </body>
 </html>
+

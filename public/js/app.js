@@ -1,20 +1,33 @@
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.collapsible');
+  var instances = M.Collapsible.init(elems);
+});
+
 document.addEventListener('DOMContentLoaded', () => {
   const select = document.getElementById('rol')
-  const studentFields = document.getElementById('student-fields')
   const professorFields = document.getElementById('professor-fields')
-  M.FormSelect.init(select) // initialize select (materialize)
-
+  M.FormSelect.init(select)
   select.addEventListener('change', () => {
-    if (select.value === 'student') {
-      studentFields.style.display = 'block'
-      professorFields.style.display = 'none'
-    } else if (select.value === 'professor') {
-      studentFields.style.display = 'none'
+    if (select.value === 'professor') {
       professorFields.style.display = 'block'
+    } else {
+      professorFields.style.display = 'none'
     }
   })
 })
-const phoneInputField = document.querySelector('#phone')
-const phoneInput = window.intlTelInput(phoneInputField, {
-  utilsScript: 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js',
+
+const passwordInput = document.querySelector('#password')
+const togglePassword = document.querySelector('.toggle-password')
+
+togglePassword.addEventListener('click', () => {
+  if (togglePassword.classList.contains('fa-eye')) {
+    togglePassword.classList.remove('fa-eye')
+    togglePassword.classList.add('fa-eye-slash')
+    passwordInput.setAttribute('type', 'text')
+  } else if (togglePassword.classList.contains('fa-eye-slash')) {
+    togglePassword.classList.remove('fa-eye-slash')
+    togglePassword.classList.add('fa-eye')
+    passwordInput.setAttribute('type', 'password')
+  }
 })
+
