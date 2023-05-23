@@ -21,5 +21,8 @@
       "url": "https://github.com/Jair0305"
     }
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "materialize-css": "^1.0.0-rc.2"
+  }
 }
