@@ -36,17 +36,19 @@ CREATE TABLE IF NOT EXISTS courses
     cour_name VARCHAR(20),
     cour_date DATE NOT NULL, # Formato: YYYY-MM-DD
     cour_hour TIME NOT NULL, # Formato: 09:30:45
+    cour_teach_id INT,
+    cour_stu_id INT,
     
     PRIMARY KEY (cour_id),
     CONSTRAINT fk_student
-		FOREIGN KEY (teacher_id) 
+		FOREIGN KEY (cour_teach_id) 
         REFERENCES teachers(teach_id)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE,
+        ON UPDATE SET NULL
+        ON DELETE SET NULL,
 	CONSTRAINT fk_teacher
-		FOREIGN KEY (student_id) 
+		FOREIGN KEY (cour_stu_id) 
         REFERENCES students(stu_id)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE
+        ON UPDATE SET NULL
+        ON DELETE SET NULL
 );
 
