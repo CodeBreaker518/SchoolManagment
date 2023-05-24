@@ -75,9 +75,9 @@
   height: 8vh;
   width: 100%;
 }
-.dashboard-container
+section.dashboard-container
 {
   height: 92vh;
   width: 100%;
-  background-color: aqua;
+  background-color: black;
 }

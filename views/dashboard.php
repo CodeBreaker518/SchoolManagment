@@ -22,8 +22,8 @@
   <main class="main-container">
     <aside class="side-bar">
       <div class="collection">
-        <a href="#!" class="collection-item">Alvin</a>
-        <a href="#!" class="collection-item">Alvin</a>
+        <a href="#!" class="collection-item">Profesores</a>
+        <a href="#!" class="collection-item">Materias</a>
         <a href="#!" class="collection-item">Alvin</a>
         <a href="#!" class="collection-item active">About us</a>
       </div>
