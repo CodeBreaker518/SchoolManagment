@@ -21,16 +21,25 @@
   
   <main class="main-container">
     <aside class="side-bar">
+      <div class="logo-img">
+        <img src="../public/images/13efee56-6b8f-419f-8d68-6ca4b26e4784.jpg" alt="">
+      </div>
       <div class="collection">
-        <a href="#!" class="collection-item">Profesores</a>
-        <a href="#!" class="collection-item">Materias</a>
-        <a href="#!" class="collection-item">Alvin</a>
+        <a href="#!" class="collection-item">Main</a>
+        <a href="#!" class="collection-item">Teachers</a>
+        <a href="#!" class="collection-item">Courses</a>
+        <a href="#!" class="collection-item">Students</a>
         <a href="#!" class="collection-item active">About us</a>
       </div>
     </aside>
     <div class="right-content">
 
-      <nav class="navbar" id="navbar"></nav>
+      <nav class="navbar" id="navbar">
+        <div class="user-information">
+          <p class="user-name">ADMIN</p>
+          <img class="user-image" src="../public/images/13efee56-6b8f-419f-8d68-6ca4b26e4784.jpg" alt="">
+        </div>
+      </nav>
 
       <section class="dashboard-container">
 
