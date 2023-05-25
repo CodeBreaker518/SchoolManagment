@@ -1,18 +1,13 @@
 <?php
-session_start();
+  session_start();
 
-// Verificar si el usuario ha iniciado sesión
-if (isset($_SESSION['loggedin'])) {
-    // El usuario ha iniciado sesión, redirigir a la página de inicio
-    header("Location: ../views/dashboard.php");
-    exit();
-} else {
-  header("Location: ../views/login.php");
-  exit();
+  // Verificar si el usuario ha iniciado sesión
+  if (!isset($_SESSION['user_id'])) {
+    // El usuario no ha iniciado sesión, redirigirlo a la página de inicio de sesión
+    header("Location: login.php");
+    exit;
 }
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,9 +29,6 @@ if (isset($_SESSION['loggedin'])) {
 <body>
   
   <!-- reanude session -->
-  <?php
-    session_start();
-  ?>
   
   <main class="main-container">
     <aside class="side-bar">
