@@ -1,17 +1,22 @@
-document.addEventListener('DOMContentLoaded', function() {
-  var elems = document.querySelectorAll('.collapsible');
-  var instances = M.Collapsible.init(elems);
-});
+document.addEventListener('DOMContentLoaded', function () {
+  var elems = document.querySelectorAll('.collapsible')
+  var instances = M.Collapsible.init(elems)
+})
 
 document.addEventListener('DOMContentLoaded', () => {
   const select = document.getElementById('rol')
   const professorFields = document.getElementById('professor-fields')
+  const professionInput = document.getElementById('profession')
   M.FormSelect.init(select)
+
   select.addEventListener('change', () => {
-    if (select.value === 'professor') {
-      professorFields.style.display = 'block'
-    } else {
+    if (select.value === 'student') {
       professorFields.style.display = 'none'
+      // disable input validation
+      professionInput.removeAttribute('required')
+    } else {
+      professorFields.style.display = 'block'
+      professionInput.setAttribute('required', 'required')
     }
   })
 })
@@ -30,4 +35,3 @@ togglePassword.addEventListener('click', () => {
     passwordInput.setAttribute('type', 'password')
   }
 })
-
