@@ -33,23 +33,27 @@
   <main class="main-container">
     <aside class="side-bar">
       <div class="logo-img">
-        <img src="../public/images/13efee56-6b8f-419f-8d68-6ca4b26e4784.jpg" alt="">
+        <img class="logo-ug responsive-img" src="https://intranet3.ugto.mx/ServicioSocial/img/logo_ug.c96b0c58.png" alt="">
       </div>
       <div class="collection">
         <a href="#!" class="collection-item">Main</a>
         <a href="#!" class="collection-item">Teachers</a>
-        <a href="#!" class="collection-item">Courses</a>
+        <a href="#!" class="collection-item active">Courses</a>
         <a href="#!" class="collection-item">Students</a>
-        <a href="#!" class="collection-item active">About us</a>
+        <a href="#!" class="collection-item">About us</a>
       </div>
     </aside>
     <div class="right-content">
-
       <nav class="navbar" id="navbar">
         <div class="user-information">
-        <p class="user-name"><?php echo $_SESSION['user_name']; ?></p>
-          <img class="user-image" src="../public/images/13efee56-6b8f-419f-8d68-6ca4b26e4784.jpg" alt="">
-        </div>
+          <div class="show-sidebar">
+            <i class="material-icons">menu</i>
+          </div>
+          <div class="user-info-container">
+            <p class="user-name"><?php echo $_SESSION['user_name']; ?></p>
+              <img class="user-image responsive-img" src="../public/assets/images/13efee56-6b8f-419f-8d68-6ca4b26e4784.jpg" alt="">
+            </div>
+          </div>
       </nav>
 
       <section class="dashboard-container">
