@@ -18,6 +18,10 @@
 </head>
 <body>
   
+  <!-- reanude session -->
+  <?php
+    session_start();
+  ?>
   
   <main class="main-container">
     <aside class="side-bar">
@@ -36,7 +40,7 @@
 
       <nav class="navbar" id="navbar">
         <div class="user-information">
-          <p class="user-name">ADMIN</p>
+        <p class="user-name"><?php echo $_SESSION['user_name']; ?></p>
           <img class="user-image" src="../public/images/13efee56-6b8f-419f-8d68-6ca4b26e4784.jpg" alt="">
         </div>
       </nav>
