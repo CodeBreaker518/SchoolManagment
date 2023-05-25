@@ -39,7 +39,10 @@ $result = mysqli_query($conection, $query);
 
 // Verificar si la inserción fue exitosa
 if ($result) {
-  echo "Datos insertados correctamente";
+  $setTimeOut = 0.5;
+  $url = '../views/login.php';
+  header("refresh: $setTimeOut; url=$url");
+  echo('Loading...');
 } else {
   echo "Error al insertar datos: " . mysqli_error($conection);
 }

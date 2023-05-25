@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 
 session_start();
 
@@ -22,7 +24,7 @@ $password = $_POST['password'];
 $query = "SELECT * FROM students WHERE stu_email = '$email' LIMIT 1";
 $result = mysqli_query($conection, $query);
 
-if ($result && mysqli_num_rows($result) > 0) 
+if ($result && mysqli_num_rows($result) > 0)
 {
     $row = mysqli_fetch_assoc($result);
 
