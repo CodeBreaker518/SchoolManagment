@@ -14,6 +14,17 @@
   <link rel="stylesheet" href="../public/css/styles.css">
 
   <title>Log In</title>
+  <style>
+    body{
+      background-image: url("../public/assets/images/UG_background.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: 50% 50% ;
+      background-color: rgba(255, 191, 0, 0.3);
+      background-blend-mode: overlay;
+    }
+
+  </style>
 </head>
 <body>
   <div class="form-container">
@@ -41,7 +52,7 @@
                   </div>
                 </form>
                 <div class="card-action">
-                  <p>Doesn't have an account? <a href="../views/signup.php">Sign Up</a></p>
+                  <p>Doesn't have an account? <a class="sign-up-hyper" href="../views/signup.php">Sign Up</a></p>
                 </div>
               </div>
             </div>
