@@ -1,0 +1,137 @@
+/* UG colors */
+:root {
+    --color-azul-ug: #003a6c;
+    --color-dorado: #ffbf00;
+    --color-blanco: #ffffff;
+    --color-gris-oscuro: #333333;
+    --color-gris-claro: #cccccc;
+    --color-verde-ug: #3c8d40;
+    --color-rojo-ug: #bf0a30;
+    --color-amarillo-ug: #ffd700;
+  }
+
+  .main-container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .left-content {
+    height: 100vh;
+    width: 15%;
+  }
+  .side-bar {
+    background-color: var(--color-dorado);
+    width: 15%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .logo-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 8vh;
+    width: 100%;
+  }
+  .collection {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    border: none;
+    color: var(--color-gris-oscuro) !important;
+    margin-top: 0;
+    height: 92vh;
+  }
+  .collection :nth-child(1) {
+    margin-top: 10% !important;
+  }
+  .collection-item {
+    color: var(--color-gris-oscuro) !important;
+    height: 10%;
+  }
+  .collection .collection-item.active {
+    background-color: var(--color-azul-ug);
+    color: var(--color-blanco) !important ;
+  }
+  
+  .right-content {
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    height: 100vh;
+  }
+  .navbar {
+    background: var(--color-azul-ug) !important;
+    color: var(--color-blanco) !important;
+    height: 8vh;
+    width: 100%;
+  }
+  .dashboard-container {
+    height: 92vh;
+    width: 100%;
+    background-color: var(--color-gris-claro);
+    color: var(--color-gris-oscuro);
+  }
+  
+  .collapsible {
+    margin: 2% 2%;
+  }
+  .collapsible-body {
+    background: var(--color-dorado);
+  }
+  
+  .user-information {
+    margin-right: 2rem;
+    gap: 0.5rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    line-height: 1;
+    font-size: 16px;
+  }
+  .user-info-container {
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  .user-info-container:hover {
+    background: var();
+  }
+  .user-name {
+    margin-left: 10px;
+  }
+  
+  .user-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin: 10px;
+  }
+  .show-sidebar {
+    margin: 1rem;
+    display: none;
+  }
+  
+  @media (max-width: 700px) {
+    .user-information {
+      justify-content: space-between;
+      min-width: 200px;
+    }
+    .user-name {
+      font-size: 12px;
+    }
+    .side-bar {
+      position: absolute;
+      display: none;
+    }
+    .right-content {
+      width: 100%;
+    }
+    .show-sidebar {
+      display: block;
+    }
+  }
