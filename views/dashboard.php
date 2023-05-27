@@ -150,7 +150,7 @@ $pdo = null;
                           <div class="card">
                             <div class="card-content">
                               <span class="card-title">Sign Up</span>
-                              <form action="../controllers/courses_controller.php" method="POST">
+                              <form action="../controllers/admin/courses_controller.php" method="POST">
                                 <div class="input-field">
                                     <input type="text" id="name" name="name" required>
                                     <label for="name">Name</label>
