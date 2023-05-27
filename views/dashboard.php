@@ -1,13 +1,50 @@
 <?php
-  session_start();
+  session_start(); //Inicia una sesion o reanuda una que ya este abierta en los datos del navegador
 
-  // Verificar si el usuario ha iniciado sesión
-  if (!isset($_SESSION['user_id'])) {
-    // El usuario no ha iniciado sesión, redirigirlo a la página de inicio de sesión
-    header("Location: login.php");
+  if (!isset($_SESSION['user_id'])) { //verifica que el id exista en la base de datos (es decir, que el usuario haya iniciado sesion)
+    header("Location: login.php"); // true = redirije al usuario a login.php
     exit;
 }
 ?>
+
+<?php
+// Establecer la conexión a la base de datos
+$host = 'localhost';
+$dbName = 'school_db';
+$user = 'root';
+$password = '';
+
+try {
+  // Se establece la conexion a la Db utilizando la clase 'PDO'
+  $dsn = "mysql:host=$host;dbname=$dbName";
+  $pdo = new PDO($dsn, $user, $password);
+  $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+  // Consulta para obtener los estudiantes
+  $studentsQuery = "SELECT * FROM students";
+  $studentsStmt = $pdo->query($studentsQuery);
+  $students = $studentsStmt->fetchAll(PDO::FETCH_ASSOC);
+
+  // Consulta para obtener los cursos
+  $coursesQuery = "SELECT * FROM courses";
+  $coursesStmt = $pdo->query($coursesQuery);
+  $courses = $coursesStmt->fetchAll(PDO::FETCH_ASSOC);
+
+  // Consulta para obtener los profesores
+  $teachersQuery = "SELECT * FROM teachers";
+  $teachersStmt = $pdo->query($teachersQuery);
+  $teachers = $teachersStmt->fetchAll(PDO::FETCH_ASSOC);
+
+} catch (PDOException $e) {
+  echo "Error de conexión: " . $e->getMessage();
+  die();
+}
+
+// Cerrar la conexión a la base de datos
+$pdo = null;
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,17 +76,17 @@
       <div class="collection">
         <?php if($_SESSION['user_type'] === 'ADMIN'):?>
         <a href="#!" class="collection-item">Main</a>
-        <a href="#!" class="collection-item">Teachers</a>
-        <a href="#!" class="collection-item active">Courses</a>
-        <a href="#!" class="collection-item">Students</a>
+        <a href="#!" class="collection-item students-link">Students</a>
+        <a href="#!" class="collection-item courses-link">Courses</a>
+        <a href="#!" class="collection-item professors-link">professors</a>
         <a href="#!" class="collection-item">About us</a>
         <?php elseif($_SESSION['user_type'] === 'professor'):?>
         <a href="#!" class="collection-item">Main</a>
-        <a href="#!" class="collection-item active professor_courses">My Courses</a>
+        <a href="#!" class="collection-item courses-link">My Courses</a>
         <a href="#!" class="collection-item">About us</a>
         <?php elseif($_SESSION['user_type'] === 'student'):?>
         <a href="#!" class="collection-item">Main</a>
-        <a href="#!" class="collection-item active student_courses">My Courses</a>
+        <a href="#!" class="collection-item courses-link">My Courses</a>
         <a href="#!" class="collection-item">About us</a>
         <?php endif;?>
       </div>
@@ -67,24 +104,96 @@
           </div>
       </nav>
 
+<!-- FALTA MAIN Y ABOUT US EN TODA ESTA SECCION -->
       <section class="dashboard-container">
 
-        <div class="dashboard-content">
-          <ul class="collapsible">
-            <li>
-              <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
-              <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-            </li>
-            <li>
-              <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
-              <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-            </li>
-            <li>
-              <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-              <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-            </li>
-          </ul>
-        </div>
+        <?php if($_SESSION['user_type'] === 'ADMIN'):?>
+          <div id="students-content" style="display: none;">
+            <ul class="collapsible">
+              <?php foreach ($students as $student): ?>
+                <li>
+                  <div class="collapsible-header"><?php echo $student['stu_name']; ?></div>
+                  <div class="collapsible-body">
+                    <span>Student ID: <?php echo $student['stu_id']; ?></span><br>
+                    <span>Email: <?php echo $student['stu_email']; ?></span><br>
+                    <span>Phone: <?php echo $student['stu_phone']; ?></span><br>
+
+                    <!-- Agrega más información del estudiante aquí -->
+                  </div>
+                </li>
+              <?php endforeach; ?>
+            </ul>
+          </div>
+
+          <div id="courses-content" style="display: none;">
+            <ul class="collapsible">
+              <?php foreach ($courses as $course): ?>
+                <li>
+                  <div class="collapsible-header"><?php echo $course['cour_name']; ?></div>
+                  <div class="collapsible-body">
+                    <span>Course ID: <?php echo $course['cour_id']; ?></span><br>
+                    <span>Description: <?php echo $course['cour_description']; ?></span><br>
+                    <!-- Agrega más información del curso aquí -->
+                  </div>
+                </li>
+              <?php endforeach; ?>
+            </ul>
+          </div>
+
+          <div id="professors-content" style="display: none;">
+            <ul class="collapsible">
+              <?php foreach ($teachers as $teacher): ?>
+                <li>
+                  <div class="collapsible-header"><?php echo $teacher['teach_name']; ?></div>
+                  <div class="collapsible-body">
+                    <span>Professor ID: <?php echo $teacher['teach_id']; ?></span><br>
+                    <span>Email: <?php echo $teacher['teach_email']; ?></span><br>
+                    <span>Profession: <?php echo $teacher['teach_profession']; ?></span><br>
+                    <span>Phone: <?php echo $teacher['teach_phone']; ?></span><br>
+                    <!-- Agrega más información del profesor aquí -->
+                  </div>
+                </li>
+              <?php endforeach; ?>
+            </ul>
+          </div>
+
+        <?php elseif($_SESSION['user_type'] === 'student'):?>
+
+          <div id="courses-content" style="display: none;">
+            <ul class="collapsible">
+              <?php foreach ($courses as $course): ?>
+                <li>
+                  <div class="collapsible-header"><?php echo $course['cour_name']; ?></div>
+                  <div class="collapsible-body">
+                    <span>Course ID: <?php echo $course['cour_id']; ?></span><br>
+                    <span>Description: <?php echo $course['cour_description']; ?></span><br>
+                    <!-- Agrega más información del curso aquí -->
+                  </div>
+                </li>
+              <?php endforeach; ?>
+            </ul>
+          </div>
+
+        <?php elseif($_SESSION['user_type'] === 'professor'):?>
+
+          <div id="courses-content" style="display: none;">
+            <ul class="collapsible">
+              <?php foreach ($courses as $course): ?>
+                <li>
+                  <div class="collapsible-header"><?php echo $course['cour_name']; ?></div>
+                  <div class="collapsible-body">
+                    <span>Course ID: <?php echo $course['cour_id']; ?></span><br>
+                    <span>Description: <?php echo $course['cour_description']; ?></span><br>
+                    <!-- Agrega más información del curso aquí -->
+                  </div>
+                </li>
+              <?php endforeach; ?>
+            </ul>
+          </div>
+
+        <?php endif?>
+          
+        
 
       </section>
     </div>
