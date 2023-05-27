@@ -6,14 +6,14 @@ USE school_db;
 CREATE TABLE IF NOT EXISTS teachers
 (
 	teach_id INT NOT NULL AUTO_INCREMENT,
-    teach_name VARCHAR(100),
-    teach_profession VARCHAR(30),
+    teach_name VARCHAR(100) NOT NULL, 
+    teach_profession VARCHAR(30) NOT NULL,
     teach_email VARCHAR(100) NOT NULL,
     teach_password VARCHAR(50) NOT NULL,
     teach_phone VARCHAR(10) NOT NULL,
     
     UNIQUE (teach_email),
-    UNIQUE (teach_phone),
+    UNIQUE (teach_phone),   
     PRIMARY KEY (teach_id)
 );
 
@@ -33,7 +33,8 @@ CREATE TABLE IF NOT EXISTS students
 CREATE TABLE IF NOT EXISTS courses
 (
 	cour_id INT NOT NULL AUTO_INCREMENT,
-    cour_name VARCHAR(20),
+    cour_name VARCHAR(20) NOT NULL,
+    cour_description VARCHAR(100) NOT NULL,
     cour_date DATE NOT NULL, # Formato: YYYY-MM-DD
     cour_hour TIME NOT NULL, # Formato: 09:30:45
     cour_teach_id INT,
