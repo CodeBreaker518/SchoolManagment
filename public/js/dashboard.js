@@ -4,6 +4,11 @@ document.addEventListener('DOMContentLoaded', function () {
     var instances = M.Collapsible.init(elems)
 })
 
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems);
+});
+
 // Obtén los elementos de enlace y los contenidos correspondientes
 const studentsLink = document.querySelector('.students-link');
 const studentsContent = document.querySelector('.students-content');

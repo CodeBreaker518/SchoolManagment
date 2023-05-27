@@ -108,7 +108,7 @@ $pdo = null;
       <section class="dashboard-container">
 
         <?php if($_SESSION['user_type'] === 'ADMIN'):?>
-          <div id="students-content" style="display: none;">
+          <div class="students-content" style="display: none;">
             <ul class="collapsible">
               <?php foreach ($students as $student): ?>
                 <li>
@@ -125,7 +125,7 @@ $pdo = null;
             </ul>
           </div>
 
-          <div id="courses-content" style="display: none;">
+          <div class="courses-content" style="display: none;">
             <ul class="collapsible">
               <?php foreach ($courses as $course): ?>
                 <li>
@@ -138,9 +138,68 @@ $pdo = null;
                 </li>
               <?php endforeach; ?>
             </ul>
+            <a class="btn-floating btn-large red btn modal-trigger" href="#modal1"><i class="material-icons">add</i></a>
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal">
+              <div class="modal-content">
+                <div class="form-container">
+                  <div class="form-card">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col s12 m6 offset-m3">
+                          <div class="card">
+                            <div class="card-content">
+                              <span class="card-title">Sign Up</span>
+                              <form action="../controllers/courses_controller.php" method="POST">
+                                <div class="input-field">
+                                  <select id="rol" name="rol" required>
+                                    <option value="" disabled selected>Select an option</option>
+                                    <option value="student">Student</option>
+                                    <option value="professor">Professor</option>
+                                  </select>
+                                  <label>Are you?...</label>
+                                </div>
+                                <div class="input-field">
+                                    <input type="text" id="name" name="name" required>
+                                    <label for="name">Name</label>
+                                  </div>
+                                <div class="input-field">
+                                    <input type="text" id="description" name="description" required>
+                                    <label for="description">Description</label>
+                                </div>
+                                <div class="input-field">
+                                  <input type="date" id="date" name="date" required>
+                                  <label for="date">Date</label>
+                                </div>
+                                <div class="input-field">
+                                  <input type="hour" id="hour" name="hour" required>
+                                    <i class="toggle-hour fa-sharp fa-solid fa-eye"></i>
+                                  <label for="hour">Hour</label>
+                                </div>
+                                <div class="card-action">
+                                  <button class="btn waves-effect waves-light" type="submit" name="action">Sign Up
+                                    <i class="material-icons right">send</i>
+                                  </button>
+                                </div>
+                              </form>
+                              <div class="card-action">
+                                <p>Already have an account? <a href="../views/login.php">Log In</a></p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+              </div>
+            </div>
           </div>
 
-          <div id="professors-content" style="display: none;">
+          <div class="professors-content" style="display: none;">
             <ul class="collapsible">
               <?php foreach ($teachers as $teacher): ?>
                 <li>
@@ -159,7 +218,7 @@ $pdo = null;
 
         <?php elseif($_SESSION['user_type'] === 'student'):?>
 
-          <div id="courses-content" style="display: none;">
+          <div class="courses-content" style="display: none;">
             <ul class="collapsible">
               <?php foreach ($courses as $course): ?>
                 <li>
@@ -176,7 +235,7 @@ $pdo = null;
 
         <?php elseif($_SESSION['user_type'] === 'professor'):?>
 
-          <div id="courses-content" style="display: none;">
+          <div class="courses-content" style="display: none;">
             <ul class="collapsible">
               <?php foreach ($courses as $course): ?>
                 <li>
