@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <!-- styles.css -->
   <link rel="stylesheet" href="../public/css/styles.css">
+  <link rel="stylesheet" href="../public/css/signup.css">
   <!-- Font awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <title>Sign Up</title>
@@ -72,7 +73,7 @@
     </div>
   </div>
   <!-- app.js -->
-  <script src="../public/js/app.js"></script>
+  <script src="../public/js/signup.js"></script>
   <!-- including materialize js -->
   <script src="../public/js/materialize.min.js"></script>
 </body>

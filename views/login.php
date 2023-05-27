@@ -12,19 +12,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- styles.css -->
   <link rel="stylesheet" href="../public/css/styles.css">
+  <link rel="stylesheet" href="../public/css/login.css">
 
   <title>Log In</title>
-  <style>
-    body{
-      background-image: url("../public/assets/images/UG_background.jpg");
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: 50% 50% ;
-      background-color: rgba(255, 191, 0, 0.3);
-      background-blend-mode: overlay;
-    }
-
-  </style>
 </head>
 <body>
   <div class="form-container">
@@ -64,7 +54,7 @@
 
 
   <!-- app.js -->
-  <script src="../public/js/app.js"></script>
+  <script src="../public/js/login.js"></script>
   <!-- including materialize js -->
   <script src="../public/js/materialize.min.js"></script>
 </body>

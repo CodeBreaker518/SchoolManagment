@@ -22,6 +22,7 @@
   <!-- including materialize icons -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <!-- styles.css -->
+  <link rel="stylesheet" href="../public/css/dashboard.css">
   <link rel="stylesheet" href="../public/css/styles.css">
 
   <title>Document</title>
@@ -36,11 +37,21 @@
         <img class="logo-ug responsive-img" src="https://intranet3.ugto.mx/ServicioSocial/img/logo_ug.c96b0c58.png" alt="">
       </div>
       <div class="collection">
+        <?php if($_SESSION['user_type'] === 'ADMIN'):?>
         <a href="#!" class="collection-item">Main</a>
         <a href="#!" class="collection-item">Teachers</a>
         <a href="#!" class="collection-item active">Courses</a>
         <a href="#!" class="collection-item">Students</a>
         <a href="#!" class="collection-item">About us</a>
+        <?php elseif($_SESSION['user_type'] === 'professor'):?>
+        <a href="#!" class="collection-item">Main</a>
+        <a href="#!" class="collection-item active professor_courses">My Courses</a>
+        <a href="#!" class="collection-item">About us</a>
+        <?php elseif($_SESSION['user_type'] === 'student'):?>
+        <a href="#!" class="collection-item">Main</a>
+        <a href="#!" class="collection-item active student_courses">My Courses</a>
+        <a href="#!" class="collection-item">About us</a>
+        <?php endif;?>
       </div>
     </aside>
     <div class="right-content">
@@ -81,7 +92,7 @@
   </main>
 
   <!-- app.js -->
-  <script src="../public/js/app.js"></script>
+  <script src="../public/js/dashboard.js"></script>
   <!-- including materialize js -->
   <script src="../public/js/materialize.min.js"></script>
 </body>

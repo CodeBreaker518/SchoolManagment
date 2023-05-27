@@ -1,0 +1,61 @@
+body{
+    background-image: url("../assets/images/UG_background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50% ;
+    background-color: rgba(255, 191, 0, 0.3);
+    background-blend-mode: overlay;
+  }
+
+.card {
+    background-color: rgba(255, 255, 255, 0.75);
+    border-radius: 20px;
+    border: 2px solid var(--color-azul-ug);
+  }
+  .form-card {
+    width: 100%;
+  }
+  
+  .card-action p {
+    text-align: center;
+  }
+  
+  .sign-up-hyper {
+    color: var(--color-azul-ug) !important;
+    text-decoration: underline;
+    -webkit-text-stroke: 1px var(--color-azul-ug); /* Ancho y color del bordeado */
+  }
+  .sign-up-hyper:hover {
+    color: var(--color-dorado) !important;
+    text-decoration: underline;
+    -webkit-text-stroke: 1px var(--color-dorado); /* Ancho y color del bordeado */
+  }
+  
+  .card-action button {
+    background-color: var(--color-azul-ug);
+  }
+  .card-action button:hover {
+    background-color: var(--color-amarillo-ug);
+    color: var(--color-gris-oscuro);
+  }
+  
+  .card-action {
+    display: flex;
+    justify-content: center;
+  }
+  .form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .toggle-password {
+    opacity: 0.5;
+    position: absolute;
+    right: 20px;
+    bottom: 25px;
+    cursor: pointer;
+  }
+  .toggle-password:hover {
+    opacity: 1;
+  }
