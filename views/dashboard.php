@@ -152,14 +152,6 @@ $pdo = null;
                               <span class="card-title">Sign Up</span>
                               <form action="../controllers/courses_controller.php" method="POST">
                                 <div class="input-field">
-                                  <select id="rol" name="rol" required>
-                                    <option value="" disabled selected>Select an option</option>
-                                    <option value="student">Student</option>
-                                    <option value="professor">Professor</option>
-                                  </select>
-                                  <label>Are you?...</label>
-                                </div>
-                                <div class="input-field">
                                     <input type="text" id="name" name="name" required>
                                     <label for="name">Name</label>
                                   </div>
@@ -172,7 +164,7 @@ $pdo = null;
                                   <label for="date">Date</label>
                                 </div>
                                 <div class="input-field">
-                                  <input type="hour" id="hour" name="hour" required>
+                                  <input type="time" id="hour" name="hour" required>
                                     <i class="toggle-hour fa-sharp fa-solid fa-eye"></i>
                                   <label for="hour">Hour</label>
                                 </div>
