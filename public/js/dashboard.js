@@ -1,11 +1,15 @@
 document.addEventListener('DOMContentLoaded', function () {
   // initialize collapsible (materialize)
-  const elems = document.querySelectorAll('.collapsible')
-  const instances = M.Collapsible.init(elems)
+  const elemsCollapsible = document.querySelectorAll('.collapsible')
+  const instancesCollapsible = M.Collapsible.init(elemsCollapsible)
 
   // initiliaze modal (materialize)
   const elemsModal = document.querySelectorAll('.modal')
   const instancesModal = M.Modal.init(elemsModal)
+
+  // initialize dropdown (materialize)
+  var elemsDropdown = document.querySelectorAll('.dropdown-trigger')
+  var instancesDropdown = M.Dropdown.init(elemsDropdown)
 
   // Obtener los enlaces de la barra lateral
   const mainLink = document.querySelector('.main-link')

@@ -25,7 +25,7 @@
   <link rel="stylesheet" href="../public/css/dashboard.css">
   <link rel="stylesheet" href="../public/css/styles.css">
 
-  <title>Document</title>
+  <title>Dasboard</title>
 </head>
 <body>
   
@@ -63,8 +63,8 @@
           <div class="user-info-container">
             <p class="user-name"><?php echo $_SESSION['user_name']; ?></p>
               <img class="user-image responsive-img" src="../public/assets/images/13efee56-6b8f-419f-8d68-6ca4b26e4784.jpg" alt="">
-            </div>
           </div>
+        </div>
       </nav>
 
 <!-- FALTA MAIN Y ABOUT US EN TODA ESTA SECCION -->
