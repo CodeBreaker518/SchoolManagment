@@ -4,45 +4,8 @@
   if (!isset($_SESSION['user_id'])) { //verifica que el id exista en la base de datos (es decir, que el usuario haya iniciado sesion)
     header("Location: login.php"); // true = redirije al usuario a login.php
     exit;
-}
-?>
-
-<?php
-// Establecer la conexión a la base de datos
-$host = 'localhost';
-$dbName = 'school_db';
-$user = 'root';
-$password = '';
-
-try {
-  // Se establece la conexion a la Db utilizando la clase 'PDO'
-  $dsn = "mysql:host=$host;dbname=$dbName";
-  $pdo = new PDO($dsn, $user, $password);
-  $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-  // Consulta para obtener los estudiantes
-  $studentsQuery = "SELECT * FROM students";
-  $studentsStmt = $pdo->query($studentsQuery);
-  $students = $studentsStmt->fetchAll(PDO::FETCH_ASSOC);
-
-  // Consulta para obtener los cursos
-  $coursesQuery = "SELECT * FROM courses";
-  $coursesStmt = $pdo->query($coursesQuery);
-  $courses = $coursesStmt->fetchAll(PDO::FETCH_ASSOC);
-
-  // Consulta para obtener los profesores
-  $teachersQuery = "SELECT * FROM teachers";
-  $teachersStmt = $pdo->query($teachersQuery);
-  $teachers = $teachersStmt->fetchAll(PDO::FETCH_ASSOC);
-
-} catch (PDOException $e) {
-  echo "Error de conexión: " . $e->getMessage();
-  die();
-}
-
-// Cerrar la conexión a la base de datos
-$pdo = null;
-
+  }
+  require_once '../controllers/dashboard_controller.php';
 ?>
 
 <!DOCTYPE html>
@@ -75,19 +38,19 @@ $pdo = null;
       </div>
       <div class="collection">
         <?php if($_SESSION['user_type'] === 'ADMIN'):?>
-        <a href="#!" class="collection-item">Main</a>
+        <a href="#!" class="collection-item main-link active">Main</a>
         <a href="#!" class="collection-item students-link">Students</a>
         <a href="#!" class="collection-item courses-link">Courses</a>
         <a href="#!" class="collection-item professors-link">professors</a>
-        <a href="#!" class="collection-item">About us</a>
+        <a href="#!" class="collection-item about-us-link">About us</a>
         <?php elseif($_SESSION['user_type'] === 'professor'):?>
-        <a href="#!" class="collection-item">Main</a>
+        <a href="#!" class="collection-item main-link active">Main</a>
         <a href="#!" class="collection-item courses-link">My Courses</a>
-        <a href="#!" class="collection-item">About us</a>
+        <a href="#!" class="collection-item about-us-link">About us</a>
         <?php elseif($_SESSION['user_type'] === 'student'):?>
-        <a href="#!" class="collection-item">Main</a>
+        <a href="#!" class="collection-item main-link active">Main</a>
         <a href="#!" class="collection-item courses-link">My Courses</a>
-        <a href="#!" class="collection-item">About us</a>
+        <a href="#!" class="collection-item about-us-link">About us</a>
         <?php endif;?>
       </div>
     </aside>
@@ -108,7 +71,14 @@ $pdo = null;
       <section class="dashboard-container">
 
         <?php if($_SESSION['user_type'] === 'ADMIN'):?>
-          <div class="students-content" style="display: none;">
+
+          <div class="main-content content-section" style="display: block;">
+            <!-- Contenido para la opción "Main" -->
+            <h1>Main Content</h1>
+            <p>Este es el contenido para la opción "Main".</p>
+          </div>
+
+          <div class="students-content content-section" style="display: none;">
             <ul class="collapsible">
               <?php foreach ($students as $student): ?>
                 <li>
@@ -117,15 +87,13 @@ $pdo = null;
                     <span>Student ID: <?php echo $student['stu_id']; ?></span><br>
                     <span>Email: <?php echo $student['stu_email']; ?></span><br>
                     <span>Phone: <?php echo $student['stu_phone']; ?></span><br>
-
-                    <!-- Agrega más información del estudiante aquí -->
                   </div>
                 </li>
               <?php endforeach; ?>
             </ul>
           </div>
 
-          <div class="courses-content" style="display: none;">
+          <div class="courses-content content-section" style="display: none;">
             <ul class="collapsible">
               <?php foreach ($courses as $course): ?>
                 <li>
@@ -133,56 +101,41 @@ $pdo = null;
                   <div class="collapsible-body">
                     <span>Course ID: <?php echo $course['cour_id']; ?></span><br>
                     <span>Description: <?php echo $course['cour_description']; ?></span><br>
-                    <!-- Agrega más información del curso aquí -->
                   </div>
                 </li>
               <?php endforeach; ?>
             </ul>
-            <a class="btn-floating btn-large red btn modal-trigger" href="#modal1"><i class="material-icons">add</i></a>
+            <a class="btn-floating btn-large red btn modal-trigger btn-add-course" href="#modal1"><i class="material-icons">add</i></a>
             <!-- Modal Structure -->
             <div id="modal1" class="modal">
-              <div class="modal-content">
-                <div class="form-container">
-                  <div class="form-card">
-                    <div class="container">
-                      <div class="row">
-                        <div class="col s12 m6 offset-m3">
-                          <div class="card">
-                            <div class="card-content">
-                              <span class="card-title">Sign Up</span>
-                              <form action="../controllers/admin/courses_controller.php" method="POST">
-                                <div class="input-field">
-                                    <input type="text" id="name" name="name" required>
-                                    <label for="name">Name</label>
-                                  </div>
-                                <div class="input-field">
-                                    <input type="text" id="description" name="description" required>
-                                    <label for="description">Description</label>
-                                </div>
-                                <div class="input-field">
-                                  <input type="date" id="date" name="date" required>
-                                  <label for="date">Date</label>
-                                </div>
-                                <div class="input-field">
-                                  <input type="time" id="hour" name="hour" required>
-                                    <i class="toggle-hour fa-sharp fa-solid fa-eye"></i>
-                                  <label for="hour">Hour</label>
-                                </div>
-                                <div class="card-action">
-                                  <button class="btn waves-effect waves-light" type="submit" name="action">Sign Up
-                                    <i class="material-icons right">send</i>
-                                  </button>
-                                </div>
-                              </form>
-                              <div class="card-action">
-                                <p>Already have an account? <a href="../views/login.php">Log In</a></p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+              <div class="card-content">
+                <span class="card-title">Sign Up</span>
+                <form action="../controllers/admin/courses_controller.php" method="POST">
+                  <div class="input-field">
+                      <input type="text" id="name" name="name" required>
+                      <label for="name">Name</label>
                     </div>
+                  <div class="input-field">
+                      <input type="text" id="description" name="description" required>
+                      <label for="description">Description</label>
                   </div>
+                  <div class="input-field">
+                    <input type="date" id="date" name="date" required>
+                    <label for="date">Date</label>
+                  </div>
+                  <div class="input-field">
+                    <input type="time" id="hour" name="hour" required>
+                      <i class="toggle-hour fa-sharp fa-solid fa-eye"></i>
+                    <label for="hour">Hour</label>
+                  </div>
+                  <div class="card-action">
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Sign Up
+                      <i class="material-icons right">send</i>
+                    </button>
+                  </div>
+                </form>
+                <div class="card-action">
+                  <p>Already have an account? <a href="../views/login.php">Log In</a></p>
                 </div>
               </div>
               <div class="modal-footer">
@@ -191,7 +144,7 @@ $pdo = null;
             </div>
           </div>
 
-          <div class="professors-content" style="display: none;">
+          <div class="professors-content content-section" style="display: none;">
             <ul class="collapsible">
               <?php foreach ($teachers as $teacher): ?>
                 <li>
@@ -201,16 +154,27 @@ $pdo = null;
                     <span>Email: <?php echo $teacher['teach_email']; ?></span><br>
                     <span>Profession: <?php echo $teacher['teach_profession']; ?></span><br>
                     <span>Phone: <?php echo $teacher['teach_phone']; ?></span><br>
-                    <!-- Agrega más información del profesor aquí -->
                   </div>
                 </li>
               <?php endforeach; ?>
             </ul>
+          </div>
+
+          <div class="about-us-content content-section" style="display: none;">
+            <!-- Contenido para la opción "About Us" -->
+            <h1>About Us Content</h1>
+            <p>Este es el contenido para la opción "About Us".</p>
           </div>
 
         <?php elseif($_SESSION['user_type'] === 'student'):?>
 
-          <div class="courses-content" style="display: none;">
+          <div class="main-content content-section" style="display: block;">
+            <!-- Contenido para la opción "Main" -->
+            <h1>Main Content</h1>
+            <p>Este es el contenido para la opción "Main".</p>
+          </div>
+
+          <div class="courses-content content-section" style="display: none;">
             <ul class="collapsible">
               <?php foreach ($courses as $course): ?>
                 <li>
@@ -218,16 +182,27 @@ $pdo = null;
                   <div class="collapsible-body">
                     <span>Course ID: <?php echo $course['cour_id']; ?></span><br>
                     <span>Description: <?php echo $course['cour_description']; ?></span><br>
-                    <!-- Agrega más información del curso aquí -->
                   </div>
                 </li>
               <?php endforeach; ?>
             </ul>
           </div>
 
+          <div class="about-us-content content-section" style="display: none;">
+            <!-- Contenido para la opción "About Us" -->
+            <h1>About Us Content</h1>
+            <p>Este es el contenido para la opción "About Us".</p>
+          </div>
+          
         <?php elseif($_SESSION['user_type'] === 'professor'):?>
 
-          <div class="courses-content" style="display: none;">
+          <div class="main-content content-section" style="display: block;">
+            <!-- Contenido para la opción "Main" -->
+            <h1>Main Content</h1>
+            <p>Este es el contenido para la opción "Main".</p>
+          </div>
+
+          <div class="courses-content content-section" style="display: none;">
             <ul class="collapsible">
               <?php foreach ($courses as $course): ?>
                 <li>
@@ -235,17 +210,19 @@ $pdo = null;
                   <div class="collapsible-body">
                     <span>Course ID: <?php echo $course['cour_id']; ?></span><br>
                     <span>Description: <?php echo $course['cour_description']; ?></span><br>
-                    <!-- Agrega más información del curso aquí -->
                   </div>
                 </li>
               <?php endforeach; ?>
             </ul>
+          </div>
+
+          <div class="about-us-content content-section" style="display: none;">
+            <!-- Contenido para la opción "About Us" -->
+            <h1>About Us Content</h1>
+            <p>Este es el contenido para la opción "About Us".</p>
           </div>
 
         <?php endif?>
-          
-        
-
       </section>
     </div>
 
