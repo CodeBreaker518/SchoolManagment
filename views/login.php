@@ -25,7 +25,7 @@
             <div class="card">
               <div class="card-content">
                 <span class="card-title">Log In</span>
-                <form action="../controllers/login_controller.php" method="POST">
+                <form action="../controllers/admin/login_controller.php" method="POST">
                   <div class="input-field">
                     <input type="email" id="email" name="email" required>
                     <label for="email">Email</label>
