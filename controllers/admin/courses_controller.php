@@ -27,7 +27,7 @@ $result = mysqli_query($conection,$query);
 
 if ($result) {
     $setTimeOut = 0.5;
-    $url = '../views/dashboard.php';
+    $url = '../../views/dashboard.php';
     header("refresh: $setTimeOut; url=$url");
     echo('Loading...');
 } else {

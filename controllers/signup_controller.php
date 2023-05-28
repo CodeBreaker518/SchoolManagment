@@ -40,7 +40,7 @@ $result = mysqli_query($conection, $query);
 // Verificar si la inserción fue exitosa
 if ($result) {
   $setTimeOut = 0.5;
-  $url = '../../views/login.php';
+  $url = '../views/login.php';
   header("refresh: $setTimeOut; url=$url");
   echo('Loading...');
 } else {

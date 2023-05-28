@@ -1,46 +1,75 @@
-
 document.addEventListener('DOMContentLoaded', function () {
-    var elems = document.querySelectorAll('.collapsible')
-    var instances = M.Collapsible.init(elems)
+  // initialize collapsible (materialize)
+  const elems = document.querySelectorAll('.collapsible')
+  const instances = M.Collapsible.init(elems)
+
+  // initiliaze modal (materialize)
+  const elemsModal = document.querySelectorAll('.modal')
+  const instancesModal = M.Modal.init(elemsModal)
+
+  // Obtener los enlaces de la barra lateral
+  const mainLink = document.querySelector('.main-link')
+  const studentsLink = document.querySelector('.students-link')
+  const coursesLink = document.querySelector('.courses-link')
+  const professorsLink = document.querySelector('.professors-link')
+  const aboutUsLink = document.querySelector('.about-us-link')
+
+  // Obtener las secciones de contenido
+  const mainContent = document.querySelector('.main-content')
+  const studentsContent = document.querySelector('.students-content')
+  const coursesContent = document.querySelector('.courses-content')
+  const professorsContent = document.querySelector('.professors-content')
+  const aboutUsContent = document.querySelector('.about-us-content')
+
+  // Función para acticonst un enlace y mostrar su contenido
+  const activateLink = (link, content) => {
+    // Remover la clase 'active' de todos los enlaces
+    const links = document.querySelectorAll('.collection-item')
+    links.forEach(function (link) {
+      link.classList.remove('active')
+    })
+
+    // Agregar la clase 'active' al enlace seleccionado
+    link.classList.add('active')
+
+    // Ocultar todos los contenidos
+    const contents = document.querySelectorAll('.content-section')
+    contents.forEach(function (content) {
+      content.style.display = 'none'
+    })
+
+    // Mostrar el contenido correspondiente al enlace seleccionado
+    content.style.display = 'block'
+  }
+
+  // Verificar si existen los enlaces y asignarles eventos de click
+  if (mainLink) {
+    mainLink.addEventListener('click', function () {
+      activateLink(mainLink, mainContent)
+    })
+  }
+
+  if (aboutUsLink) {
+    aboutUsLink.addEventListener('click', function () {
+      activateLink(aboutUsLink, aboutUsContent)
+    })
+  }
+
+  if (studentsLink) {
+    studentsLink.addEventListener('click', function () {
+      activateLink(studentsLink, studentsContent)
+    })
+  }
+
+  if (coursesLink) {
+    coursesLink.addEventListener('click', function () {
+      activateLink(coursesLink, coursesContent)
+    })
+  }
+
+  if (professorsLink) {
+    professorsLink.addEventListener('click', function () {
+      activateLink(professorsLink, professorsContent)
+    })
+  }
 })
-
-document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.modal');
-    var instances = M.Modal.init(elems);
-});
-
-// Obtén los elementos de enlace y los contenidos correspondientes
-const studentsLink = document.querySelector('.students-link');
-const studentsContent = document.querySelector('.students-content');
-const coursesLink = document.querySelector('.courses-link');
-const coursesContent = document.querySelector('.courses-content');
-const professorsLink = document.querySelector('.professors-link');
-const professorsContent = document.querySelector('.professors-content');
-
-// Agrega event listeners para mostrar/ocultar el contenido al hacer clic en los enlaces
-studentsLink.addEventListener('click', function () {
-    studentsLink.classList.add('active');
-    professorsLink.classList.remove('active');
-    coursesLink.classList.remove('active');
-    studentsContent.style.display = 'block';
-    coursesContent.style.display = 'none';
-    professorsContent.style.display = 'none';
-});
-
-coursesLink.addEventListener('click', function () {
-    coursesLink.classList.add('active');
-    studentsLink.classList.remove('active');
-    professorsLink.classList.remove('active');
-    studentsContent.style.display = 'none';
-    coursesContent.style.display = 'block';
-    professorsContent.style.display = 'none';
-});
-
-professorsLink.addEventListener('click', function () {
-    professorsLink.classList.add('active');
-    coursesLink.classList.remove('active');
-    studentsLink.classList.remove('active');
-    studentsContent.style.display = 'none';
-    coursesContent.style.display = 'none';
-    professorsContent.style.display = 'block';
-});
