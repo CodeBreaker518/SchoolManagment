@@ -99,7 +99,9 @@
   font-size: 16px;
 }
 .user-info-container {
+  position: relative;
   height: 80%;
+  width: 142px;
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -110,6 +112,7 @@
   background: var(--color-dorado);
   color: var(--color-gris-oscuro);
 }
+
 .user-name {
   margin-left: 10px;
 }
