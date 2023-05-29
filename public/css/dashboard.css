@@ -195,3 +195,28 @@
   border-radius: 20px !important;
   padding: 50px !important;
 }
+
+/* about us code */
+
+.aboutus-content .row {
+  display: flex;
+  justify-content: space-between;
+}
+.aboutus-content .col {
+  align-items: center;
+  justify-content: center;
+}
+.diego-card
+{
+  width: 365px;
+  height: 331;
+  margin: 0 auto;
+}
+
+.jair-card
+{
+  width: 365px;
+  height: 331;
+  margin: 0 auto;
+}
+
