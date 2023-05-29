@@ -35,11 +35,13 @@ CREATE TABLE IF NOT EXISTS courses
 	cour_id INT NOT NULL AUTO_INCREMENT,
     cour_name VARCHAR(20) NOT NULL,
     cour_description VARCHAR(100) NOT NULL,
-    cour_date DATE NOT NULL, # Formato: YYYY-MM-DD
-    cour_hour TIME NOT NULL, # Formato: 09:30:45
+    cour_semester ENUM('January-June', 'August-December') NOT NULL,
+    cour_days ENUM('Lunes-Jueves','Martes-Viernes','Miercoles','Sabado') NOT NULL,
+    cour_hourstart ENUM('08:00 a.m.','10:00 a.m.','12:00 p.m.','02:00 p.m.','04:00 p.m.') NOT NULL,
     cour_teach_id INT,
     cour_stu_id INT,
     
+    UNIQUE(cour_name),
     PRIMARY KEY (cour_id),
     CONSTRAINT fk_student
 		FOREIGN KEY (cour_teach_id) 

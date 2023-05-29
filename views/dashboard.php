@@ -110,7 +110,7 @@
             <div id="modal1" class="modal">
               <div class="card-content">
                 <span class="card-title">Sign Up</span>
-                <form action="../controllers/admin/courses_controller.php" method="POST">
+                <form action="../controllers/admin/create_courses_controller.php" method="POST">
                   <div class="input-field">
                       <input type="text" id="name" name="name" required>
                       <label for="name">Name</label>
@@ -190,8 +190,48 @@
 
           <div class="about-us-content content-section" style="display: none;">
             <!-- Contenido para la opción "About Us" -->
-            <h1>About Us Content</h1>
-            <p>Este es el contenido para la opción "About Us".</p>
+            <div class="descrption">
+              <h1>About Us...</h1>
+              <p>Este es el contenido para la opción "About Us".</p>
+            </div>
+            <div class="aboutus-content">
+              <div class="row">
+                <div class="col s12 m7 ">
+                  <div class="card diego-card">
+                    <div class="card-image">
+                      <img src="../public/assets/images/diegonft.jpg">
+                      <span class="card-title">Diego Perez Perez</span>
+                    </div>
+                    <div class="card-content">
+                      <p>I am a very simple card. I am good at containing small bits of information.
+                        I am convenient because I require little markup to use effectively.</p>
+                    </div>
+                    <div class="card-action">
+                      <a href="https://github.com/CodeBreaker518" target="_blank">github</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col s12 m7 ">
+                  <div class="card jair-card">
+                    <div class="card-image">
+                      <img src="../public/assets/images/jairnft.jpg">
+                      <span class="card-title">Jair Chavez Islas</span>
+                    </div>
+                    <div class="card-content">
+                      <p>I am a student in the University of Guanajuato, im coursing 6th semester 
+                        Im studying to be backend-developer and ethical hacker
+                        Im 21 years old
+                        Check mi github page</p>
+                    </div>
+                    <div class="card-action">
+                      <a href="https://github.com/Jair0305" target="_blank"><img src="../public/assets/icons/github.png" alt=""></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
           
         <?php elseif($_SESSION['user_type'] === 'professor'):?>
