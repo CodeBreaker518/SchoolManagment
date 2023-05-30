@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS teachers
     teach_email VARCHAR(100) NOT NULL,
     teach_password VARCHAR(50) NOT NULL,
     teach_phone VARCHAR(10) NOT NULL,
+    teach_profilepicture BLOB,
     
     UNIQUE (teach_email),
     UNIQUE (teach_phone),   
@@ -24,7 +25,8 @@ CREATE TABLE IF NOT EXISTS students
     stu_email VARCHAR(100) NOT NULL,
     stu_password VARCHAR(50) NOT NULL,
 	stu_phone VARCHAR(10) NOT NULL,
-    
+    stu_profilepicture BLOB,
+
     UNIQUE (stu_email),
     UNIQUE (stu_phone),
     PRIMARY KEY (stu_id)
