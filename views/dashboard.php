@@ -65,6 +65,13 @@
               <img class="user-image responsive-img" src="../public/assets/images/13efee56-6b8f-419f-8d68-6ca4b26e4784.jpg" alt="">
           </div>
         </div>
+        <div class="user-menu" id="user-menu">
+          <ul class="menu">
+            <li class="menu-item"><a>Change image</a></li>
+            <li class="menu-item"><a>Change password</a></li>
+            <li class="menu-item"><a href="../controllers/logout_controller.php">Log Out</a></li>
+          </ul>
+        </div>
       </nav>
 
 <!-- FALTA MAIN Y ABOUT US EN TODA ESTA SECCION -->
@@ -162,8 +169,54 @@
 
           <div class="about-us-content content-section" style="display: none;">
             <!-- Contenido para la opción "About Us" -->
-            <h1>About Us Content</h1>
-            <p>Este es el contenido para la opción "About Us".</p>
+            <div class="description">
+              <h1>About Us...</h1>
+            </div>
+            <div class="aboutus-content">
+              <div class="row">
+                <div class="col s12 m7">
+                  <div class="card diego-card">
+                    <div class="card-image">
+                      <img src="../public/assets/images/diegonft.jpg">
+                      <span class="card-title">Diego Perez Perez</span>
+                    </div>
+                    <div class="card-content">
+                      <p>
+                        Student of the University of Guanajuato, I'm 20, a passionate front-end developer studying for a degree in systems engineering
+                      </p>
+                    </div>
+                    <div class="card-action">
+                      <a href="https://github.com/CodeBreaker518" target="_blank">
+                        <img src="../public/assets/icons/github.png" alt="github png">
+                      </a>
+                      <a href="https://github.com/CodeBreaker518" target="_blank">
+                        <p>CodeBreaker518</p>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col s12 m7 ">
+                  <div class="card jair-card">
+                    <div class="card-image">
+                      <img src="../public/assets/images/jairnft.jpg">
+                      <span class="card-title">Jair Chavez Islas</span>
+                    </div>
+                    <div class="card-content">
+                      <p>I am a student in the University of Guanajuato, I'm 21, I'm studying to be a backend-developer and Ethical hacker</p>
+                    </div>
+                    <div class="card-action">
+                      <a href="https://github.com/Jair0305" target="_blank">
+                        <img src="../public/assets/icons/github.png" alt="github png">
+                      </a>
+                      <a href="https://github.com/Jair0305" target="_blank">
+                        <p>Jair0305</p>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
         <?php elseif($_SESSION['user_type'] === 'student'):?>
@@ -190,24 +243,29 @@
 
           <div class="about-us-content content-section" style="display: none;">
             <!-- Contenido para la opción "About Us" -->
-            <div class="descrption">
+            <div class="description">
               <h1>About Us...</h1>
-              <p>Este es el contenido para la opción "About Us".</p>
             </div>
             <div class="aboutus-content">
               <div class="row">
-                <div class="col s12 m7 ">
+                <div class="col s12 m7">
                   <div class="card diego-card">
                     <div class="card-image">
                       <img src="../public/assets/images/diegonft.jpg">
                       <span class="card-title">Diego Perez Perez</span>
                     </div>
                     <div class="card-content">
-                      <p>I am a very simple card. I am good at containing small bits of information.
-                        I am convenient because I require little markup to use effectively.</p>
+                      <p>
+                        Student of the University of Guanajuato, I'm 20, a passionate front-end developer studying for a degree in systems engineering
+                      </p>
                     </div>
                     <div class="card-action">
-                      <a href="https://github.com/CodeBreaker518" target="_blank">github</a>
+                      <a href="https://github.com/CodeBreaker518" target="_blank">
+                        <img src="../public/assets/icons/github.png" alt="github png">
+                      </a>
+                      <a href="https://github.com/CodeBreaker518" target="_blank">
+                        <p>CodeBreaker518</p>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -219,19 +277,20 @@
                       <span class="card-title">Jair Chavez Islas</span>
                     </div>
                     <div class="card-content">
-                      <p>I am a student in the University of Guanajuato, im coursing 6th semester 
-                        Im studying to be backend-developer and ethical hacker
-                        Im 21 years old
-                        Check mi github page</p>
+                      <p>I am a student in the University of Guanajuato, I'm 21, I'm studying to be a backend-developer and Ethical hacker</p>
                     </div>
                     <div class="card-action">
-                      <a href="https://github.com/Jair0305" target="_blank"><img src="../public/assets/icons/github.png" alt=""></a>
+                      <a href="https://github.com/Jair0305" target="_blank">
+                        <img src="../public/assets/icons/github.png" alt="github png">
+                      </a>
+                      <a href="https://github.com/Jair0305" target="_blank">
+                        <p>Jair0305</p>
+                      </a>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
           </div>
           
         <?php elseif($_SESSION['user_type'] === 'professor'):?>
@@ -258,8 +317,54 @@
 
           <div class="about-us-content content-section" style="display: none;">
             <!-- Contenido para la opción "About Us" -->
-            <h1>About Us Content</h1>
-            <p>Este es el contenido para la opción "About Us".</p>
+            <div class="description">
+              <h1>About Us...</h1>
+            </div>
+            <div class="aboutus-content">
+              <div class="row">
+                <div class="col s12 m7">
+                  <div class="card diego-card">
+                    <div class="card-image">
+                      <img src="../public/assets/images/diegonft.jpg">
+                      <span class="card-title">Diego Perez Perez</span>
+                    </div>
+                    <div class="card-content">
+                      <p>
+                        Student of the University of Guanajuato, I'm 20, a passionate front-end developer studying for a degree in systems engineering
+                      </p>
+                    </div>
+                    <div class="card-action">
+                      <a href="https://github.com/CodeBreaker518" target="_blank">
+                        <img src="../public/assets/icons/github.png" alt="github png">
+                      </a>
+                      <a href="https://github.com/CodeBreaker518" target="_blank">
+                        <p>CodeBreaker518</p>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col s12 m7 ">
+                  <div class="card jair-card">
+                    <div class="card-image">
+                      <img src="../public/assets/images/jairnft.jpg">
+                      <span class="card-title">Jair Chavez Islas</span>
+                    </div>
+                    <div class="card-content">
+                      <p>I am a student in the University of Guanajuato, I'm 21, I'm studying to be a backend-developer and Ethical hacker</p>
+                    </div>
+                    <div class="card-action">
+                      <a href="https://github.com/Jair0305" target="_blank">
+                        <img src="../public/assets/icons/github.png" alt="github png">
+                      </a>
+                      <a href="https://github.com/Jair0305" target="_blank">
+                        <p>Jair0305</p>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
         <?php endif?>

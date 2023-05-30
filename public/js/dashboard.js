@@ -77,3 +77,37 @@ document.addEventListener('DOMContentLoaded', function () {
     })
   }
 })
+
+// Show user menu on dashboard
+
+const showUserMenu = () => {
+  const userMenu = document.getElementById('user-menu')
+  userMenu.classList.add('show-menu')
+}
+
+const hideUserMenu = () => {
+  const userMenu = document.getElementById('user-menu')
+  userMenu.classList.remove('show-menu')
+}
+
+const userInfoContainer = document.querySelector('.user-info-container')
+const userMenu = document.querySelector('.user-menu')
+const goldUG = '#ffbf00'
+const azulUG = '#003a6c'
+userInfoContainer.addEventListener('mouseover', () => {
+  showUserMenu()
+  userInfoContainer.style.backgroundColor = goldUG
+})
+userInfoContainer.addEventListener('mouseout', () => {
+  hideUserMenu()
+  userInfoContainer.style.backgroundColor = azulUG
+})
+
+userMenu.addEventListener('mouseover', () => {
+  showUserMenu()
+  userInfoContainer.style.backgroundColor = goldUG
+})
+userMenu.addEventListener('mouseout', () => {
+  hideUserMenu()
+  userInfoContainer.style.backgroundColor = azulUG
+})
