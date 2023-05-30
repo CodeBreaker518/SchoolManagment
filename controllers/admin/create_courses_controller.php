@@ -18,10 +18,12 @@ if (!$conection) {
 
 $name = $_POST['name'];
 $description = $_POST['description'];
-$date = $_POST['date'];
-$time = $_POST['hour'];
+$semester = $_POST['semester'];
+$days = $_POST['days'];
+$hourstart = $_POST['hourstart'];
 
-$query = "INSERT INTO courses (cour_name, cour_description, cour_date, cour_hour) VALUES ('$name','$description','$date','$time')";
+
+$query = "INSERT INTO courses (cour_name, cour_description, cour_semester, cour_days, cour_hourstart) VALUES ('$name','$description','$semester','$days','$hourstart')";
 
 $result = mysqli_query($conection,$query);
 
