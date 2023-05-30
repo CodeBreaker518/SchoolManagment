@@ -16,14 +16,17 @@ if (!$conection) {
     die("Error al conectar con la base de datos: " . mysqli_connect_error());
 }
 
-$profilepicture = $_POST['profile_picture'];
+$profilepicture = $_FILES['profile_picture']['tmp_name'];
+$profilepictureData = file_get_contents($profilepicture);
+$profilepictureType = $FILES['profile_picture']['type'];
+
 $rol = $_POST['rol'];
 $id = $_POST['id']; // Suponemos que el ID se envía mediante un campo oculto en el formulario
 
 if ($rol == 'student') {
-    $query = "UPDATE students SET stu_profilepicture = '$profilepicture' WHERE stu_id = '$id'";
+    $query = "UPDATE students SET stu_profilepicture = '$profilepictureData', stu_profilepicture_type = '$profilepictureType' WHERE stu_id = '$id'";
 } elseif ($rol == 'professor') {
-    $query = "UPDATE teachers SET teach_profilepicture = '$profilepicture' WHERE teach_id = '$id'";
+    $query = "UPDATE teachers SET teach_profilepicture = '$profilepictureData', teach_profilepicture_type = '$profilepictureType' WHERE teach_id = '$id'";
 } else {
     echo 'Inserción inválida';
     exit;
