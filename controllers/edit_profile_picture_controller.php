@@ -16,14 +16,18 @@ if (!$conection) {
     die("Error al conectar con la base de datos: " . mysqli_connect_error());
 }
 
-$id = $_POST['id']; // Supongamos que el ID del registro a editar se envía mediante un formulario POST
-$name = $_POST['name'];
-$description = $_POST['description'];
-$semester = $_POST['semester'];
-$days = $_POST['days'];
-$hourstart = $_POST['hourstart'];
+$profilepicture = $_POST['profile_picture'];
+$rol = $_POST['rol'];
+$id = $_POST['id']; // Suponemos que el ID se envía mediante un campo oculto en el formulario
 
-$query = "UPDATE courses SET cour_name = '$name', cour_description = '$description', cour_semester = '$semester', cour_days = '$days', cour_hourstart = '$hourstart' WHERE id = '$id'";
+if ($rol == 'student') {
+    $query = "UPDATE students SET stu_profilepicture = '$profilepicture' WHERE stu_id = '$id'";
+} elseif ($rol == 'professor') {
+    $query = "UPDATE teachers SET teach_profilepicture = '$profilepicture' WHERE teach_id = '$id'";
+} else {
+    echo 'Inserción inválida';
+    exit;
+}
 
 $result = mysqli_query($conection, $query);
 
@@ -33,7 +37,7 @@ if ($result) {
     header("refresh: $setTimeOut; url=$url");
     echo('Guardando cambios...');
 } else {
-    echo "Error al editar el curso: " . mysqli_error($conection);
+    echo "Error al editar el perfil: " . mysqli_error($conection);
 }
 
 mysqli_close($conection);
