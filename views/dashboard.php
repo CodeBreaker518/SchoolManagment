@@ -67,10 +67,35 @@
         </div>
         <div class="user-menu" id="user-menu">
           <ul class="menu">
-            <li class="menu-item"><a>Change image</a></li>
+            <li class="menu-item modal-trigger" data-target="modal2"><a href="#modal2">Change image</a></li>
             <li class="menu-item"><a>Change password</a></li>
             <li class="menu-item"><a href="../controllers/logout_controller.php">Log Out</a></li>
           </ul>
+        </div>
+        <div id="modal2" class="modal change-photo-container">
+          <div class="current-photo">
+            <img src="../public/assets/images/13efee56-6b8f-419f-8d68-6ca4b26e4784.jpg" alt="user image">
+          </div>
+          <div class="modal-content change-photo-title">
+            <h4>Change Photo</h4>
+          </div>
+          <div class="change-photo-section">
+            <p>Please upload a photo</p>
+            <form class="update-photo-form" action="../controllers/edit_profile_picture_controller.php">
+              <div class="file-field input-field">
+                <div class="btn btn-add-file">
+                  <span>File</span>
+                  <input type="file" class="upload-image-input">
+                </div>
+                <div class="file-path-wrapper">
+                  <input class="file-path validate" type="text">
+                </div>
+              </div>
+              <button class="btn waves-effect waves-light upload-image-btn" type="submit" name="action">Agree
+                <i class="material-icons right">send</i>
+              </button>
+            </form>
+          </div>
         </div>
       </nav>
 

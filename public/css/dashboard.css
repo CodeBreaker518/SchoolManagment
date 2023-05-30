@@ -303,3 +303,59 @@
     max-width: 150px;
   }
 }
+
+/* modal change photo */
+
+#modal2 {
+  color: var(--color-gris-oscuro);
+  padding: 2rem;
+  border-radius: 20px;
+  height: 600px;
+}
+
+.current-photo {
+  display: flex;
+  justify-content: center;
+}
+
+.current-photo img {
+  border: 5px solid var(--color-amarillo-ug);
+  border-radius: 50%;
+}
+.change-photo-title {
+  display: flex;
+  justify-content: center;
+}
+.change-photo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.change-photo-section p {
+  line-height: 1;
+}
+.update-photo-form {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.btn-add-file {
+  background-color: var(--color-azul-ug) !important;
+}
+.btn-add-file:hover {
+  background-color: var(--color-dorado) !important;
+}
+.upload-image-btn {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-dorado);
+  color: var(--color-gris-oscuro);
+}
+.upload-image-btn:hover {
+  background-color: var(--color-azul-ug);
+  color: var(--color-gris-claro);
+}
