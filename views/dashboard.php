@@ -70,17 +70,17 @@
         </div>
         <div class="user-menu" id="user-menu">
           <ul class="menu">
-            <li class="menu-item modal-trigger" data-target="modal2"><a href="#modal2">Change image</a></li>
+            <li class="menu-item modal-trigger" data-target="modal2"><a href="#modal2">Change profile picture</a></li>
             <li class="menu-item"><a>Change password</a></li>
             <li class="menu-item"><a href="../controllers/logout_controller.php">Log Out</a></li>
           </ul>
         </div>
         <div id="modal2" class="modal change-photo-container">
           <div class="current-photo">
-           <img src="data:image/jpeg;base64,<?php echo base64_encode($imageData); ?>" alt="user image" />
+            <img src="data:image/jpeg;base64,<?php echo base64_encode($imageData); ?>" alt="user image" />
           </div>
           <div class="modal-content change-photo-title">
-            <h4>Change Photo</h4>
+            <h4>Change Profile Picture</h4>
           </div>
           <div class="change-photo-section">
             <p>Please upload a photo</p>
