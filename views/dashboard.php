@@ -85,7 +85,7 @@
               <div class="file-field input-field">
                 <div class="btn btn-add-file">
                   <span>File</span>
-                  <input type="file" class="upload-image-input">
+                  <input type="file" class="upload-image-input" name="profile_picture">
                 </div>
                 <div class="file-path-wrapper">
                   <input class="file-path validate" type="text">
