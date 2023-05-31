@@ -1,3 +1,11 @@
+<?php
+  session_start(); //Inicia una sesion o reanuda una que ya este abierta en los datos del navegador
+
+  if (isset($_SESSION['user_id'])) { //verifica que el id exista en la base de datos (es decir, que el usuario haya iniciado sesion)
+    header("Location: dashboard.php"); // true = redirije al usuario a login.php
+    exit;
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
