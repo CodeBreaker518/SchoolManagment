@@ -30,7 +30,7 @@
 
   <title>Dasboard</title>
 </head>
-<body>
+<body style="overflow:auto;">
   
   <!-- reanude session -->
   
@@ -61,7 +61,7 @@
       <nav class="navbar" id="navbar">
         <div class="user-information">
           <div class="show-sidebar">
-            <i class="material-icons">menu</i>
+            <i class="material-icons show-sidebar-btn">menu</i>
           </div>
           <div class="user-info-container">
             <p class="user-name"><?php echo $_SESSION['user_name']; ?></p>
@@ -102,7 +102,6 @@
         </div>
       </nav>
 
-<!-- FALTA MAIN Y ABOUT US EN TODA ESTA SECCION -->
       <section class="dashboard-container">
 
         <?php if($_SESSION['user_type'] === 'ADMIN'):?>
@@ -118,16 +117,19 @@
               <?php foreach ($students as $student): ?>
                 <li>
                   <div class="stu-name">
-                    <div class="collapsible-header"><?php echo $student['stu_name']; ?></div>
-                  </div>
-                  <div class="icons">
+                    <div class="collapsible-header"><?php echo $student['stu_name']; ?>
+                    <div class="icons">
                     <form action="../controllers/admin/delete_students_controller.php" method="POST">
                         <input type="hidden" name="id" value="<?php echo $student['stu_id']; ?>">
-                        <button class="btn" type="submit" name="action">
-                            <i class="material-icons delete"></i>
+
+                        <button class="waves-effect waves-light btn red " type="submit" name="action">
+                            <i class="material-icons ">delete</i>
                         </button>
                     </form>
                   </div>
+                  </div>
+                  </div>
+                  
                   <div class="collapsible-body">
                     <span>Student ID: <?php echo $student['stu_id']; ?></span><br>
                     <span>Email: <?php echo $student['stu_email']; ?></span><br>
@@ -149,8 +151,8 @@
                     <div class="icons">
                       <form action="../controllers/admin/delete_courses_controller.php" method="POST">
                           <input type="hidden" name="id" value="<?php echo $course['cour_id']; ?>">
-                          <button class="btn" type="submit" name="action">
-                              <i class="material-icons delete"></i>
+                          <button class="waves-effect waves-light btn red" type="submit" name="action">
+                              <i class="material-icons">delete</i>
                           </button>
                       </form>
                     </div>
@@ -215,7 +217,7 @@
                 </div>
               </div>
               <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
               </div>
             </div>
           </div>
@@ -225,15 +227,17 @@
               <?php foreach ($teachers as $teacher): ?>
                 <li>
                   <div class="teach-name">
-                    <div class="collapsible-header"><?php echo $teacher['teach_name']; ?></div>
-                  </div>
-                  <div class="icons">
+                    <div class="collapsible-header"><?php echo $teacher['teach_name']; ?>
+                    <div class="icons">
                     <form action="../controllers/admin/delete_teachers_controller.php" method="POST">
                         <input type="hidden" name="id" value="<?php echo $teacher['teach_id']; ?>">
-                        <button class="btn" type="submit" name="action">
-                            <i class="material-icons delete"></i>
+
+                        <button class="waves-effect waves-light btn red" type="submit" name="action">
+                            <i class="material-icons">delete</i>
                         </button>
                     </form>
+                  </div>
+                  </div>
                   </div>
                   <div class="collapsible-body">
                     <span>Professor ID: <?php echo $teacher['teach_id']; ?></span><br>
@@ -251,48 +255,69 @@
             <div class="description">
               <h1>About Us...</h1>
             </div>
-            <div class="aboutus-content">
+            <div class="container about-us-content">
               <div class="row">
-                <div class="col s12 m7">
-                  <div class="card diego-card">
+                <div class="col xl1 l1 m1 s12">
+                </div>
+
+
+                <div class="col xl5 l5 m5 s12">
+                  <div class="card sticky-action">
                     <div class="card-image">
-                      <img src="../public/assets/images/diegonft.jpg">
+                      <img src="../public/assets/images/diegonft.jpg" alt="diegonft image">
                       <span class="card-title">Diego Perez Perez</span>
+                      <a class="material-icons btn red btn-large btn-floating halfway-fab pulse activator">info_outline</a>
                     </div>
+    
                     <div class="card-content">
                       <p>
-                        Student of the University of Guanajuato, I'm 20, a passionate front-end developer studying for a degree in systems engineering
                       </p>
                     </div>
+    
+                    <div class="card-reveal center">
+                      <span class="card-title"><i class="right">X</i></span>
+                        <h4>About Me</h4>
+                        <h5>Student in the University of Guanajuato, I'm 20, a passionate front-end developer, studying for a degree in systems engineering</h5>
+                    </div>
+    
                     <div class="card-action">
-                      <a href="https://github.com/CodeBreaker518" target="_blank">
-                        <img src="../public/assets/icons/github.png" alt="github png">
-                      </a>
-                      <a href="https://github.com/CodeBreaker518" target="_blank">
-                        <p>CodeBreaker518</p>
-                      </a>
+                      <a href="https://www.github.com/CodeBreaker518" target="_blank">
+                        <img src="../public/assets/icons/github.png" alt="">
+                        Github</a>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="col xl5 l5 m5 s12">
+                  <div class="card sticky-action">
+                    <div class="card-image">
+                      <img src="../public/assets/images/jairnft.jpg" alt="diegonft image">
+                      <span class="card-title">Jair Chavez Islas</span>
+                      <a class="material-icons btn red btn-large btn-floating halfway-fab pulse activator">info_outline</a>
+                    </div>
+    
+                    <div class="card-content">
+                      <p>
+                      </p>
+                    </div>
+    
+                    <div class="card-reveal center">
+                      <span class="card-title"><i class="right">X</i></span>
+                        <h4>About Me</h4>
+                        <h5>I am a student in the University of Guanajuato, I'm 21, I'm studying to be a backend-developer and Ethical hacker</h5>
+                    </div>
+    
+                    <div class="card-action">
+                      <a href="https://www.github.com/Jair0305" target="_blank">
+                        <img src="../public/assets/icons/github.png" alt="">
+                        Github</a>
                     </div>
                   </div>
                 </div>
 
-                <div class="col s12 m7 ">
-                  <div class="card jair-card">
-                    <div class="card-image">
-                      <img src="../public/assets/images/jairnft.jpg">
-                      <span class="card-title">Jair Chavez Islas</span>
-                    </div>
-                    <div class="card-content">
-                      <p>I am a student in the University of Guanajuato, I'm 21, I'm studying to be a backend-developer and Ethical hacker</p>
-                    </div>
-                    <div class="card-action">
-                      <a href="https://github.com/Jair0305" target="_blank">
-                        <img src="../public/assets/icons/github.png" alt="github png">
-                      </a>
-                      <a href="https://github.com/Jair0305" target="_blank">
-                        <p>Jair0305</p>
-                      </a>
-                    </div>
-                  </div>
+
+                <div class="col xl1 l1 m1 s12 ">
                 </div>
               </div>
             </div>
@@ -325,48 +350,69 @@
             <div class="description">
               <h1>About Us...</h1>
             </div>
-            <div class="aboutus-content">
+            <div class="container about-us-content">
               <div class="row">
-                <div class="col s12 m7">
-                  <div class="card diego-card">
+                <div class="col xl1 l1 m1 s12">
+                </div>
+
+
+                <div class="col xl5 l5 m5 s12">
+                  <div class="card sticky-action">
                     <div class="card-image">
-                      <img src="../public/assets/images/diegonft.jpg">
+                      <img src="../public/assets/images/diegonft.jpg" alt="diegonft image">
                       <span class="card-title">Diego Perez Perez</span>
+                      <a class="material-icons btn red btn-large btn-floating halfway-fab pulse activator">info_outline</a>
                     </div>
+    
                     <div class="card-content">
                       <p>
-                        Student of the University of Guanajuato, I'm 20, a passionate front-end developer studying for a degree in systems engineering
                       </p>
                     </div>
+    
+                    <div class="card-reveal center">
+                      <span class="card-title"><i class="right">X</i></span>
+                        <h4>About Me</h4>
+                        <h5>Student in the University of Guanajuato, I'm 20, a passionate front-end developer, studying for a degree in systems engineering</h5>
+                    </div>
+    
                     <div class="card-action">
-                      <a href="https://github.com/CodeBreaker518" target="_blank">
-                        <img src="../public/assets/icons/github.png" alt="github png">
-                      </a>
-                      <a href="https://github.com/CodeBreaker518" target="_blank">
-                        <p>CodeBreaker518</p>
-                      </a>
+                      <a href="https://www.github.com/CodeBreaker518" target="_blank">
+                        <img src="../public/assets/icons/github.png" alt="">
+                        Github</a>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="col xl5 l5 m5 s12">
+                  <div class="card sticky-action">
+                    <div class="card-image">
+                      <img src="../public/assets/images/jairnft.jpg" alt="diegonft image">
+                      <span class="card-title">Jair Chavez Islas</span>
+                      <a class="material-icons btn red btn-large btn-floating halfway-fab pulse activator">info_outline</a>
+                    </div>
+    
+                    <div class="card-content">
+                      <p>
+                      </p>
+                    </div>
+    
+                    <div class="card-reveal center">
+                      <span class="card-title"><i class="right">X</i></span>
+                        <h4>About Me</h4>
+                        <h5>I am a student in the University of Guanajuato, I'm 21, I'm studying to be a backend-developer and Ethical hacker</h5>
+                    </div>
+    
+                    <div class="card-action">
+                      <a href="https://www.github.com/Jair0305" target="_blank">
+                        <img src="../public/assets/icons/github.png" alt="">
+                        Github</a>
                     </div>
                   </div>
                 </div>
 
-                <div class="col s12 m7 ">
-                  <div class="card jair-card">
-                    <div class="card-image">
-                      <img src="../public/assets/images/jairnft.jpg">
-                      <span class="card-title">Jair Chavez Islas</span>
-                    </div>
-                    <div class="card-content">
-                      <p>I am a student in the University of Guanajuato, I'm 21, I'm studying to be a backend-developer and Ethical hacker</p>
-                    </div>
-                    <div class="card-action">
-                      <a href="https://github.com/Jair0305" target="_blank">
-                        <img src="../public/assets/icons/github.png" alt="github png">
-                      </a>
-                      <a href="https://github.com/Jair0305" target="_blank">
-                        <p>Jair0305</p>
-                      </a>
-                    </div>
-                  </div>
+
+                <div class="col xl1 l1 m1 s12 ">
                 </div>
               </div>
             </div>
@@ -399,48 +445,69 @@
             <div class="description">
               <h1>About Us...</h1>
             </div>
-            <div class="aboutus-content">
+            <div class="container about-us-content">
               <div class="row">
-                <div class="col s12 m7">
-                  <div class="card diego-card">
+                <div class="col xl1 l1 m1 s12">
+                </div>
+
+
+                <div class="col xl5 l5 m5 s12">
+                  <div class="card sticky-action">
                     <div class="card-image">
-                      <img src="../public/assets/images/diegonft.jpg">
+                      <img src="../public/assets/images/diegonft.jpg" alt="diegonft image">
                       <span class="card-title">Diego Perez Perez</span>
+                      <a class="material-icons btn red btn-large btn-floating halfway-fab pulse activator">info_outline</a>
                     </div>
+    
                     <div class="card-content">
                       <p>
-                        Student of the University of Guanajuato, I'm 20, a passionate front-end developer studying for a degree in systems engineering
                       </p>
                     </div>
+    
+                    <div class="card-reveal center">
+                      <span class="card-title"><i class="right">X</i></span>
+                        <h4>About Me</h4>
+                        <h5>Student in the University of Guanajuato, I'm 20, a passionate front-end developer, studying for a degree in systems engineering</h5>
+                    </div>
+    
                     <div class="card-action">
-                      <a href="https://github.com/CodeBreaker518" target="_blank">
-                        <img src="../public/assets/icons/github.png" alt="github png">
-                      </a>
-                      <a href="https://github.com/CodeBreaker518" target="_blank">
-                        <p>CodeBreaker518</p>
-                      </a>
+                      <a href="https://www.github.com/CodeBreaker518" target="_blank">
+                        <img src="../public/assets/icons/github.png" alt="">
+                        Github</a>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="col xl5 l5 m5 s12">
+                  <div class="card sticky-action">
+                    <div class="card-image">
+                      <img src="../public/assets/images/jairnft.jpg" alt="diegonft image">
+                      <span class="card-title">Jair Chavez Islas</span>
+                      <a class="material-icons btn red btn-large btn-floating halfway-fab pulse activator">info_outline</a>
+                    </div>
+    
+                    <div class="card-content">
+                      <p>
+                      </p>
+                    </div>
+    
+                    <div class="card-reveal center">
+                      <span class="card-title"><i class="right">X</i></span>
+                        <h4>About Me</h4>
+                        <h5>I am a student in the University of Guanajuato, I'm 21, I'm studying to be a backend-developer and Ethical hacker</h5>
+                    </div>
+    
+                    <div class="card-action">
+                      <a href="https://www.github.com/Jair0305" target="_blank">
+                        <img src="../public/assets/icons/github.png" alt="">
+                        Github</a>
                     </div>
                   </div>
                 </div>
 
-                <div class="col s12 m7 ">
-                  <div class="card jair-card">
-                    <div class="card-image">
-                      <img src="../public/assets/images/jairnft.jpg">
-                      <span class="card-title">Jair Chavez Islas</span>
-                    </div>
-                    <div class="card-content">
-                      <p>I am a student in the University of Guanajuato, I'm 21, I'm studying to be a backend-developer and Ethical hacker</p>
-                    </div>
-                    <div class="card-action">
-                      <a href="https://github.com/Jair0305" target="_blank">
-                        <img src="../public/assets/icons/github.png" alt="github png">
-                      </a>
-                      <a href="https://github.com/Jair0305" target="_blank">
-                        <p>Jair0305</p>
-                      </a>
-                    </div>
-                  </div>
+
+                <div class="col xl1 l1 m1 s12 ">
                 </div>
               </div>
             </div>
