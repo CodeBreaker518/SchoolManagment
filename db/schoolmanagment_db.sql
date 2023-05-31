@@ -45,8 +45,8 @@ CREATE TABLE IF NOT EXISTS courses
     UNIQUE(cour_name),
     PRIMARY KEY (cour_id),
 	CONSTRAINT fk_teacher
-		FOREIGN KEY (cour_stu_id) 
-        REFERENCES students(stu_id)
+		FOREIGN KEY (cour_teach_id) 
+        REFERENCES teachers(teach_id)
         ON UPDATE SET NULL
         ON DELETE SET NULL
 );
