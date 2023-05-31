@@ -122,7 +122,7 @@
                   </div>
                   <div class="icons">
                     <form action="../controllers/admin/delete_students_controller.php" method="POST">
-                        <input type="hidden" name="id" value="<?php echo $student['cour_id']; ?>">
+                        <input type="hidden" name="id" value="<?php echo $student['stu_id']; ?>">
                         <button class="btn" type="submit" name="action">
                             <i class="material-icons delete"></i>
                         </button>
@@ -229,7 +229,7 @@
                   </div>
                   <div class="icons">
                     <form action="../controllers/admin/delete_teachers_controller.php" method="POST">
-                        <input type="hidden" name="id" value="<?php echo $teacher['cour_id']; ?>">
+                        <input type="hidden" name="id" value="<?php echo $teacher['teach_id']; ?>">
                         <button class="btn" type="submit" name="action">
                             <i class="material-icons delete"></i>
                         </button>
