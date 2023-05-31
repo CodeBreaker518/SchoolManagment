@@ -7,7 +7,7 @@
   }
   require_once '../controllers/dashboard_controller.php';
 
-  require_once"../controllers/get_profile_picture_controller.php"; // Ruta del controlador PHP
+  require_once "../controllers/get_profile_picture_controller.php"; // Ruta del controlador PHP
 
 ?>
 
@@ -117,7 +117,17 @@
             <ul class="collapsible">
               <?php foreach ($students as $student): ?>
                 <li>
-                  <div class="collapsible-header"><?php echo $student['stu_name']; ?></div>
+                  <div class="stu-name">
+                    <div class="collapsible-header"><?php echo $student['stu_name']; ?></div>
+                  </div>
+                  <div class="icons">
+                    <form action="../controllers/admin/delete_students_controller.php" method="POST">
+                        <input type="hidden" name="id" value="<?php echo $student['cour_id']; ?>">
+                        <button class="btn" type="submit" name="action">
+                            <i class="material-icons delete"></i>
+                        </button>
+                    </form>
+                  </div>
                   <div class="collapsible-body">
                     <span>Student ID: <?php echo $student['stu_id']; ?></span><br>
                     <span>Email: <?php echo $student['stu_email']; ?></span><br>
@@ -132,10 +142,25 @@
             <ul class="collapsible">
               <?php foreach ($courses as $course): ?>
                 <li>
-                  <div class="collapsible-header"><?php echo $course['cour_name']; ?></div>
+                  <div class="collapsible-header">
+                    <div class="courname">
+                      <?php echo $course['cour_name']; ?>
+                    </div>
+                    <div class="icons">
+                      <form action="../controllers/admin/delete_courses_controller.php" method="POST">
+                          <input type="hidden" name="id" value="<?php echo $course['cour_id']; ?>">
+                          <button class="btn" type="submit" name="action">
+                              <i class="material-icons delete"></i>
+                          </button>
+                      </form>
+                    </div>
+                  </div>
                   <div class="collapsible-body">
                     <span>Course ID: <?php echo $course['cour_id']; ?></span><br>
                     <span>Description: <?php echo $course['cour_description']; ?></span><br>
+                    <span>Semester: <?php echo $course['cour_semester']; ?></span><br>
+                    <span>Days: <?php echo $course['cour_days']; ?></span><br>
+                    <span>HourStart: <?php echo $course['cour_hourstart']; ?></span><br>
                   </div>
                 </li>
               <?php endforeach; ?>
@@ -143,8 +168,8 @@
             <a class="btn-floating btn-large red btn modal-trigger btn-add-course" href="#modal1"><i class="material-icons">add</i></a>
             <!-- Modal Structure -->
             <div id="modal1" class="modal">
-              <div class="card-content">
-                <span class="card-title">Sign Up</span>
+              <div class="card-content card-courses">
+                <span class="card-title">Register courses</span>
                 <form action="../controllers/admin/create_courses_controller.php" method="POST">
                   <div class="input-field">
                       <input type="text" id="name" name="name" required>
@@ -154,23 +179,39 @@
                       <input type="text" id="description" name="description" required>
                       <label for="description">Description</label>
                   </div>
-                  <div class="input-field">
-                    <input type="date" id="date" name="date" required>
-                    <label for="date">Date</label>
+                  <div class="input-field col s12">
+                    <select name="semester">
+                      <option value="" disabled selected>Semester...?</option>
+                      <option value="January-June">January-June</option>
+                      <option value="August-December">August-December</option>
+                    </select>
                   </div>
-                  <div class="input-field">
-                    <input type="time" id="hour" name="hour" required>
-                      <i class="toggle-hour fa-sharp fa-solid fa-eye"></i>
-                    <label for="hour">Hour</label>
+                  <div class="input-field col s12">
+                    <select name="days">
+                      <option value="" disabled selected>Days...?</option>
+                      <option value="Monday-Thursday">Monday-Thursday</option>
+                      <option value="Tuesday-Friday">Tuesday-Friday</option>
+                      <option value="Wednesday">Wednesday</option>
+                      <option value="Saturday">Saturday</option>
+                    </select>
+                  </div>
+                  <div class="input-field col s12">
+                    <select name="hourstart">
+                      <option value="" disabled selected>Hour...?</option>
+                      <option value="08:00 a.m.">08:00 a.m.</option>
+                      <option value="10:00 a.m.">10:00 a.m.</option>
+                      <option value="12:00 p.m.">12:00 p.m.</option>
+                      <option value="02:00 p.m.">02:00 p.m.</option>
+                      <option value="04:00 p.m.">04:00 p.m.</option>
+                    </select>
                   </div>
                   <div class="card-action">
-                    <button class="btn waves-effect waves-light" type="submit" name="action">Sign Up
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Register
                       <i class="material-icons right">send</i>
                     </button>
                   </div>
                 </form>
                 <div class="card-action">
-                  <p>Already have an account? <a href="../views/login.php">Log In</a></p>
                 </div>
               </div>
               <div class="modal-footer">
@@ -183,7 +224,17 @@
             <ul class="collapsible">
               <?php foreach ($teachers as $teacher): ?>
                 <li>
-                  <div class="collapsible-header"><?php echo $teacher['teach_name']; ?></div>
+                  <div class="teach-name">
+                    <div class="collapsible-header"><?php echo $teacher['teach_name']; ?></div>
+                  </div>
+                  <div class="icons">
+                    <form action="../controllers/admin/delete_teachers_controller.php" method="POST">
+                        <input type="hidden" name="id" value="<?php echo $teacher['cour_id']; ?>">
+                        <button class="btn" type="submit" name="action">
+                            <i class="material-icons delete"></i>
+                        </button>
+                    </form>
+                  </div>
                   <div class="collapsible-body">
                     <span>Professor ID: <?php echo $teacher['teach_id']; ?></span><br>
                     <span>Email: <?php echo $teacher['teach_email']; ?></span><br>

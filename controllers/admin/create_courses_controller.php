@@ -22,6 +22,10 @@ $semester = $_POST['semester'];
 $days = $_POST['days'];
 $hourstart = $_POST['hourstart'];
 
+if (empty($name) || empty($description) || empty($semester) || empty($days) || empty($hourstart)) {
+    echo "Por favor, completa todos los campos obligatorios.";
+    exit;
+}
 
 $query = "INSERT INTO courses (cour_name, cour_description, cour_semester, cour_days, cour_hourstart) VALUES ('$name','$description','$semester','$days','$hourstart')";
 

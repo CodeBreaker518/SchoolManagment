@@ -16,25 +16,14 @@ if (!$conection) {
 // Obtener el ID y rol del usuario (ajusta esto según tu lógica de obtención de datos de usuario)
 $userID = $_SESSION['user_id'];
 $userRole = $_SESSION['user_type'];
+$newpassword = $_POST['newpassword'];
 
-// Verificar si se ha enviado una imagen
-if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK) {
-  // Obtener la ruta temporal del archivo subido
-  $tempFilePath = $_FILES['profile_picture']['tmp_name'];
-
-  // Leer el contenido del archivo
-  $profilePictureData = file_get_contents($tempFilePath);
-
-  // Escapar el contenido del archivo
-  $profilePictureData = mysqli_real_escape_string($conection, $profilePictureData);
-
-  // Actualizar la imagen de perfil del usuario según el rol
   if ($userRole == 'student') {
-    $query = "UPDATE students SET stu_profilepicture = '$profilePictureData' WHERE stu_id = '$userID'";
+    $query = "UPDATE students SET stu_passwors = '$newpassword' WHERE stu_id = '$userID'";
   } elseif ($userRole == 'professor') {
-    $query = "UPDATE teachers SET teach_profilepicture = '$profilePictureData' WHERE teach_id = '$userID'";
+    $query = "UPDATE teachers SET teach_password = '$newpassword' WHERE teach_id = '$userID'";
   } elseif ($userRole == 'ADMIN') {
-    $query = "UPDATE admins SET adm_profilepicture = '$profilePictureData' WHERE adm_id = '$userID'";
+    $query = "UPDATE admins SET adm_profilepicture = '$newpassword' WHERE adm_id = '$userID'";
   } else {
     echo "Rol de usuario inválido.";
     exit();

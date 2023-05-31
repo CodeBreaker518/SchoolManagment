@@ -11,6 +11,10 @@ document.addEventListener('DOMContentLoaded', function () {
   var elemsDropdown = document.querySelectorAll('.dropdown-trigger')
   var instancesDropdown = M.Dropdown.init(elemsDropdown)
 
+  //Initialize input select (materialize)
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems);
+
   // Obtener los enlaces de la barra lateral
   const mainLink = document.querySelector('.main-link')
   const studentsLink = document.querySelector('.students-link')

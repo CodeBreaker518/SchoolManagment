@@ -104,60 +104,67 @@ if ($result && mysqli_num_rows($result) > 0) {
     }
 }
 
-if($email === 'admin@admin.admin' && $password === 'root')
-{
-    $_SESSION['user_id'] = '0';
-    $_SESSION['user_name'] = 'ADMIN';
-    $_SESSION['user_type'] = 'ADMIN';
+$query = "SELECT * FROM admins WHERE adm_email = '$email' LIMIT 1";
+$result = mysqli_query($conection, $query);
+if ($result && mysqli_num_rows($result) > 0) {
+    $row = mysqli_fetch_assoc($result);
 
-    mysqli_free_result($result);
-    mysqli_close($conection);
+    if ($row['adm_password'] == $password) {
+        $_SESSION['user_id'] = $row['adm_id'];
+        $_SESSION['user_name'] = $row['adm_name'];
+        $_SESSION['user_type'] = 'ADMIN';
 
-    ?>
-    <!DOCTYPE html>
-    <html>
-    <head>
-    <title>Loading...</title>
-    <style>
-        #loadingContainer {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        background-color: #fff;
-        }
+        mysqli_free_result($result);
+        mysqli_close($conection);
 
-        .spinner {
-        width: 50px;
-        height: 50px;
-        border: 3px solid #ccc;
-        border-top-color: #333;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-        margin-bottom: 10px;
-        }
+        $setTimeOut = 0.5;
+        $url = '../views/dashboard.php';
+        ?>
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <title>Loading...</title>
+        <style>
+            #loadingContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #fff;
+            }
 
-        @keyframes spin {
-        0% {
-            transform: rotate(0deg);
-        }
-        100% {
-            transform: rotate(360deg);
-        }
-        }
-    </style>
-    <meta http-equiv="refresh" content="<?php echo $setTimeOut; ?>;url=<?php echo $url; ?>">
-    </head>
-    <body>
-    <div id="loadingContainer">
-        <div class="spinner"></div>
-        <p>Loading...</p>
-    </div>
-    </body>
-    </html>
-    <?php
-    exit;
+            .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid #ccc;
+            border-top-color: #333;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 10px;
+            }
+
+            @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+            }
+        </style>
+        <meta http-equiv="refresh" content="<?php echo $setTimeOut; ?>;url=<?php echo $url; ?>">
+        </head>
+        <body>
+        <div id="loadingContainer">
+            <div class="spinner"></div>
+            <p>Loading...</p>
+        </div>
+        </body>
+        </html>
+        <?php
+        exit;
+    }
 }
 
 mysqli_free_result($result);

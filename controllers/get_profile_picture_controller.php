@@ -21,7 +21,9 @@ if ($userRole == 'student') {
     $sql = "SELECT stu_profilepicture FROM students WHERE stu_id = $userId";
 } elseif ($userRole == 'professor') {
     $sql = "SELECT teach_profilepicture FROM teachers WHERE teach_id = $userId";
-} else {
+} elseif ($userRole == 'ADMIN'){
+    $sql = "SELECT adm_profilepicture FROM admins WHERE adm_id = $userId";
+}else {
     echo "Rol de usuario inválido.";
     exit();
 }
@@ -43,6 +45,8 @@ if ($result) {
             $imageData = $row['stu_profilepicture'];
         } elseif ($userRole == 'professor') {
             $imageData = $row['teach_profilepicture'];
+        } elseif ($userRole == 'ADMIN') {
+            $imageData = $row['adm_profilepicture'];
         }
 
         // Cierre el resultado
@@ -58,8 +62,6 @@ if ($result) {
 
 // Mostrar la imagen en la etiqueta <img>
 // echo '<img class="user-image responsive-img" src="data:image/jpeg;base64,' . base64_encode($imageData) . '" alt="user image" />';
-
-
 
 $conection->close();
 ?>
