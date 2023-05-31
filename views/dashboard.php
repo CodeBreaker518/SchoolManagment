@@ -6,6 +6,9 @@
     exit;
   }
   require_once '../controllers/dashboard_controller.php';
+
+  require_once"../controllers/get_profile_picture_controller.php"; // Ruta del controlador PHP
+
 ?>
 
 <!DOCTYPE html>
@@ -62,7 +65,7 @@
           </div>
           <div class="user-info-container">
             <p class="user-name"><?php echo $_SESSION['user_name']; ?></p>
-              <img class="user-image responsive-img" src="../public/assets/images/13efee56-6b8f-419f-8d68-6ca4b26e4784.jpg" alt="">
+              <img class="user-image" src="data:image/jpeg;base64,<?php echo base64_encode($imageData); ?>" alt="user image" />
           </div>
         </div>
         <div class="user-menu" id="user-menu">
@@ -74,14 +77,14 @@
         </div>
         <div id="modal2" class="modal change-photo-container">
           <div class="current-photo">
-            <img src="../public/assets/images/13efee56-6b8f-419f-8d68-6ca4b26e4784.jpg" alt="user image">
+           <img src="data:image/jpeg;base64,<?php echo base64_encode($imageData); ?>" alt="user image" />
           </div>
           <div class="modal-content change-photo-title">
             <h4>Change Photo</h4>
           </div>
           <div class="change-photo-section">
             <p>Please upload a photo</p>
-            <form class="update-photo-form" action="../controllers/edit_profile_picture_controller.php">
+            <form class="update-photo-form" action="../controllers/edit_profile_picture_controller.php" enctype="multipart/form-data" method="POST">
               <div class="file-field input-field">
                 <div class="btn btn-add-file">
                   <span>File</span>

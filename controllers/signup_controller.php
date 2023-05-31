@@ -9,7 +9,7 @@ $conection = mysqli_connect($host, $username, $db_password, $database);
 
 // Verificar la conexión
 if (!$conection) {
-  die("Error to connect to the database: " . mysqli_connect_error());
+  die("Error al conectar con la base de datos: " . mysqli_connect_error());
 }
 
 // Obtener los valores del formulario
@@ -20,19 +20,24 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 $rol = $_POST['rol'];
 
+// Ruta de la imagen por defecto
+$defaultProfilePicture = "../public/assets/images/13efee56-6b8f-419f-8d68-6ca4b26e4784.jpg";
+
+// Leer el contenido de la imagen
+$profilePictureData = file_get_contents($defaultProfilePicture);
+$profilePictureData = mysqli_real_escape_string($conection, $profilePictureData);
+
 if($rol == 'student')
 {
-    $query = "INSERT INTO students (stu_name, stu_phone, stu_email, stu_password) VALUES ('$name', '$phone', '$email', '$password')";
+    $query = "INSERT INTO students (stu_name, stu_phone, stu_email, stu_password, stu_profilepicture) VALUES ('$name', '$phone', '$email', '$password', '$profilePictureData')";
 }elseif($rol == 'professor')
 {
-    $query = "INSERT INTO teachers (teach_name, teach_phone, teach_email, teach_password, teach_profession) VALUES ('$name', '$phone', '$email', '$password', '$profession')";
+    $query = "INSERT INTO teachers (teach_name, teach_phone, teach_email, teach_password, teach_profession, teach_profilepicture) VALUES ('$name', '$phone', '$email', '$password', '$profession', '$profilePictureData')";
 }else
 {
-    echo'Insersion invalida';
+    echo 'Inserción inválida';
     exit;
 }
-
-// Crear la consulta SQL de inserción
 
 // Ejecutar la consulta
 $result = mysqli_query($conection, $query);

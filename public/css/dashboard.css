@@ -127,6 +127,7 @@
   height: 60px;
   border-radius: 50%;
   margin: 10px;
+  object-fit: cover;
 }
 .show-sidebar {
   margin: 1rem;
@@ -319,6 +320,9 @@
 }
 
 .current-photo img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
   border: 5px solid var(--color-amarillo-ug);
   border-radius: 50%;
 }
