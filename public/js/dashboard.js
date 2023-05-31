@@ -1,4 +1,44 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
+  // hide menu on mobile desktop
+  const showSidebar = document.querySelector('.show-sidebar')
+  const sideBar = document.querySelector('.side-bar')
+  const collectionLinks = document.querySelectorAll('.collection-item')
+  const body = document.querySelector('body')
+
+  function checkWidth() {
+    if (window.innerWidth <= 700) {
+      sideBar.classList.add('hide-sidebar')
+    } else {
+      sideBar.classList.remove('hide-sidebar')
+    }
+  }
+  checkWidth()
+
+  showSidebar.addEventListener('click', function () {
+    sideBar.classList.toggle('hide-sidebar')
+
+    if (sideBar.classList.contains('hide-sidebar')) {
+      body.style.overflow = 'auto'
+    } else {
+      body.style.overflow = 'hidden'
+    }
+  })
+
+  window.addEventListener('resize', function () {
+    checkWidth()
+  })
+  collectionLinks.forEach(function (link) {
+    link.addEventListener('click', function () {
+      if (window.innerWidth <= 700) {
+        sideBar.classList.add('hide-sidebar')
+        body.style.overflow = 'auto'
+      }
+      if (window.innerWidth > 700) {
+        body.style.overflow = 'auto'
+      }
+    })
+  })
+  ////////////////////////////////////////////////////////////////
   // initialize collapsible (materialize)
   const elemsCollapsible = document.querySelectorAll('.collapsible')
   const instancesCollapsible = M.Collapsible.init(elemsCollapsible)
@@ -12,45 +52,45 @@ document.addEventListener('DOMContentLoaded', function () {
   var instancesDropdown = M.Dropdown.init(elemsDropdown)
 
   //Initialize input select (materialize)
-    var elems = document.querySelectorAll('select');
-    var instances = M.FormSelect.init(elems);
+  var elems = document.querySelectorAll('select')
+  var instances = M.FormSelect.init(elems)
 
-  // Obtener los enlaces de la barra lateral
+  // Obtain links from sidebar collection
   const mainLink = document.querySelector('.main-link')
   const studentsLink = document.querySelector('.students-link')
   const coursesLink = document.querySelector('.courses-link')
   const professorsLink = document.querySelector('.professors-link')
   const aboutUsLink = document.querySelector('.about-us-link')
 
-  // Obtener las secciones de contenido
+  // Obtain content from right-container dashboard
   const mainContent = document.querySelector('.main-content')
   const studentsContent = document.querySelector('.students-content')
   const coursesContent = document.querySelector('.courses-content')
   const professorsContent = document.querySelector('.professors-content')
   const aboutUsContent = document.querySelector('.about-us-content')
 
-  // Función para acticonst un enlace y mostrar su contenido
+  // activate a link & show its content
   const activateLink = (link, content) => {
-    // Remover la clase 'active' de todos los enlaces
+    // remove class active from every link
     const links = document.querySelectorAll('.collection-item')
     links.forEach(function (link) {
       link.classList.remove('active')
     })
 
-    // Agregar la clase 'active' al enlace seleccionado
+    // Add class active to selected link
     link.classList.add('active')
 
-    // Ocultar todos los contenidos
+    // hide all contents
     const contents = document.querySelectorAll('.content-section')
     contents.forEach(function (content) {
       content.style.display = 'none'
     })
 
-    // Mostrar el contenido correspondiente al enlace seleccionado
+    // show content on selected content
     content.style.display = 'block'
   }
 
-  // Verificar si existen los enlaces y asignarles eventos de click
+  // verify one by one if the links exits
   if (mainLink) {
     mainLink.addEventListener('click', function () {
       activateLink(mainLink, mainContent)
