@@ -196,6 +196,14 @@
   border-radius: 20px !important;
   padding: 50px !important;
 }
+#modal3 {
+  border-radius: 20px !important;
+  padding: 50px !important;
+}
+#modal5 {
+  border-radius: 20px !important;
+  padding: 50px !important;
+}
 
 .trash {
   width: 20px !important;
@@ -380,3 +388,5 @@
     transform: translateY(0);
   }
 }
+
+/* No encontre donde iba esto, asi que lo puse hasta abajo xd */

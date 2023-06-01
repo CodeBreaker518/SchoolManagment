@@ -23,7 +23,7 @@ $semester = $_POST['semester'];
 $days = $_POST['days'];
 $hourstart = $_POST['hourstart'];
 
-$query = "UPDATE courses SET cour_name = '$name', cour_description = '$description', cour_semester = '$semester', cour_days = '$days', cour_hourstart = '$hourstart' WHERE id = '$id'";
+$query = "UPDATE courses SET cour_name = '$name', cour_description = '$description', cour_semester = '$semester', cour_days = '$days', cour_hourstart = '$hourstart' WHERE cour_id = '$id'";
 
 $result = mysqli_query($conection, $query);
 

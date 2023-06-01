@@ -75,31 +75,6 @@
             <li class="menu-item"><a href="../controllers/logout_controller.php">Log Out</a></li>
           </ul>
         </div>
-        <div id="modal2" class="modal change-photo-container">
-          <div class="current-photo">
-            <img src="data:image/jpeg;base64,<?php echo base64_encode($imageData); ?>" alt="user image" />
-          </div>
-          <div class="modal-content change-photo-title">
-            <h4>Change Profile Picture</h4>
-          </div>
-          <div class="change-photo-section">
-            <p>Please upload a photo</p>
-            <form class="update-photo-form" action="../controllers/edit_profile_picture_controller.php" enctype="multipart/form-data" method="POST">
-              <div class="file-field input-field">
-                <div class="btn btn-add-file">
-                  <span>File</span>
-                  <input type="file" class="upload-image-input" name="profile_picture">
-                </div>
-                <div class="file-path-wrapper">
-                  <input class="file-path validate" type="text">
-                </div>
-              </div>
-              <button class="btn waves-effect waves-light upload-image-btn" type="submit" name="action">Agree
-                <i class="material-icons right">send</i>
-              </button>
-            </form>
-          </div>
-        </div>
       </nav>
 
       <section class="dashboard-container">
@@ -149,12 +124,18 @@
                       <?php echo $course['cour_name']; ?>
                     </div>
                     <div class="icons">
-                      <form action="../controllers/admin/delete_courses_controller.php" method="POST">
-                          <input type="hidden" name="id" value="<?php echo $course['cour_id']; ?>">
-                          <button class="waves-effect waves-light btn red" type="submit" name="action">
-                              <i class="material-icons">delete</i>
-                          </button>
-                      </form>
+                      <button class="waves-effect waves-light btn red modal-trigger"  data-target="modal3" >
+                          <i class="material-icons">add</i>
+                      </button>
+                      <button class="waves-effect waves-light btn red modal-trigger"  data-target="modal4"  >
+                          <i class="material-icons">add</i>
+                      </button>
+                      <button class="waves-effect waves-light btn red modal-trigger"  data-target="modal5" data-id="<?php echo $course['cour_id']; ?>">
+                          <i class="material-icons">edit</i>
+                      </button>
+                      <button class="waves-effect waves-light btn red modal-trigger" data-target="modal6"  >
+                          <i class="material-icons">delete</i>
+                      </button>
                     </div>
                   </div>
                   <div class="collapsible-body">
@@ -169,57 +150,7 @@
             </ul>
             <a class="btn-floating btn-large red btn modal-trigger btn-add-course" href="#modal1"><i class="material-icons">add</i></a>
             <!-- Modal Structure -->
-            <div id="modal1" class="modal">
-              <div class="card-content card-courses">
-                <span class="card-title">Register courses</span>
-                <form action="../controllers/admin/create_courses_controller.php" method="POST">
-                  <div class="input-field">
-                      <input type="text" id="name" name="name" required>
-                      <label for="name">Name</label>
-                    </div>
-                  <div class="input-field">
-                      <input type="text" id="description" name="description" required>
-                      <label for="description">Description</label>
-                  </div>
-                  <div class="input-field col s12">
-                    <select name="semester">
-                      <option value="" disabled selected>Semester...?</option>
-                      <option value="January-June">January-June</option>
-                      <option value="August-December">August-December</option>
-                    </select>
-                  </div>
-                  <div class="input-field col s12">
-                    <select name="days">
-                      <option value="" disabled selected>Days...?</option>
-                      <option value="Monday-Thursday">Monday-Thursday</option>
-                      <option value="Tuesday-Friday">Tuesday-Friday</option>
-                      <option value="Wednesday">Wednesday</option>
-                      <option value="Saturday">Saturday</option>
-                    </select>
-                  </div>
-                  <div class="input-field col s12">
-                    <select name="hourstart">
-                      <option value="" disabled selected>Hour...?</option>
-                      <option value="08:00 a.m.">08:00 a.m.</option>
-                      <option value="10:00 a.m.">10:00 a.m.</option>
-                      <option value="12:00 p.m.">12:00 p.m.</option>
-                      <option value="02:00 p.m.">02:00 p.m.</option>
-                      <option value="04:00 p.m.">04:00 p.m.</option>
-                    </select>
-                  </div>
-                  <div class="card-action">
-                    <button class="btn waves-effect waves-light" type="submit" name="action">Register
-                      <i class="material-icons right">send</i>
-                    </button>
-                  </div>
-                </form>
-                <div class="card-action">
-                </div>
-              </div>
-              <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
-              </div>
-            </div>
+            
           </div>
 
           <div class="professors-content content-section" style="display: none;">
@@ -518,6 +449,165 @@
     </div>
 
   </main>
+
+<!-------------------------------------------------------------- MODALS  ---------------------------------------------------------------------->
+  <div id="modal1" class="modal modal-create-courses">
+    <div class="card-content card-courses">
+      <span class="card-title">Register courses</span>
+      <form action="../controllers/admin/create_courses_controller.php" method="POST">
+        <div class="input-field">
+            <input type="text" id="name" name="name" required>
+            <label for="name">Name</label>
+          </div>
+        <div class="input-field">
+            <input type="text" id="description" name="description" required>
+            <label for="description">Description</label>
+        </div>
+        <div class="input-field col s12">
+          <select name="semester" requires>
+            <option value="" disabled selected>Semester...?</option>
+            <option value="January-June">January-June</option>
+            <option value="August-December">August-December</option>
+          </select>
+        </div>
+        <div class="input-field col s12">
+          <select name="days" required>
+            <option value="" disabled selected>Days...?</option>
+            <option value="Monday-Thursday">Monday-Thursday</option>
+            <option value="Tuesday-Friday">Tuesday-Friday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Saturday">Saturday</option>
+          </select>
+        </div>
+        <div class="input-field col s12">
+          <select name="hourstart" required>
+            <option value="" disabled selected>Hour...?</option>
+            <option value="08:00 a.m.">08:00 a.m.</option>
+            <option value="10:00 a.m.">10:00 a.m.</option>
+            <option value="12:00 p.m.">12:00 p.m.</option>
+            <option value="02:00 p.m.">02:00 p.m.</option>
+            <option value="04:00 p.m.">04:00 p.m.</option>
+          </select>
+        </div>
+        <div class="card-action">
+          <button class="btn waves-effect waves-light" type="submit" name="action">Register
+            <i class="material-icons right">send</i>
+          </button>
+        </div>
+      </form>
+      <div class="card-action">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+  </div>
+
+  
+  <div id="modal2" class="modal change-photo-container">
+    <div class="current-photo">
+      <img src="data:image/jpeg;base64,<?php echo base64_encode($imageData); ?>" alt="user image" />
+    </div>
+    <div class="modal-content change-photo-title">
+      <h4>Change Profile Picture</h4>
+    </div>
+    <div class="change-photo-section">
+      <p>Please upload a photo</p>
+      <form class="update-photo-form" action="../controllers/edit_profile_picture_controller.php" enctype="multipart/form-data" method="POST">
+        <div class="file-field input-field">
+          <div class="btn btn-add-file">
+            <span>File</span>
+            <input type="file" class="upload-image-input" name="profile_picture">
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+          </div>
+        </div>
+        <button class="btn waves-effect waves-light upload-image-btn" type="submit" name="action">Agree
+          <i class="material-icons right">send</i>
+        </button>
+      </form>
+    </div>
+  </div>
+  
+  <div id="modal3" class="modal assign-teacher">
+    <div class="card-content card-courses">
+      <span class="card-title">choose a teacher for this course</span>
+      <form action="../controllers/admin/create_courses_controller.php" method="POST">
+        <div class="input-field col s12">
+          <select name="teacher" required>
+            <option value="" disabled selected>Teachers</option>
+          <?php foreach ($teachers as $teacher): ?>          
+            <option value="<?php $teacher['id'] ?>"><?php echo $teacher['teach_name']; ?></option>
+          <?php endforeach; ?>
+          </select>
+        </div>
+        <div class="card-action">
+          <button class="btn waves-effect waves-light" type="submit" name="action">Register
+            <i class="material-icons right">send</i>
+          </button>
+        </div>
+      </form>
+      <div class="card-action">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+  </div>
+
+  <div id="modal5" class="modal modal-edit-courses">
+    <div class="card-content card-courses">
+      <span class="card-title">Change the course</span>
+      <form action="../controllers/admin/edit_courses_controller.php" method="POST">
+      <input type="hidden" name="id" id="courseId" value="">
+        <div class="input-field">
+            <input type="text" id="name" name="name" required>
+            <label for="name">Name</label>
+          </div>
+        <div class="input-field">
+            <input type="text" id="description" name="description" required>
+            <label for="description">Description</label>
+        </div>
+        <div class="input-field col s12">
+          <select name="semester" requires>
+            <option value="" disabled selected>Semester...?</option>
+            <option value="January-June">January-June</option>
+            <option value="August-December">August-December</option>
+          </select>
+        </div>
+        <div class="input-field col s12">
+          <select name="days" required>
+            <option value="" disabled selected>Days...?</option>
+            <option value="Monday-Thursday">Monday-Thursday</option>
+            <option value="Tuesday-Friday">Tuesday-Friday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Saturday">Saturday</option>
+          </select>
+        </div>
+        <div class="input-field col s12">
+          <select name="hourstart" required>
+            <option value="" disabled selected>Hour...?</option>
+            <option value="08:00 a.m.">08:00 a.m.</option>
+            <option value="10:00 a.m.">10:00 a.m.</option>
+            <option value="12:00 p.m.">12:00 p.m.</option>
+            <option value="02:00 p.m.">02:00 p.m.</option>
+            <option value="04:00 p.m.">04:00 p.m.</option>
+          </select>
+        </div>
+        <div class="card-action">
+          <button class="btn waves-effect waves-light" type="submit" name="action">Register
+            <i class="material-icons right">send</i>
+          </button>
+        </div>
+      </form>
+      <div class="card-action">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+  </div>
 
   <!-- app.js -->
   <script src="../public/js/dashboard.js"></script>

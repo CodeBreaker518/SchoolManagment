@@ -4,7 +4,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const sideBar = document.querySelector('.side-bar')
   const collectionLinks = document.querySelectorAll('.collection-item')
   const body = document.querySelector('body')
+  var modalTriggers = document.querySelectorAll('.modal-trigger');
+  var courseIdInput = document.getElementById('courseId');
+  
 
+  modalTriggers.forEach(function(trigger) {
+    trigger.addEventListener('click', function() {
+      var courseId = this.getAttribute('data-id');
+      courseIdInput.value = courseId;
+    });
+  });
   function checkWidth() {
     if (window.innerWidth <= 700) {
       sideBar.classList.add('hide-sidebar')
