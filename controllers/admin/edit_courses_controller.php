@@ -16,7 +16,7 @@ if (!$conection) {
     die("Error al conectar con la base de datos: " . mysqli_connect_error());
 }
 
-$id = $_POST['id']; // Supongamos que el ID del registro a editar se envía mediante un formulario POST
+$id = $_POST['id']; 
 $name = $_POST['name'];
 $description = $_POST['description'];
 $semester = $_POST['semester'];

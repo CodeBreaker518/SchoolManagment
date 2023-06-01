@@ -4,16 +4,29 @@ document.addEventListener('DOMContentLoaded', () => {
   const sideBar = document.querySelector('.side-bar')
   const collectionLinks = document.querySelectorAll('.collection-item')
   const body = document.querySelector('body')
-  var modalTriggers = document.querySelectorAll('.modal-trigger');
-  var courseIdInput = document.getElementById('courseId');
+  //Edit courses variable
+  var editCoursesBtn = document.querySelectorAll('.edit-courses-btn');
+  var courseIdInput = document.getElementById('courseIdInput');
+  //asign teachers variables
+  var asignTeacherBtn = document.querySelector('.asign-teacher-btn');
+  //var courseIdInput = document.getElementById('courseIdInput');
   
+  //////////////////////////////////////////////////
+  ////////////Admin controller functions////////////
 
-  modalTriggers.forEach(function(trigger) {
+  //Edit courses function
+  editCoursesBtn.forEach(function(trigger) {
     trigger.addEventListener('click', function() {
       var courseId = this.getAttribute('data-id');
       courseIdInput.value = courseId;
     });
   });
+  // asign teacher function
+  asignTeacherBtn.addEventListener('click', function() {
+    var courseId = this.getAttribute('data-id');
+    courseIdInput.value = courseId;
+  });
+
   function checkWidth() {
     if (window.innerWidth <= 700) {
       sideBar.classList.add('hide-sidebar')

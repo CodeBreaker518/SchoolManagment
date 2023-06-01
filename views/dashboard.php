@@ -124,13 +124,13 @@
                       <?php echo $course['cour_name']; ?>
                     </div>
                     <div class="icons">
-                      <button class="waves-effect waves-light btn red modal-trigger"  data-target="modal3" >
+                      <button class="waves-effect waves-light btn red modal-trigger asign-teacher-btn"  data-target="modal3" data-id="<?php echo $course['cour_id']; ?>">
                           <i class="material-icons">add</i>
                       </button>
                       <button class="waves-effect waves-light btn red modal-trigger"  data-target="modal4"  >
                           <i class="material-icons">add</i>
                       </button>
-                      <button class="waves-effect waves-light btn red modal-trigger"  data-target="modal5" data-id="<?php echo $course['cour_id']; ?>">
+                      <button class="waves-effect waves-light btn red modal-trigger edit-courses-btn"  data-target="modal5" data-id="<?php echo $course['cour_id']; ?>">
                           <i class="material-icons">edit</i>
                       </button>
                       <button class="waves-effect waves-light btn red modal-trigger" data-target="modal6"  >
@@ -533,12 +533,13 @@
   <div id="modal3" class="modal assign-teacher">
     <div class="card-content card-courses">
       <span class="card-title">choose a teacher for this course</span>
-      <form action="../controllers/admin/create_courses_controller.php" method="POST">
+      <form action="../controllers/admin/assign_teacher_oncourse_controller.php" method="POST">
+        <input type="hidden" name="id" id="courseIdInput" value="">
         <div class="input-field col s12">
           <select name="teacher" required>
             <option value="" disabled selected>Teachers</option>
           <?php foreach ($teachers as $teacher): ?>          
-            <option value="<?php $teacher['id'] ?>"><?php echo $teacher['teach_name']; ?></option>
+            <option value="<?php echo $teacher['teach_id']; ?>"><?php echo $teacher['teach_name']; ?></option>
           <?php endforeach; ?>
           </select>
         </div>
@@ -560,7 +561,7 @@
     <div class="card-content card-courses">
       <span class="card-title">Change the course</span>
       <form action="../controllers/admin/edit_courses_controller.php" method="POST">
-      <input type="hidden" name="id" id="courseId" value="">
+      <input type="hidden" name="id" id="courseIdInput" value="">
         <div class="input-field">
             <input type="text" id="name" name="name" required>
             <label for="name">Name</label>
