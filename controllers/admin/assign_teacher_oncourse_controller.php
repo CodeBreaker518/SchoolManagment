@@ -16,10 +16,10 @@ if (!$conection) {
     die("Error al conectar con la base de datos: " . mysqli_connect_error());
 }
 
-$courId = $_POST['cour-id'];
-$teachId = $_POST['teach-id'];
+$courId = $_POST['id'];
+$teachId = $_POST['teacher'];
 
-$query = "UPDATE courses SET cour_teach_id = '$id' WHERE cour_id = '$id'";
+$query = "UPDATE courses SET cour_teach_id = '$teachId' WHERE cour_id = '$courId'";
 
 $result = mysqli_query($conection, $query);
 
