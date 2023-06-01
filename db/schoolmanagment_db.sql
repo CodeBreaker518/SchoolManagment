@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS students
 CREATE TABLE IF NOT EXISTS courses
 (
 	cour_id INT NOT NULL AUTO_INCREMENT,
-    cour_name VARCHAR(20) NOT NULL,
+    cour_name VARCHAR(100) NOT NULL,
     cour_description VARCHAR(100) NOT NULL,
     cour_semester ENUM('January-June', 'August-December') NOT NULL,
     cour_days ENUM('Monday-Thursday','Tuesday-Friday','Wednesday','Saturday') NOT NULL,
