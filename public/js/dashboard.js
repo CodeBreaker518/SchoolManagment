@@ -15,12 +15,15 @@ document.addEventListener('DOMContentLoaded', () => {
   ////////////Admin controller functions////////////
 
   //Edit courses function
-  editCoursesBtn.forEach(function(trigger) {
+  if(editCoursesBtn)
+  {
+    editCoursesBtn.forEach(function(trigger) {
     trigger.addEventListener('click', function() {
       var courseId = this.getAttribute('data-id');
       courseIdInput.value = courseId;
     });
   });
+  }
   // asign teacher function
   asignTeacherBtn.addEventListener('click', function() {
     var courseId = this.getAttribute('data-id');
