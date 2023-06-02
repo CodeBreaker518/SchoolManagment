@@ -204,6 +204,22 @@
   border-radius: 20px !important;
   padding: 50px !important;
 }
+#modal6 {
+  border-radius: 20px !important;
+  padding: 50px !important;
+}
+.yes-no-btns
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.no-btn
+{
+  width: 70px !important;
+  color: white !important;
+  text-align: center !important;
+}
 
 .trash {
   width: 20px !important;
@@ -255,7 +271,7 @@
 
 /* MENU */
 .user-menu {
-  z-index: 1;
+  z-index: 2;
   display: none;
   position: absolute;
   margin-right: 1.35rem;
