@@ -92,7 +92,7 @@
           </div>
 
           <div class="students-content content-section" style="display: none;">
-            <ul class="collapsible">
+            <ul class="collapsible popout">
               <?php foreach ($students as $student): ?>
                 <li>
                   <div class="stu-name">
@@ -113,22 +113,25 @@
                     <span>Student ID: <?php echo $student['stu_id']; ?></span><br>
                     <span>Email: <?php echo $student['stu_email']; ?></span><br>
                     <span>Phone: <?php echo $student['stu_phone']; ?></span><br>
-                    <span>Courses studying: 
-                      <?php
-                        $studentCoursesName = getStudentCourses($student['stu_id']);
-                        if ($studentCoursesName === "Unknown") { 
-                          echo 'No assigned'; 
-                        } else { 
-                          echo '<select>';
-                          echo '<option disabled selected> Courses </option>';
-                          foreach ($studentCoursesName as $course) {
-                            echo '<option disabled>' . $course . '</option>';
-                          }
-                          echo '</select>';
-                        } 
-                      ?>
-                    </span><br>
-
+                    <div class="student-courses">
+                      <span class="student-courses-title">Courses studying:</span>
+                      <br>
+                      <div class="student-courses-container">
+                        <?php
+                          $studentCoursesName = getStudentCourses($student['stu_id']);
+                          if ($studentCoursesName === "Unknown") { 
+                            echo 'No assigned';
+                          } else { 
+                            echo '<select>';
+                            echo '<option disabled selected> Courses </option>';
+                            foreach ($studentCoursesName as $course) {
+                              echo '<option disabled>' . $course . '</option>';
+                            }
+                            echo '</select>';
+                          } 
+                        ?>
+                      </div>
+                    </div>
                   </div>
                 </li>
               <?php endforeach; ?>
@@ -136,7 +139,7 @@
           </div>
 
           <div class="courses-content content-section" style="display: none;">
-            <ul class="collapsible">
+            <ul class="collapsible popout">
               <?php foreach ($courses as $course): ?>
                 <li>
                   <div class="collapsible-header">
@@ -144,17 +147,13 @@
                       <?php echo $course['cour_name']; ?>
                     </div>
                     <div class="icons">
-                      <button class="waves-effect waves-light btn red modal-trigger asign-teacher-btn"  data-target="modal3" data-id="<?php echo $course['cour_id']; ?>">
-                        +<i class="fa-solid fa-user-graduate"></i>
+                      <button class="waves-effect waves-light btn green modal-trigger asign-teacher-btn"  data-target="modal3" data-id="<?php echo $course['cour_id']; ?>">+<i class="fa-solid fa-user-graduate"></i>
                       </button>
-                      <button class="waves-effect waves-light btn red modal-trigger asign-student-btn"  data-target="modal4" data-id="<?php echo $course['cour_id']; ?>">
-                        +<i class="fa-solid fa-people-group"></i>
+                      <button class="waves-effect waves-light btn green modal-trigger asign-student-btn"  data-target="modal4" data-id="<?php echo $course['cour_id']; ?>">+<i class="fa-solid fa-people-group"></i>
                       </button>
-                      <button class="waves-effect waves-light btn red modal-trigger edit-courses-btn"  data-target="modal5" data-id="<?php echo $course['cour_id']; ?>">
-                          <i class="material-icons">edit</i>
+                      <button class="waves-effect waves-light btn amber accent-4 modal-trigger edit-courses-btn"  data-target="modal5" data-id="<?php echo $course['cour_id']; ?>"><i class="material-icons">edit</i>
                       </button>
-                      <button class="waves-effect waves-light btn red modal-trigger delete-courses-btn" data-target="modal6" data-id="<?php echo $course['cour_id']; ?>">
-                          <i class="material-icons">delete</i>
+                      <button class="waves-effect waves-light btn red modal-trigger delete-courses-btn" data-target="modal6" data-id="<?php echo $course['cour_id']; ?>"><i class="material-icons">delete</i>
                       </button>
                     </div>
                   </div>
@@ -187,7 +186,7 @@
           </div>
 
           <div class="professors-content content-section" style="display: none;">
-            <ul class="collapsible">
+            <ul class="collapsible popout">
               <?php foreach ($teachers as $teacher): ?>
                 <li>
                   <div class="teach-name">
@@ -208,23 +207,25 @@
                     <span>Email: <?php echo $teacher['teach_email']; ?></span><br>
                     <span>Profession: <?php echo $teacher['teach_profession']; ?></span><br>
                     <span>Phone: <?php echo $teacher['teach_phone']; ?></span><br>
-                    <span>Courses teaching: 
-                      <?php 
-                        $courses = getProfessorCourses($teacher['teach_id']);
-                        if ($courses === "Unknown") { 
-                          echo 'No assigned'; 
-                        } else { 
-                          echo '<select>';
-                          echo '<option disabled selected> Courses </option>';
-                          foreach ($courses as $course) {
-                            echo '<option disabled>' . $course . '</option>';
-                          }
-                          echo '</select>';
-                        } 
-                      ?> 
-                    </span><br>
-
-
+                    <div class="professor-courses">
+                      <span class="professor-courses-title">Courses teaching:</span>
+                      <br>
+                      <div class="professor-courses-container">
+                        <?php 
+                          $courses = getProfessorCourses($teacher['teach_id']);
+                          if ($courses === "Unknown") { 
+                            echo 'No assigned'; 
+                          } else { 
+                            echo '<select>';
+                            echo '<option disabled selected> Courses </option>';
+                            foreach ($courses as $course) {
+                              echo '<option disabled>' . $course . '</option>';
+                            }
+                            echo '</select>';
+                          } 
+                        ?> 
+                      </div>
+                    </div>
                   </div>
                 </li>
               <?php endforeach; ?>
@@ -313,7 +314,7 @@
           </div>
 
           <div class="courses-content content-section" style="display: none;">
-            <ul class="collapsible">
+            <ul class="collapsible popout">
               <?php foreach ($courses as $course): ?>
                 <li>
                   <div class="collapsible-header"><?php echo $course['cour_name']; ?></div>
@@ -408,7 +409,7 @@
           </div>
 
           <div class="courses-content content-section" style="display: none;">
-            <ul class="collapsible">
+            <ul class="collapsible popout">
               <?php foreach ($courses as $course): ?>
                 <li>
                   <div class="collapsible-header"><?php echo $course['cour_name']; ?></div>
@@ -553,7 +554,6 @@
     </div>
   </div>
 
-  
   <div id="modal2" class="modal change-photo-container">
     <div class="current-photo">
       <img src="data:image/jpeg;base64,<?php echo base64_encode($imageData); ?>" alt="user image" />
@@ -609,7 +609,7 @@
 
   <div id="modal4" class="modal assign-student">
     <div class="card-content card-courses">
-      <span class="card-title">choose a student for this course</span>
+      <span class="card-title">Choose a student for this course</span>
       <form action="../controllers/admin/assign_student_oncourse_controller.php" method="POST">
         <input type="hidden" name="id" id="assignStudentCourseIdInput" value="">
         <div class="input-field col s12">
@@ -707,7 +707,7 @@
     </div>
   </div>
 
-
+            
   <!-- app.js -->
   <script src="../public/js/dashboard.js"></script>
   <!-- including materialize js -->

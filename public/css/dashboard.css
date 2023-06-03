@@ -87,7 +87,12 @@
 }
 .collapsible-body {
   background: var(--color-dorado);
+  /* display: flex;
+  flex-direction: column; */
 }
+/* .collapsible-body span {
+  line-height: 3;
+} */
 
 .collapsible-header {
   line-height: 1;
@@ -96,8 +101,43 @@
   flex-direction: row;
   justify-content: space-between;
 }
+.courname {
+  min-width: 50%;
+  max-width: 50%;
+}
+
 .collapsible-header i {
+  font-size: 20px !important;
+  width: 100px !important;
+  margin-right: 0 !important;
   margin: 0 !important;
+  display: inline-block !important;
+  text-align: center !important;
+}
+.icons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.icons button {
+  width: 60px;
+  display: flex;
+  flex-direction: row;
+}
+
+.professor-courses,
+.student-courses {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.professor-courses-container,
+.student-courses-container {
+  width: 80%;
 }
 
 .user-information {
@@ -212,14 +252,12 @@
   border-radius: 20px !important;
   padding: 50px !important;
 }
-.yes-no-btns
-{
+.yes-no-btns {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
 }
-.no-btn
-{
+.no-btn {
   width: 70px !important;
   color: white !important;
   text-align: center !important;
@@ -229,8 +267,8 @@
   width: 20px !important;
   height: 20px !important;
 }
-/* about us styles */
 
+/* about us styles */
 .card-action a {
   display: flex;
   justify-content: center;
@@ -278,12 +316,12 @@
   z-index: 2;
   display: none;
   position: absolute;
-  margin-right: 1.35rem;
+  margin-right: 1.3rem;
   top: 7vh;
   right: 10px;
   background-color: var(--color-dorado);
   width: 250px;
-  height: 200px;
+  height: 230px;
 }
 
 .menu {
@@ -395,6 +433,12 @@
   }
   .user-menu {
     max-width: 150px;
+  }
+}
+
+@media (max-width: 299px) {
+  .icons {
+    flex-direction: column;
   }
 }
 
