@@ -9,6 +9,8 @@
 
   require_once "../controllers/get_profile_picture_controller.php"; // Ruta del controlador PHP
 
+  require_once "../controllers/functions.php"
+
 ?>
 
 <!DOCTYPE html>
@@ -127,13 +129,13 @@
                       <button class="waves-effect waves-light btn red modal-trigger asign-teacher-btn"  data-target="modal3" data-id="<?php echo $course['cour_id']; ?>">
                           <i class="material-icons">add</i>
                       </button>
-                      <button class="waves-effect waves-light btn red modal-trigger"  data-target="modal4"  >
+                      <button class="waves-effect waves-light btn red modal-trigger"  data-target="modal4" data-id="<?php echo $course['cour_id']; ?>">
                           <i class="material-icons">add</i>
                       </button>
                       <button class="waves-effect waves-light btn red modal-trigger edit-courses-btn"  data-target="modal5" data-id="<?php echo $course['cour_id']; ?>">
                           <i class="material-icons">edit</i>
                       </button>
-                      <button class="waves-effect waves-light btn red modal-trigger" data-target="modal6"  >
+                      <button class="waves-effect waves-light btn red modal-trigger delete-courses-btn" data-target="modal6" data-id="<?php echo $course['cour_id']; ?>">
                           <i class="material-icons">delete</i>
                       </button>
                     </div>
@@ -144,6 +146,19 @@
                     <span>Semester: <?php echo $course['cour_semester']; ?></span><br>
                     <span>Days: <?php echo $course['cour_days']; ?></span><br>
                     <span>HourStart: <?php echo $course['cour_hourstart']; ?></span><br>
+                    <span>Professor: 
+                      <?php 
+                        $professorexists = getProfessorName($course['cour_teach_id']);
+                        if($professorexists === "Unknown") 
+                        { 
+                          echo 'no assigned'; 
+                        }else 
+                        { 
+                          echo getProfessorName($course['cour_teach_id']); 
+                        } 
+                      ?> 
+                    </span><br>
+
                   </div>
                 </li>
               <?php endforeach; ?>
@@ -534,7 +549,7 @@
     <div class="card-content card-courses">
       <span class="card-title">choose a teacher for this course</span>
       <form action="../controllers/admin/assign_teacher_oncourse_controller.php" method="POST">
-        <input type="hidden" name="id" id="courseIdInput" value="">
+        <input type="hidden" name="id" id="assignTeacherCourseIdInput" value="">
         <div class="input-field col s12">
           <select name="teacher" required>
             <option value="" disabled selected>Teachers</option>
@@ -561,7 +576,7 @@
     <div class="card-content card-courses">
       <span class="card-title">Change the course</span>
       <form action="../controllers/admin/edit_courses_controller.php" method="POST">
-      <input type="hidden" name="id" id="courseIdInput" value="">
+      <input type="hidden" name="id" id="editCourseIdInput" value="">
         <div class="input-field">
             <input type="text" id="name" name="name" required>
             <label for="name">Name</label>
@@ -607,6 +622,26 @@
     </div>
     <div class="modal-footer">
       <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+  </div>
+
+  <div id="modal6" class="modal detele-course">
+    <div class="card-content card-courses">
+      <span class="card-title">Are you sure?</span>
+      <form action="../controllers/admin/delete_courses_controller.php" method="POST">
+        <input type="hidden" name="id" id="deleteCourseIdInput" value="">
+        <div class="input-field col s12 yes-no-btns">
+          <button class="btn waves-effect waves-light green" type="submit" name="action">YES
+          </button>
+          <a href="#!" class="no-btn btn waves-effect waves-light modal-close red">NO</a>
+        </div>
+        <div class="card-action">
+        </div>
+      </form>
+      <div class="card-action">
+      </div>
+    </div>
+    <div class="modal-footer">
     </div>
   </div>
 
