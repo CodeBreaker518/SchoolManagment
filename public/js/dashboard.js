@@ -13,6 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
   //delete courses variable
   var deleteCoursesBtn = document.querySelectorAll('.delete-courses-btn');
   var deleteCourseIdInput = document.querySelector('#deleteCourseIdInput');
+  //asign students variables
+  var assignStudentBtn = document.querySelectorAll('.asign-student-btn');
+  var assignStudentCourseIdInput = document.querySelector('#assignStudentCourseIdInput');
   
   //////////////////////////////////////////////////
   ////////////Admin controller functions////////////
@@ -36,7 +39,14 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', function() {
       var courseId = this.getAttribute('data-id');
       deleteCourseIdInput.value = courseId;
-      console.log(deleteCourseIdInput.value); // Verifica si se está asignando correctamente el valor al campo hidden
+    })
+  });
+  //delete course function
+  assignStudentBtn.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var courseId = this.getAttribute('data-id');
+      assignStudentCourseIdInput.value = courseId;
+      console.log(assignStudentCourseIdInput.value); // Verifica si se está asignando correctamente el valor al campo hidden
     })
   });
   

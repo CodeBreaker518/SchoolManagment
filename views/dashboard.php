@@ -129,7 +129,7 @@
                       <button class="waves-effect waves-light btn red modal-trigger asign-teacher-btn"  data-target="modal3" data-id="<?php echo $course['cour_id']; ?>">
                           <i class="material-icons">add</i>
                       </button>
-                      <button class="waves-effect waves-light btn red modal-trigger"  data-target="modal4" data-id="<?php echo $course['cour_id']; ?>">
+                      <button class="waves-effect waves-light btn red modal-trigger asign-student-btn"  data-target="modal4" data-id="<?php echo $course['cour_id']; ?>">
                           <i class="material-icons">add</i>
                       </button>
                       <button class="waves-effect waves-light btn red modal-trigger edit-courses-btn"  data-target="modal5" data-id="<?php echo $course['cour_id']; ?>">
@@ -572,6 +572,33 @@
     </div>
   </div>
 
+  <div id="modal4" class="modal assign-student">
+    <div class="card-content card-courses">
+      <span class="card-title">choose a student for this course</span>
+      <form action="../controllers/admin/assign_student_oncourse_controller.php" method="POST">
+        <input type="hidden" name="id" id="assignStudentCourseIdInput" value="">
+        <div class="input-field col s12">
+          <select name="student" required>
+            <option value="" disabled selected>Students</option>
+          <?php foreach ($students as $student): ?>          
+            <option value="<?php echo $student['stu_id']; ?>"><?php echo $student['stu_name']; ?></option>
+          <?php endforeach; ?>
+          </select>
+        </div>
+        <div class="card-action">
+          <button class="btn waves-effect waves-light" type="submit" name="action">Register
+            <i class="material-icons right">send</i>
+          </button>
+        </div>
+      </form>
+      <div class="card-action">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+  </div>
+  
   <div id="modal5" class="modal modal-edit-courses">
     <div class="card-content card-courses">
       <span class="card-title">Change the course</span>
@@ -644,6 +671,7 @@
     <div class="modal-footer">
     </div>
   </div>
+
 
   <!-- app.js -->
   <script src="../public/js/dashboard.js"></script>
