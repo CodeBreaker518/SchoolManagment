@@ -120,8 +120,9 @@
                           echo 'No assigned'; 
                         } else { 
                           echo '<select>';
+                          echo '<option disabled selected> Courses </option>';
                           foreach ($studentCoursesName as $course) {
-                            echo '<option>' . $course . '</option>';
+                            echo '<option disabled>' . $course . '</option>';
                           }
                           echo '</select>';
                         } 
@@ -214,8 +215,9 @@
                           echo 'No assigned'; 
                         } else { 
                           echo '<select>';
+                          echo '<option disabled selected> Courses </option>';
                           foreach ($courses as $course) {
-                            echo '<option>' . $course . '</option>';
+                            echo '<option disabled>' . $course . '</option>';
                           }
                           echo '</select>';
                         } 
