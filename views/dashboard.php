@@ -9,7 +9,7 @@
 
   require_once "../controllers/get_profile_picture_controller.php"; // Ruta del controlador PHP
 
-  require_once "../controllers/functions.php"
+  require_once "../controllers/admin/admin_functions.php"
 
 ?>
 
@@ -29,6 +29,8 @@
   <!-- styles.css -->
   <link rel="stylesheet" href="../public/css/dashboard.css">
   <link rel="stylesheet" href="../public/css/styles.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css"></link>
 
   <title>Dasboard</title>
 </head>
@@ -111,6 +113,21 @@
                     <span>Student ID: <?php echo $student['stu_id']; ?></span><br>
                     <span>Email: <?php echo $student['stu_email']; ?></span><br>
                     <span>Phone: <?php echo $student['stu_phone']; ?></span><br>
+                    <span>Courses studying: 
+                      <?php
+                        $studentCoursesName = getStudentCourses($student['stu_id']);
+                        if ($studentCoursesName === "Unknown") { 
+                          echo 'No assigned'; 
+                        } else { 
+                          echo '<select>';
+                          foreach ($studentCoursesName as $course) {
+                            echo '<option>' . $course . '</option>';
+                          }
+                          echo '</select>';
+                        } 
+                      ?>
+                    </span><br>
+
                   </div>
                 </li>
               <?php endforeach; ?>
@@ -127,10 +144,10 @@
                     </div>
                     <div class="icons">
                       <button class="waves-effect waves-light btn red modal-trigger asign-teacher-btn"  data-target="modal3" data-id="<?php echo $course['cour_id']; ?>">
-                          <i class="material-icons">add</i>
+                        +<i class="fa-solid fa-user-graduate"></i>
                       </button>
-                      <button class="waves-effect waves-light btn red modal-trigger"  data-target="modal4" data-id="<?php echo $course['cour_id']; ?>">
-                          <i class="material-icons">add</i>
+                      <button class="waves-effect waves-light btn red modal-trigger asign-student-btn"  data-target="modal4" data-id="<?php echo $course['cour_id']; ?>">
+                        +<i class="fa-solid fa-people-group"></i>
                       </button>
                       <button class="waves-effect waves-light btn red modal-trigger edit-courses-btn"  data-target="modal5" data-id="<?php echo $course['cour_id']; ?>">
                           <i class="material-icons">edit</i>
@@ -190,6 +207,22 @@
                     <span>Email: <?php echo $teacher['teach_email']; ?></span><br>
                     <span>Profession: <?php echo $teacher['teach_profession']; ?></span><br>
                     <span>Phone: <?php echo $teacher['teach_phone']; ?></span><br>
+                    <span>Courses teaching: 
+                      <?php 
+                        $courses = getProfessorCourses($teacher['teach_id']);
+                        if ($courses === "Unknown") { 
+                          echo 'No assigned'; 
+                        } else { 
+                          echo '<select>';
+                          foreach ($courses as $course) {
+                            echo '<option>' . $course . '</option>';
+                          }
+                          echo '</select>';
+                        } 
+                      ?> 
+                    </span><br>
+
+
                   </div>
                 </li>
               <?php endforeach; ?>
@@ -572,6 +605,33 @@
     </div>
   </div>
 
+  <div id="modal4" class="modal assign-student">
+    <div class="card-content card-courses">
+      <span class="card-title">choose a student for this course</span>
+      <form action="../controllers/admin/assign_student_oncourse_controller.php" method="POST">
+        <input type="hidden" name="id" id="assignStudentCourseIdInput" value="">
+        <div class="input-field col s12">
+          <select name="student" required>
+            <option value="" disabled selected>Students</option>
+          <?php foreach ($students as $student): ?>          
+            <option value="<?php echo $student['stu_id']; ?>"><?php echo $student['stu_name']; ?></option>
+          <?php endforeach; ?>
+          </select>
+        </div>
+        <div class="card-action">
+          <button class="btn waves-effect waves-light" type="submit" name="action">Register
+            <i class="material-icons right">send</i>
+          </button>
+        </div>
+      </form>
+      <div class="card-action">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+  </div>
+
   <div id="modal5" class="modal modal-edit-courses">
     <div class="card-content card-courses">
       <span class="card-title">Change the course</span>
@@ -644,6 +704,7 @@
     <div class="modal-footer">
     </div>
   </div>
+
 
   <!-- app.js -->
   <script src="../public/js/dashboard.js"></script>
