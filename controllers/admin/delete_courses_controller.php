@@ -17,7 +17,7 @@ if (!$conection) {
 }
 
 $id = $_POST['id']; // Supongamos que el ID del registro a eliminar se envía mediante un formulario POST
-
+echo $id;
 $query = "DELETE FROM courses WHERE cour_id = '$id'";
 
 $result = mysqli_query($conection, $query);

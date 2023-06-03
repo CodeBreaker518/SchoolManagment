@@ -6,29 +6,40 @@ document.addEventListener('DOMContentLoaded', () => {
   const body = document.querySelector('body')
   //Edit courses variable
   var editCoursesBtn = document.querySelectorAll('.edit-courses-btn');
-  var courseIdInput = document.getElementById('courseIdInput');
+  var editCourseIdInput = document.querySelector('#editCourseIdInput');
   //asign teachers variables
-  var asignTeacherBtn = document.querySelector('.asign-teacher-btn');
-  //var courseIdInput = document.getElementById('courseIdInput');
+  var asignTeacherBtn = document.querySelectorAll('.asign-teacher-btn');
+  var assignTeacherCourseIdInput = document.querySelector('#assignTeacherCourseIdInput');
+  //delete courses variable
+  var deleteCoursesBtn = document.querySelectorAll('.delete-courses-btn');
+  var deleteCourseIdInput = document.querySelector('#deleteCourseIdInput');
   
   //////////////////////////////////////////////////
   ////////////Admin controller functions////////////
 
   //Edit courses function
-  if(editCoursesBtn)
-  {
-    editCoursesBtn.forEach(function(trigger) {
+  editCoursesBtn.forEach(function(trigger) {
     trigger.addEventListener('click', function() {
       var courseId = this.getAttribute('data-id');
-      courseIdInput.value = courseId;
+      editCourseIdInput.value = courseId;
     });
   });
-  }
-  // asign teacher function
-  asignTeacherBtn.addEventListener('click', function() {
-    var courseId = this.getAttribute('data-id');
-    courseIdInput.value = courseId;
+  //asign teacher function
+  asignTeacherBtn.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var courseId = this.getAttribute('data-id');
+      assignTeacherCourseIdInput.value = courseId;
+    })
   });
+  //delete course function
+  deleteCoursesBtn.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var courseId = this.getAttribute('data-id');
+      deleteCourseIdInput.value = courseId;
+      console.log(deleteCourseIdInput.value); // Verifica si se está asignando correctamente el valor al campo hidden
+    })
+  });
+  
 
   function checkWidth() {
     if (window.innerWidth <= 700) {
