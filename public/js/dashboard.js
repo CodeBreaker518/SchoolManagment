@@ -1,55 +1,71 @@
 document.addEventListener('DOMContentLoaded', () => {
+  ////////////////////////////////////////////////////////////////
+  // initialize collapsible (materialize)
+  const elemsCollapsible = document.querySelectorAll('.collapsible')
+  const instancesCollapsible = M.Collapsible.init(elemsCollapsible)
+
+  // initiliaze modal (materialize)
+  const elemsModal = document.querySelectorAll('.modal')
+  const instancesModal = M.Modal.init(elemsModal)
+
+  // initialize dropdown (materialize)
+  var elemsDropdown = document.querySelectorAll('.dropdown-trigger')
+  var instancesDropdown = M.Dropdown.init(elemsDropdown)
+
+  //Initialize input select (materialize)
+  var elems = document.querySelectorAll('select')
+  var instances = M.FormSelect.init(elems)
+
   // hide menu on mobile desktop
   const showSidebar = document.querySelector('.show-sidebar')
   const sideBar = document.querySelector('.side-bar')
   const collectionLinks = document.querySelectorAll('.collection-item')
   const body = document.querySelector('body')
   //Edit courses variable
-  var editCoursesBtn = document.querySelectorAll('.edit-courses-btn');
-  var editCourseIdInput = document.querySelector('#editCourseIdInput');
+  var editCoursesBtn = document.querySelectorAll('.edit-courses-btn')
+  var editCourseIdInput = document.querySelector('#editCourseIdInput')
   //asign teachers variables
-  var asignTeacherBtn = document.querySelectorAll('.asign-teacher-btn');
-  var assignTeacherCourseIdInput = document.querySelector('#assignTeacherCourseIdInput');
+  var asignTeacherBtn = document.querySelectorAll('.asign-teacher-btn')
+  var assignTeacherCourseIdInput = document.querySelector('#assignTeacherCourseIdInput')
   //delete courses variable
-  var deleteCoursesBtn = document.querySelectorAll('.delete-courses-btn');
-  var deleteCourseIdInput = document.querySelector('#deleteCourseIdInput');
+  var deleteCoursesBtn = document.querySelectorAll('.delete-courses-btn')
+  var deleteCourseIdInput = document.querySelector('#deleteCourseIdInput')
   //asign students variables
-  var assignStudentBtn = document.querySelectorAll('.asign-student-btn');
-  var assignStudentCourseIdInput = document.querySelector('#assignStudentCourseIdInput');
-  
+  var assignStudentBtn = document.querySelectorAll('.asign-student-btn')
+  var assignStudentCourseIdInput = document.querySelector('#assignStudentCourseIdInput')
+
   //////////////////////////////////////////////////
   ////////////Admin controller functions////////////
 
   //Edit courses function
-  editCoursesBtn.forEach(function(trigger) {
-    trigger.addEventListener('click', function() {
-      var courseId = this.getAttribute('data-id');
-      editCourseIdInput.value = courseId;
-    });
-  });
+  editCoursesBtn.forEach(function (trigger) {
+    trigger.addEventListener('click', function () {
+      var courseId = this.getAttribute('data-id')
+      editCourseIdInput.value = courseId
+    })
+  })
   //asign teacher function
-  asignTeacherBtn.forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      var courseId = this.getAttribute('data-id');
-      assignTeacherCourseIdInput.value = courseId;
+  asignTeacherBtn.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var courseId = this.getAttribute('data-id')
+      assignTeacherCourseIdInput.value = courseId
     })
-  });
+  })
   //delete course function
-  deleteCoursesBtn.forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      var courseId = this.getAttribute('data-id');
-      deleteCourseIdInput.value = courseId;
+  deleteCoursesBtn.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var courseId = this.getAttribute('data-id')
+      deleteCourseIdInput.value = courseId
     })
-  });
+  })
   //delete course function
-  assignStudentBtn.forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      var courseId = this.getAttribute('data-id');
-      assignStudentCourseIdInput.value = courseId;
-      console.log(assignStudentCourseIdInput.value); // Verifica si se está asignando correctamente el valor al campo hidden
+  assignStudentBtn.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var courseId = this.getAttribute('data-id')
+      assignStudentCourseIdInput.value = courseId
+      console.log(assignStudentCourseIdInput.value) // Verifica si se está asignando correctamente el valor al campo hidden
     })
-  });
-  
+  })
 
   function checkWidth() {
     if (window.innerWidth <= 700) {
@@ -84,22 +100,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     })
   })
-  ////////////////////////////////////////////////////////////////
-  // initialize collapsible (materialize)
-  const elemsCollapsible = document.querySelectorAll('.collapsible')
-  const instancesCollapsible = M.Collapsible.init(elemsCollapsible)
-
-  // initiliaze modal (materialize)
-  const elemsModal = document.querySelectorAll('.modal')
-  const instancesModal = M.Modal.init(elemsModal)
-
-  // initialize dropdown (materialize)
-  var elemsDropdown = document.querySelectorAll('.dropdown-trigger')
-  var instancesDropdown = M.Dropdown.init(elemsDropdown)
-
-  //Initialize input select (materialize)
-  var elems = document.querySelectorAll('select')
-  var instances = M.FormSelect.init(elems)
 
   // Obtain links from sidebar collection
   const mainLink = document.querySelector('.main-link')
@@ -135,69 +135,87 @@ document.addEventListener('DOMContentLoaded', () => {
     // show content on selected content
     content.style.display = 'block'
   }
+  //hide any collapsible active
+  const collapsibles = document.querySelectorAll('.collapsible.popout>li')
+  const collapsiblesBody = document.querySelectorAll('.collapsible-body')
+  const hideCollapsibles = (collapsibles, collapsiblesBody) => {
+    collapsiblesBody.forEach((collapsibleBody) => {
+      collapsibleBody.style.display = ''
+    })
+    collapsibles.forEach((collapsible) => {
+      if (collapsible.classList.contains('active')) {
+        collapsible.classList.remove('active')
+      }
+    })
+  }
 
   // verify one by one if the links exits
   if (mainLink) {
     mainLink.addEventListener('click', function () {
       activateLink(mainLink, mainContent)
+      hideCollapsibles(collapsibles, collapsiblesBody)
     })
   }
 
   if (aboutUsLink) {
     aboutUsLink.addEventListener('click', function () {
       activateLink(aboutUsLink, aboutUsContent)
+      hideCollapsibles(collapsibles, collapsiblesBody)
     })
   }
 
   if (studentsLink) {
     studentsLink.addEventListener('click', function () {
       activateLink(studentsLink, studentsContent)
+      hideCollapsibles(collapsibles, collapsiblesBody)
     })
   }
 
   if (coursesLink) {
     coursesLink.addEventListener('click', function () {
       activateLink(coursesLink, coursesContent)
+      hideCollapsibles(collapsibles, collapsiblesBody)
     })
   }
 
   if (professorsLink) {
     professorsLink.addEventListener('click', function () {
       activateLink(professorsLink, professorsContent)
+      hideCollapsibles(collapsibles, collapsiblesBody)
     })
   }
-})
 
-// Show user menu on dashboard
+  // Show user menu on dashboard
 
-const showUserMenu = () => {
-  const userMenu = document.getElementById('user-menu')
-  userMenu.classList.add('show-menu')
-}
+  const showUserMenu = () => {
+    const userMenu = document.getElementById('user-menu')
+    userMenu.classList.add('show-menu')
+  }
 
-const hideUserMenu = () => {
-  const userMenu = document.getElementById('user-menu')
-  userMenu.classList.remove('show-menu')
-}
+  const hideUserMenu = () => {
+    const userMenu = document.getElementById('user-menu')
+    userMenu.classList.remove('show-menu')
+  }
 
-const userInfoContainer = document.querySelector('.user-info-container')
-const userMenu = document.querySelector('.user-menu')
-const goldUG = '#ffbf00'
-const azulUG = '#003a6c'
-userInfoContainer.addEventListener('mouseover', () => {
-  showUserMenu()
-  userInfoContainer.style.backgroundColor = goldUG
-})
-userInfoContainer.addEventListener('mouseout', () => {
-  hideUserMenu()
-  userInfoContainer.style.backgroundColor = azulUG
-})
+  const userInfoContainer = document.querySelector('.user-info-container')
+  const userMenu = document.querySelector('.user-menu')
+  const goldUG = '#ffbf00'
+  const azulUG = '#003a6c'
+  userInfoContainer.addEventListener('mouseover', () => {
+    showUserMenu()
+    userInfoContainer.style.backgroundColor = goldUG
+  })
+  userInfoContainer.addEventListener('mouseout', () => {
+    hideUserMenu()
+    userInfoContainer.style.backgroundColor = azulUG
+  })
 
-userMenu.addEventListener('mouseover', () => {
-  showUserMenu()
-  userInfoContainer.style.backgroundColor = goldUG
-})
-userMenu.addEventListener('mouseout', () => {
-  hideUserMenu()
-  userInfoContainer.style.backgroundColor = azulUG
+  userMenu.addEventListener('mouseover', () => {
+    showUserMenu()
+    userInfoContainer.style.backgroundColor = goldUG
+  })
+  userMenu.addEventListener('mouseout', () => {
+    hideUserMenu()
+    userInfoContainer.style.backgroundColor = azulUG
+  })
 })
