@@ -436,7 +436,7 @@
   }
 }
 
-@media (max-width: 299px) {
+@media (max-width: 358px) {
   .icons {
     flex-direction: column;
   }
