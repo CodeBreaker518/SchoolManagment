@@ -252,6 +252,14 @@
   border-radius: 20px !important;
   padding: 50px !important;
 }
+#modal7 {
+  border-radius: 20px !important;
+  padding: 50px !important;
+}
+#modal8 {
+  border-radius: 20px !important;
+  padding: 50px !important;
+}
 .yes-no-btns {
   display: flex;
   flex-direction: row;

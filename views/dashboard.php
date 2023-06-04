@@ -95,18 +95,15 @@
             <ul class="collapsible popout">
               <?php foreach ($students as $student): ?>
                 <li>
-                  <div class="stu-name">
-                    <div class="collapsible-header"><?php echo $student['stu_name']; ?>
-                    <div class="icons">
-                    <form action="../controllers/admin/delete_students_controller.php" method="POST">
-                        <input type="hidden" name="id" value="<?php echo $student['stu_id']; ?>">
-
-                        <button class="waves-effect waves-light btn red " type="submit" name="action">
-                            <i class="material-icons ">delete</i>
+                  <div class="collapsible-header">
+                    <div class="stu-name">
+                      <?php echo $student['stu_name']; ?>
+                    </div>
+                      <div class="icons">
                         </button>
-                    </form>
-                  </div>
-                  </div>
+                          <button class="waves-effect waves-light btn red modal-trigger delete-courses-btn" data-target="modal7" data-id="<?php echo $student['stu_id']; ?>"><i class="material-icons">delete</i>
+                        </button>
+                      </div>
                   </div>
                   
                   <div class="collapsible-body">
@@ -189,18 +186,15 @@
             <ul class="collapsible popout">
               <?php foreach ($teachers as $teacher): ?>
                 <li>
-                  <div class="teach-name">
-                    <div class="collapsible-header"><?php echo $teacher['teach_name']; ?>
+                  <div class="collapsible-header">
+                    <div class="teach-name">
+                      <?php echo $teacher['teach_name']; ?>
+                    </div>
                     <div class="icons">
-                    <form action="../controllers/admin/delete_teachers_controller.php" method="POST">
-                        <input type="hidden" name="id" value="<?php echo $teacher['teach_id']; ?>">
-
-                        <button class="waves-effect waves-light btn red" type="submit" name="action">
-                            <i class="material-icons">delete</i>
-                        </button>
-                    </form>
-                  </div>
-                  </div>
+                      </button>
+                        <button class="waves-effect waves-light btn red modal-trigger delete-courses-btn" data-target="modal8" data-id="<?php echo $teacher['teach_id']; ?>"><i class="material-icons">delete</i>
+                      </button>
+                    </div>
                   </div>
                   <div class="collapsible-body">
                     <span>Professor ID: <?php echo $teacher['teach_id']; ?></span><br>
@@ -713,8 +707,46 @@
     <div class="modal-footer">
     </div>
   </div>
-
-            
+  
+  <div id="modal7" class="modal detele-student">
+    <div class="card-content card-courses">
+      <span class="card-title">Are you sure?</span>
+      <form action="../controllers/admin/delete_students_controller.php" method="POST">
+        <input type="hidden" name="id" id="deleteCourseIdInput" value="">
+        <div class="input-field col s12 yes-no-btns">
+          <button class="btn waves-effect waves-light green" type="submit" name="action">YES
+          </button>
+          <a href="#!" class="no-btn btn waves-effect waves-light modal-close red">NO</a>
+        </div>
+        <div class="card-action">
+        </div>
+      </form>
+      <div class="card-action">
+      </div>
+    </div>
+    <div class="modal-footer">
+    </div>
+  </div>
+  
+  <div id="modal8" class="modal detele-teacher">
+    <div class="card-content card-courses">
+      <span class="card-title">Are you sure?</span>
+      <form action="../controllers/admin/delete_teachers_controller.php" method="POST">
+        <input type="hidden" name="id" id="deleteCourseIdInput" value="">
+        <div class="input-field col s12 yes-no-btns">
+          <button class="btn waves-effect waves-light green" type="submit" name="action">YES
+          </button>
+          <a href="#!" class="no-btn btn waves-effect waves-light modal-close red">NO</a>
+        </div>
+        <div class="card-action">
+        </div>
+      </form>
+      <div class="card-action">
+      </div>
+    </div>
+    <div class="modal-footer">
+    </div>
+  </div>
   <!-- app.js -->
   <script src="../public/js/dashboard.js"></script>
   <!-- including materialize js -->
