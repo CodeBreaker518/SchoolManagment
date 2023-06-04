@@ -582,30 +582,37 @@
   
   <div id="modal3" class="modal assign-teacher">
     <div class="card-content card-courses">
-      <span class="card-title">choose a teacher for this course</span>
-      <form action="../controllers/admin/assign_teacher_oncourse_controller.php" method="POST">
-        <input type="hidden" name="id" id="assignTeacherCourseIdInput" value="">
-        <div class="input-field col s12">
-          <select name="teacher" required>
-            <option value="" disabled selected>Teachers</option>
-          <?php foreach ($teachers as $teacher): ?>          
-            <option value="<?php echo $teacher['teach_id']; ?>"><?php echo $teacher['teach_name']; ?></option>
-          <?php endforeach; ?>
-          </select>
-        </div>
+        <span class="card-title">Choose a teacher for this course</span>
+        <form action="../controllers/admin/assign_teacher_oncourse_controller.php" method="POST">
+            <input type="hidden" name="id" id="assignTeacherCourseIdInput" value="">
+            <div class="input-field col s12">
+                <select name="teacher" required>
+                    <option value="" disabled selected>Teachers</option>
+                    <?php foreach ($teachers as $teacher): ?>
+                        <?php 
+                            $assignedTeacherId = getAssignedTeacherId($courseId);
+                            if ($assignedTeacherId !== null && $assignedTeacherId == $teacher['teach_id']): ?>
+                                <option value="<?php echo $teacher['teach_id']; ?>" disabled><?php echo $teacher['teach_name']; ?> (assigned)</option>
+                            <?php else: ?>
+                                <option value="<?php echo $teacher['teach_id']; ?>"><?php echo $teacher['teach_name']; ?></option>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <div class="card-action">
+                <button class="btn waves-effect waves-light" type="submit" name="action">Register
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
         <div class="card-action">
-          <button class="btn waves-effect waves-light" type="submit" name="action">Register
-            <i class="material-icons right">send</i>
-          </button>
         </div>
-      </form>
-      <div class="card-action">
-      </div>
     </div>
     <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
     </div>
-  </div>
+</div>
+
 
   <div id="modal4" class="modal assign-student">
     <div class="card-content card-courses">
