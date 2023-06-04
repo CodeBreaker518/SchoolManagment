@@ -90,7 +90,34 @@ function getStudentCourses($studentId)
     }
 }
 
+function getAssignedTeacherId($courseId) {
+    $host = "localhost";
+    $database = "school_db";
+    $username = "root";
+    $db_password = "";
 
+    $connection = mysqli_connect($host, $username, $db_password, $database);
+
+    if (!$connection) {
+        die("Error al conectar con la base de datos: " . mysqli_connect_error());
+    }
+
+    $query = "SELECT cour_teach_id FROM courses WHERE cour_id = ?";
+    $stmt = mysqli_prepare($connection, $query);
+    mysqli_stmt_bind_param($stmt, "i", $courseId);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $assignedTeacherId = $row['cour_teach_id'];
+        mysqli_close($connection);
+        return $assignedTeacherId;
+    } else {
+        mysqli_close($connection);
+        return null;
+    }
+}
 
 
 ?>
