@@ -17,6 +17,7 @@ if (!$conection) {
 }
 
 $id = $_POST['id']; // Supongamos que el ID del registro a eliminar se envía mediante un formulario POST
+echo $id;
 
 $query = "DELETE FROM students WHERE stu_id = '$id'";
 
@@ -30,7 +31,7 @@ if ($result) {
     <html>
         <head>
             <!-- including materialize css -->
-        <link rel="stylesheet" href="../public/css/materialize.min.css">
+        <link rel="stylesheet" href="../../public/css/materialize.min.css">
             <title>Loading...</title>
             <style>
             #loadingContainer {
@@ -69,7 +70,7 @@ if ($result) {
                 <h1 class="center valing-wrapper">Deleting Student...</h1>
             </div>
         <!-- including materialize js -->
-        <script src="../public/js/materialize.min.js"></script>
+        <script src="../../public/js/materialize.min.js"></script>
         </body>
     </html>
     <?php
