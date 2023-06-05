@@ -30,9 +30,15 @@ document.addEventListener('DOMContentLoaded', () => {
   //delete courses variable
   var deleteCoursesBtn = document.querySelectorAll('.delete-courses-btn')
   var deleteCourseIdInput = document.querySelector('#deleteCourseIdInput')
+  //delete students variable
+  var deleteStudentsBtn = document.querySelectorAll('.delete-students-btn')
+  var deleteStudentIdInput = document.querySelector('#deleteStudentIdInput')
+  //delete teachers variable
+  var deleteTeachersBtn = document.querySelectorAll('.delete-teachers-btn')
+  var deleteTeacherIdInput = document.querySelector('#deleteTeacherIdInput')
   //asign students variables
   var assignStudentBtn = document.querySelectorAll('.asign-student-btn')
-  var assignStudentCourseIdInput = document.querySelector('#assignStudentCourseIdInput')
+  var assignStudentCourseIdInput = document.querySelector('#assignTeacherIdInput')
 
   //////////////////////////////////////////////////
   ////////////Admin controller functions////////////
@@ -58,7 +64,22 @@ document.addEventListener('DOMContentLoaded', () => {
       deleteCourseIdInput.value = courseId
     })
   })
-  //delete course function
+  //delete student function
+  deleteStudentsBtn.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var studentId = this.getAttribute('data-id')
+      deleteStudentIdInput.value = studentId
+    })
+  })
+  //delete teacher function
+  deleteTeachersBtn.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var teacherId = this.getAttribute('data-id')
+      deleteTeacherIdInput.value = teacherId
+      console.log(dele)
+    })
+  })
+  //assign student function
   assignStudentBtn.forEach(function (btn) {
     btn.addEventListener('click', function () {
       var courseId = this.getAttribute('data-id')
@@ -66,6 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log(assignStudentCourseIdInput.value) // Verifica si se está asignando correctamente el valor al campo hidden
     })
   })
+
 
   function checkWidth() {
     if (window.innerWidth <= 700) {

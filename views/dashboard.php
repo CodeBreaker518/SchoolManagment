@@ -100,8 +100,7 @@
                       <?php echo $student['stu_name']; ?>
                     </div>
                       <div class="icons">
-                        </button>
-                          <button class="waves-effect waves-light btn red modal-trigger delete-courses-btn" data-target="modal7" data-id="<?php echo $student['stu_id']; ?>"><i class="material-icons">delete</i>
+                        <button class="waves-effect waves-light btn red modal-trigger delete-students-btn" data-target="modal7" data-id="<?php echo $student['stu_id']; ?>"><i class="material-icons">delete</i>
                         </button>
                       </div>
                   </div>
@@ -191,8 +190,7 @@
                       <?php echo $teacher['teach_name']; ?>
                     </div>
                     <div class="icons">
-                      </button>
-                        <button class="waves-effect waves-light btn red modal-trigger delete-courses-btn" data-target="modal8" data-id="<?php echo $teacher['teach_id']; ?>"><i class="material-icons">delete</i>
+                        <button class="waves-effect waves-light btn red modal-trigger delete-teachers-btn" data-target="modal8" data-id="<?php echo $teacher['teach_id']; ?>"><i class="material-icons">delete</i>
                       </button>
                     </div>
                   </div>
@@ -580,18 +578,19 @@
         <form action="../controllers/admin/assign_teacher_oncourse_controller.php" method="POST">
             <input type="hidden" name="id" id="assignTeacherCourseIdInput" value="">
             <div class="input-field col s12">
-                <select name="teacher" required>
-                    <option value="" disabled selected>Teachers</option>
-                    <?php foreach ($teachers as $teacher): ?>
-                        <?php 
-                            $assignedTeacherId = getAssignedTeacherId($courseId);
-                            if ($assignedTeacherId !== null && $assignedTeacherId == $teacher['teach_id']): ?>
-                                <option value="<?php echo $teacher['teach_id']; ?>" disabled><?php echo $teacher['teach_name']; ?> (assigned)</option>
-                            <?php else: ?>
-                                <option value="<?php echo $teacher['teach_id']; ?>"><?php echo $teacher['teach_name']; ?></option>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
-                </select>
+              <select name="teacher" required>
+                <option value="" disabled selected>Teachers</option>
+                <?php foreach ($teachers as $teacher): ?>
+                    <?php 
+                        $assignedTeacherId = getAssignedTeacherId($courseId);
+                        if ($assignedTeacherId !== null && $assignedTeacherId == $teacher['teach_id']): ?>
+                            <option value="<?php echo $teacher['teach_id']; ?>" disabled selected><?php echo $teacher['teach_name']; ?> (assigned)</option>
+                        <?php else: ?>
+                            <option value="<?php echo $teacher['teach_id']; ?>"><?php echo $teacher['teach_name']; ?></option>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+              </select>
+
             </div>
             <div class="card-action">
                 <button class="btn waves-effect waves-light" type="submit" name="action">Register
@@ -605,7 +604,7 @@
     <div class="modal-footer">
         <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
     </div>
-</div>
+  </div>
 
 
   <div id="modal4" class="modal assign-student">
@@ -712,7 +711,7 @@
     <div class="card-content card-courses">
       <span class="card-title">Are you sure?</span>
       <form action="../controllers/admin/delete_students_controller.php" method="POST">
-        <input type="hidden" name="id" id="deleteCourseIdInput" value="">
+        <input type="hidden" name="id" id="deleteStudentIdInput" value="">
         <div class="input-field col s12 yes-no-btns">
           <button class="btn waves-effect waves-light green" type="submit" name="action">YES
           </button>
@@ -732,7 +731,7 @@
     <div class="card-content card-courses">
       <span class="card-title">Are you sure?</span>
       <form action="../controllers/admin/delete_teachers_controller.php" method="POST">
-        <input type="hidden" name="id" id="deleteCourseIdInput" value="">
+        <input type="hidden" name="id" id="deleteTeacherIdInput" value="">
         <div class="input-field col s12 yes-no-btns">
           <button class="btn waves-effect waves-light green" type="submit" name="action">YES
           </button>

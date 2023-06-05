@@ -30,7 +30,7 @@ if ($result) {
     <html>
         <head>
             <!-- including materialize css -->
-        <link rel="stylesheet" href="../public/css/materialize.min.css">
+        <link rel="stylesheet" href="../../public/css/materialize.min.css">
             <title>Loading...</title>
             <style>
             #loadingContainer {
@@ -69,7 +69,7 @@ if ($result) {
                 <h1 class="center valing-wrapper">Deleting teacher..</h1>
             </div>
         <!-- including materialize js -->
-        <script src="../public/js/materialize.min.js"></script>
+        <script src="../../public/js/materialize.min.js"></script>
         </body>
     </html>
     <?php
