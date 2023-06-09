@@ -9,8 +9,9 @@
 
   require_once "../controllers/get_profile_picture_controller.php"; // Ruta del controlador PHP
 
-  require_once "../controllers/admin/admin_functions.php"
-
+  require_once "../controllers/admin/admin_functions.php";
+  
+  require_once "../controllers/functions.php";
 ?>
 
 <!DOCTYPE html>
@@ -308,13 +309,15 @@
           <div class="courses-content content-section" style="display: none;">
             <ul class="collapsible popout">
               <?php foreach ($courses as $course): ?>
-                <li>
-                  <div class="collapsible-header"><?php echo $course['cour_name']; ?></div>
-                  <div class="collapsible-body">
-                    <span>Course ID: <?php echo $course['cour_id']; ?></span><br>
-                    <span>Description: <?php echo $course['cour_description']; ?></span><br>
-                  </div>
-                </li>
+                <?php $studentId = $_SESSION['user_id']; if (isStudentEnrolled($studentId, $course['cour_id'])): ?> <!-- Agregar esta línea -->
+                  <li>
+                    <div class="collapsible-header"><?php echo $course['cour_name']; ?></div>
+                    <div class="collapsible-body">
+                      <span>Course ID: <?php echo $course['cour_id']; ?></span><br>
+                      <span>Description: <?php echo $course['cour_description']; ?></span><br>
+                    </div>
+                  </li>
+                <?php endif; ?> <!-- Agregar esta línea -->
               <?php endforeach; ?>
             </ul>
           </div>
@@ -403,13 +406,15 @@
           <div class="courses-content content-section" style="display: none;">
             <ul class="collapsible popout">
               <?php foreach ($courses as $course): ?>
-                <li>
-                  <div class="collapsible-header"><?php echo $course['cour_name']; ?></div>
-                  <div class="collapsible-body">
-                    <span>Course ID: <?php echo $course['cour_id']; ?></span><br>
-                    <span>Description: <?php echo $course['cour_description']; ?></span><br>
-                  </div>
-                </li>
+                <?php $teacherId = $_SESSION['user_id']; if (isteacherEnrolled($teacherId, $course['cour_id'])): ?> <!-- Agregar esta línea -->
+                  <li>
+                    <div class="collapsible-header"><?php echo $course['cour_name']; ?></div>
+                    <div class="collapsible-body">
+                      <span>Course ID: <?php echo $course['cour_id']; ?></span><br>
+                      <span>Description: <?php echo $course['cour_description']; ?></span><br>
+                    </div>
+                  </li>
+                <?php endif; ?> <!-- Agregar esta línea -->
               <?php endforeach; ?>
             </ul>
           </div>

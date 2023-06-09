@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
   var deleteTeacherIdInput = document.querySelector('#deleteTeacherIdInput')
   //asign students variables
   var assignStudentBtn = document.querySelectorAll('.asign-student-btn')
-  var assignStudentCourseIdInput = document.querySelector('#assignTeacherIdInput')
+  var assignStudentCourseIdInput = document.querySelector('#assignStudentCourseIdInput')
 
   //////////////////////////////////////////////////
   ////////////Admin controller functions////////////
