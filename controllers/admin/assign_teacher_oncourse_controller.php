@@ -20,7 +20,6 @@ if (!$connection) {
 $courId = $_POST['id'];
 $teachId = $_POST['teacher'];
 
-// Verificar si existe el profesor y el curso antes de asignarlos
 $validTeacher = false;
 $validCourse = false;
 

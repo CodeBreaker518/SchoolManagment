@@ -13,22 +13,16 @@ if (!$conection) {
   die("Error al conectar con la base de datos: " . mysqli_connect_error());
 }
 
-// Obtener el ID y rol del usuario (ajusta esto según tu lógica de obtención de datos de usuario)
 $userID = $_SESSION['user_id'];
 $userRole = $_SESSION['user_type'];
 
-// Verificar si se ha enviado una imagen
 if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK) {
-  // Obtener la ruta temporal del archivo subido
   $tempFilePath = $_FILES['profile_picture']['tmp_name'];
 
-  // Leer el contenido del archivo
   $profilePictureData = file_get_contents($tempFilePath);
 
-  // Escapar el contenido del archivo
   $profilePictureData = mysqli_real_escape_string($conection, $profilePictureData);
 
-  // Actualizar la imagen de perfil del usuario según el rol
   if ($userRole == 'student') {
     $query = "UPDATE students SET stu_profilepicture = '$profilePictureData' WHERE stu_id = '$userID'";
   } elseif ($userRole == 'professor') {
@@ -42,9 +36,7 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
 
   $result = mysqli_query($conection, $query);
 
-  // Verificar si la actualización fue exitosa
   if ($result) {
-    // Redireccionar al usuario a una página de éxito o a su perfil
     header("Location: ../views/dashboard.php");
     exit();
   } else {
@@ -55,6 +47,5 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
   header("Refresh: 1; URL=../views/dashboard.php");
 }
 
-// Cerrar la conexión a la base de datos
 mysqli_close($conection);
 ?>

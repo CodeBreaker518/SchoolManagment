@@ -16,7 +16,7 @@ if (!$conection) {
     die("Error al conectar a la base de datos: " . mysqli_connect_error());
 }
 
-$id = $_POST['id']; // Supongamos que el ID del registro a eliminar se envía mediante un formulario POST
+$id = $_POST['id']; 
 echo $id;
 
 $query = "DELETE FROM students WHERE stu_id = '$id'";

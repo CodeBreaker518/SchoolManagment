@@ -32,7 +32,10 @@
   <link rel="stylesheet" href="../public/css/styles.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css"></link>
-
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
   <title>Dasboard</title>
 </head>
 <body style="overflow:auto;">
@@ -385,7 +388,7 @@
           <div class="courses-content content-section" style="display: none;">
             <ul class="collapsible popout">
               <?php foreach ($courses as $course): ?>
-                <?php $studentId = $_SESSION['user_id']; if (isStudentEnrolled($studentId, $course['cour_id'])): ?> <!-- Agregar esta línea -->
+                <?php $studentId = $_SESSION['user_id']; if (isStudentEnrolled($studentId, $course['cour_id'])): ?> 
                   <li>
                     <div class="collapsible-header"><?php echo $course['cour_name']; ?></div>
                     <div class="collapsible-body">
@@ -393,7 +396,7 @@
                       <span>Description: <?php echo $course['cour_description']; ?></span><br>
                     </div>
                   </li>
-                <?php endif; ?> <!-- Agregar esta línea -->
+                <?php endif; ?>
               <?php endforeach; ?>
             </ul>
           </div>
@@ -501,7 +504,7 @@
           <div class="courses-content content-section" style="display: none;">
             <ul class="collapsible popout">
               <?php foreach ($courses as $course): ?>
-                <?php $teacherId = $_SESSION['user_id']; if (isteacherEnrolled($teacherId, $course['cour_id'])): ?> <!-- Agregar esta línea -->
+                <?php $teacherId = $_SESSION['user_id']; if (isteacherEnrolled($teacherId, $course['cour_id'])): ?>
                   <li>
                     <div class="collapsible-header"><?php echo $course['cour_name']; ?></div>
                     <div class="collapsible-body">
@@ -509,7 +512,7 @@
                       <span>Description: <?php echo $course['cour_description']; ?></span><br>
                     </div>
                   </li>
-                <?php endif; ?> <!-- Agregar esta línea -->
+                <?php endif; ?>
               <?php endforeach; ?>
             </ul>
           </div>
