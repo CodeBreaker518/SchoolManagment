@@ -97,7 +97,7 @@ if ($validTeacher && $validCourse) {
         echo "Error al editar el curso: " . mysqli_error($connection);
     }
 } else {
-    echo "Profesor o curso inválido. Verifica los datos ingresados.";
+    echo "professor or course invalid. Verify the data";
 }
 
 mysqli_close($connection);

@@ -48,10 +48,11 @@ if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] ===
     header("Location: ../views/dashboard.php");
     exit();
   } else {
-    echo "Error al actualizar la imagen de perfil: " . mysqli_error($conection);
+    echo "Error while trying to update image " . mysqli_error($conection);
   }
 } else {
-  echo "No se ha seleccionado ninguna imagen.";
+  echo "There's no image selected";
+  header("Refresh: 1; URL=../views/dashboard.php");
 }
 
 // Cerrar la conexión a la base de datos

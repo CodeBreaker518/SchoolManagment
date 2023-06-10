@@ -37,7 +37,9 @@ $newpassword = $_POST['newpassword'];
     header("Location: ../views/dashboard.php");
     exit();
   } else {
-    echo "Error al cambiar la contraseña " . mysqli_error($conection); 
+    echo "Error changing the password";
+    header("Refresh: 1; URL=../views/dashboard.php");
+    mysqli_error($conection); 
 }
 
 // Cerrar la conexión a la base de datos
