@@ -1,9 +1,8 @@
 <?php
-// Datos de conexión a la base de datos
-$host = "localhost"; // Cambia esto si tu servidor MySQL no está en localhost
-$database = "school_db"; // Reemplaza "nombre_basedatos" con el nombre de tu base de datos, incluyendo la ruta relativa a la carpeta "db"
-$username = "root"; // Reemplaza "usuario_mysql" con tu nombre de usuario de MySQL
-$password = ""; // Reemplaza "contraseña_mysql" con tu contraseña de MySQL
+$host = "localhost";
+$database = "school_db";
+$username = "root"; 
+$password = ""; 
 
 // Establecer la conexión a la base de datos
 $conn = mysqli_connect($host, $username, $password, $database);

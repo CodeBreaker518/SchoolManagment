@@ -13,7 +13,6 @@ if (!$conection) {
   die("Error al conectar con la base de datos: " . mysqli_connect_error());
 }
 
-// Obtener el ID y rol del usuario (ajusta esto según tu lógica de obtención de datos de usuario)
 $userID = $_SESSION['user_id'];
 $userRole = $_SESSION['user_type'];
 $newpassword = $_POST['newpassword'];
@@ -31,9 +30,7 @@ $newpassword = $_POST['newpassword'];
 
   $result = mysqli_query($conection, $query);
 
-  // Verificar si la actualización fue exitosa
   if ($result) {
-    // Redireccionar al usuario a una página de éxito o a su perfil
     echo "Password Changed!";
     header("Refresh: 1; URL=../views/dashboard.php");
     session_destroy();

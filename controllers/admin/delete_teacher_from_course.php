@@ -19,7 +19,6 @@ if (!$connection) {
 
 $courId = $_POST['id'];
 
-// Verificar si existe el profesor y el curso antes de asignarlos
 $validTeacher = false;
 
 $teacherQuery = "SELECT cour_teach_id FROM courses WHERE cour_id = '$courId'";
