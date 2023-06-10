@@ -27,6 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
   //asign teachers variables
   var asignTeacherBtn = document.querySelectorAll('.asign-teacher-btn')
   var assignTeacherCourseIdInput = document.querySelector('#assignTeacherCourseIdInput')
+  //delete teacher from a course variables
+  var deleteTeacherCourseBtn = document.querySelectorAll('.delete-teacher-course-btn')
+  var deleteTeacherCourseIdInput = document.querySelector('#deleteTeacherCourseIdInput')
   //delete courses variable
   var deleteCoursesBtn = document.querySelectorAll('.delete-courses-btn')
   var deleteCourseIdInput = document.querySelector('#deleteCourseIdInput')
@@ -55,6 +58,13 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', function () {
       var courseId = this.getAttribute('data-id')
       assignTeacherCourseIdInput.value = courseId
+    })
+  })
+  //delete teacher from course function
+  deleteTeacherCourseBtn.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var courseId = this.getAttribute('data-id')
+      deleteTeacherCourseIdInput.value = courseId
     })
   })
   //delete course function

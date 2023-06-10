@@ -320,6 +320,11 @@
   padding: 2rem;
   border-radius: 20px;
 }
+#modal10 {
+  color: var(--color-gris-oscuro);
+  padding: 2rem;
+  border-radius: 20px;
+}
 
 .yes-no-btns {
   display: flex;
