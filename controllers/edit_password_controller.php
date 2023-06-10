@@ -34,7 +34,9 @@ $newpassword = $_POST['newpassword'];
   // Verificar si la actualización fue exitosa
   if ($result) {
     // Redireccionar al usuario a una página de éxito o a su perfil
-    header("Location: ../views/dashboard.php");
+    echo "Password Changed!";
+    header("Refresh: 1; URL=../views/dashboard.php");
+    session_destroy();
     exit();
   } else {
     echo "Error changing the password";
