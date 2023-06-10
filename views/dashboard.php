@@ -201,6 +201,8 @@
                     <div class="icons">
                       <button class="waves-effect waves-light btn green modal-trigger asign-teacher-btn"  data-target="modal3" data-id="<?php echo $course['cour_id']; ?>">+<i class="fa-solid fa-user-graduate"></i>
                       </button>
+                      <button class="waves-effect waves-light btn red modal-trigger delete-teacher-course-btn"  data-target="modal10" data-id="<?php echo $course['cour_id']; ?>">X<i class="fa-solid fa-user-graduate"></i>
+                      </button>
                       <button class="waves-effect waves-light btn green modal-trigger asign-student-btn"  data-target="modal4" data-id="<?php echo $course['cour_id']; ?>">+<i class="fa-solid fa-people-group"></i>
                       </button>
                       <button class="waves-effect waves-light btn amber accent-4 modal-trigger edit-courses-btn"  data-target="modal5" data-id="<?php echo $course['cour_id']; ?>"><i class="material-icons">edit</i>
@@ -863,6 +865,26 @@
             </div>
         
         </form>
+    </div>
+  </div>
+
+  <div id="modal10" class="modal detele-teacher">
+    <div class="card-content card-courses">
+      <span class="card-title">Are you sure to delete teacher from this course?</span>
+      <form action="../controllers/admin/delete_teacher_from_course.php" method="POST">
+        <input type="hidden" name="id" id="deleteTeacherCourseIdInput" value="">
+        <div class="input-field col s12 yes-no-btns">
+          <button class="btn waves-effect waves-light green" type="submit" name="action">YES
+          </button>
+          <a href="#!" class="no-btn btn waves-effect waves-light modal-close red">NO</a>
+        </div>
+        <div class="card-action">
+        </div>
+      </form>
+      <div class="card-action">
+      </div>
+    </div>
+    <div class="modal-footer">
     </div>
   </div>
   <!-- app.js -->
