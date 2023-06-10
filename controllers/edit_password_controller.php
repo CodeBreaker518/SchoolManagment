@@ -19,11 +19,11 @@ $userRole = $_SESSION['user_type'];
 $newpassword = $_POST['newpassword'];
 
   if ($userRole == 'student') {
-    $query = "UPDATE students SET stu_passwors = '$newpassword' WHERE stu_id = '$userID'";
+    $query = "UPDATE students SET stu_password = '$newpassword' WHERE stu_id = '$userID'";
   } elseif ($userRole == 'professor') {
     $query = "UPDATE teachers SET teach_password = '$newpassword' WHERE teach_id = '$userID'";
   } elseif ($userRole == 'ADMIN') {
-    $query = "UPDATE admins SET adm_profilepicture = '$newpassword' WHERE adm_id = '$userID'";
+    $query = "UPDATE admins SET adm_password = '$newpassword' WHERE adm_id = '$userID'";
   } else {
     echo "Rol de usuario inválido.";
     exit();
@@ -37,10 +37,7 @@ $newpassword = $_POST['newpassword'];
     header("Location: ../views/dashboard.php");
     exit();
   } else {
-    echo "Error al actualizar la imagen de perfil: " . mysqli_error($conection);
-  }
-} else {
-  echo "No se ha seleccionado ninguna imagen.";
+    echo "Error al cambiar la contraseña " . mysqli_error($conection); 
 }
 
 // Cerrar la conexión a la base de datos

@@ -84,10 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', function () {
       var courseId = this.getAttribute('data-id')
       assignStudentCourseIdInput.value = courseId
-      console.log(assignStudentCourseIdInput.value) // Verifica si se está asignando correctamente el valor al campo hidden
     })
   })
-
 
   function checkWidth() {
     if (window.innerWidth <= 700) {
@@ -240,4 +238,20 @@ document.addEventListener('DOMContentLoaded', () => {
     hideUserMenu()
     userInfoContainer.style.backgroundColor = azulUG
   })
+})
+
+// change password show-hide feature
+const passwordInput = document.querySelector('#password')
+const togglePassword = document.querySelector('.toggle-password')
+
+togglePassword.addEventListener('click', () => {
+  if (togglePassword.classList.contains('fa-eye')) {
+    togglePassword.classList.remove('fa-eye')
+    togglePassword.classList.add('fa-eye-slash')
+    passwordInput.setAttribute('type', 'text')
+  } else if (togglePassword.classList.contains('fa-eye-slash')) {
+    togglePassword.classList.remove('fa-eye-slash')
+    togglePassword.classList.add('fa-eye')
+    passwordInput.setAttribute('type', 'password')
+  }
 })

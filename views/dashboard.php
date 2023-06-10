@@ -39,7 +39,7 @@
   
   <!-- reanude session -->
   
-  <main class="main-container">
+  <main class="main-container"> 
     <aside class="side-bar">
       <div class="logo-img">
         <img class="logo-ug responsive-img" src="https://intranet3.ugto.mx/ServicioSocial/img/logo_ug.c96b0c58.png" alt="">
@@ -76,20 +76,38 @@
         <div class="user-menu" id="user-menu">
           <ul class="menu">
             <li class="menu-item modal-trigger" data-target="modal2"><a href="#modal2">Change profile picture</a></li>
-            <li class="menu-item"><a>Change password</a></li>
+            <li class="menu-item modal-trigger" data-target="modal9"><a href="#modal9">Change password</a></li>
             <li class="menu-item"><a href="../controllers/logout_controller.php">Log Out</a></li>
           </ul>
         </div>
       </nav>
 
       <section class="dashboard-container">
-
         <?php if($_SESSION['user_type'] === 'ADMIN'):?>
 
           <div class="main-content content-section" style="display: block;">
             <!-- Contenido para la opción "Main" -->
-            <h1>Main Content</h1>
-            <p>Este es el contenido para la opción "Main".</p>
+            <div class="main-content-section">
+              <strong>SCHOOL MANAGMENT</strong>
+              <h4>Final proyect for the Web Aplications subject. <br> Develop a website that allows to manage a school system for Students, Teachers & Courses</h4>
+              <div class="technologies">
+                <h5>Technologies used</h5>
+                <strong>For the Front end: (developed by Diego)</strong>
+                <ul class="custom-list">
+                  <li>-HTML</li>
+                  <li>-CSS</li>
+                  <li>-JavaScript</li>
+                  <li>-Materialize</li>
+                </ul>
+
+                <strong>For the Back end: (developed by Jair)</strong>
+                <ul class="custom-list">
+                  <li>-MYSQL</li>
+                  <li>-MyPHPAdmin</li>
+                  <li>-PHP</li>
+                </ul>
+              </div>
+            </div>
           </div>
 
           <div class="students-content content-section" style="display: none;">
@@ -302,8 +320,27 @@
 
           <div class="main-content content-section" style="display: block;">
             <!-- Contenido para la opción "Main" -->
-            <h1>Main Content</h1>
-            <p>Este es el contenido para la opción "Main".</p>
+            <div class="main-content-section">
+              <strong>SCHOOL MANAGMENT</strong>
+              <h4>Final proyect for the Web Aplications subject. <br> Develop a website that allows to manage a school system for Students, Teachers & Courses</h4>
+              <div class="technologies">
+                <h5>Technologies used</h5>
+                <strong>For the Front end: (developed by Diego)</strong>
+                <ul class="custom-list">
+                  <li>-HTML</li>
+                  <li>-CSS</li>
+                  <li>-JavaScript</li>
+                  <li>-Materialize</li>
+                </ul>
+
+                <strong>For the Back end: (developed by Jair)</strong>
+                <ul class="custom-list">
+                  <li>-MYSQL</li>
+                  <li>-MyPHPAdmin</li>
+                  <li>-PHP</li>
+                </ul>
+              </div>
+            </div>
           </div>
 
           <div class="courses-content content-section" style="display: none;">
@@ -399,8 +436,27 @@
 
           <div class="main-content content-section" style="display: block;">
             <!-- Contenido para la opción "Main" -->
-            <h1>Main Content</h1>
-            <p>Este es el contenido para la opción "Main".</p>
+            <div class="main-content-section">
+              <strong>SCHOOL MANAGMENT</strong>
+              <h4>Final proyect for the Web Aplications subject. <br> Develop a website that allows to manage a school system for Students, Teachers & Courses</h4>
+              <div class="technologies">
+                <h5>Technologies used</h5>
+                <strong>For the Front end: (developed by Diego)</strong>
+                <ul class="custom-list">
+                  <li>-HTML</li>
+                  <li>-CSS</li>
+                  <li>-JavaScript</li>
+                  <li>-Materialize</li>
+                </ul>
+
+                <strong>For the Back end: (developed by Jair)</strong>
+                <ul class="custom-list">
+                  <li>-MYSQL</li>
+                  <li>-MyPHPAdmin</li>
+                  <li>-PHP</li>
+                </ul>
+              </div>
+            </div>
           </div>
 
           <div class="courses-content content-section" style="display: none;">
@@ -495,7 +551,6 @@
         <?php endif?>
       </section>
     </div>
-
   </main>
 
 <!-------------------------------------------------------------- MODALS  ---------------------------------------------------------------------->
@@ -749,6 +804,28 @@
       </div>
     </div>
     <div class="modal-footer">
+    </div>
+  </div>
+
+  <div id="modal9" class="modal change-password">
+    <div class="modal-content change-password-title">
+      <h5>Change password</h4>
+    </div>
+    <div class="change-password-section">
+      <p>Enter a new Password</p>
+        <form class="change-password-form col s12" action="../controllers/edit_password_controller.php" method="POST">
+            <div class="input-field col s12">
+              <input type="password" id="password" name="newpassword" required>
+              <i class="toggle-password fa-sharp fa-solid fa-eye"></i>
+              <label for="password">New password</label>
+            </div>
+            <div class="change-password-container">
+              <button class="btn waves-effect waves-light change-password-btn" type="submit" name="action">Agree
+                <i class="material-icons right">send</i>
+              </button>
+            </div>
+        
+        </form>
     </div>
   </div>
   <!-- app.js -->
