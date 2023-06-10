@@ -46,19 +46,56 @@
       </div>
       <div class="collection">
         <?php if($_SESSION['user_type'] === 'ADMIN'):?>
-        <a href="#!" class="collection-item main-link active">Main</a>
-        <a href="#!" class="collection-item students-link">Students</a>
-        <a href="#!" class="collection-item courses-link">Courses</a>
-        <a href="#!" class="collection-item professors-link">professors</a>
-        <a href="#!" class="collection-item about-us-link">About us</a>
+        <a href="#!" class="collection-item main-link active">
+          <i class="fa-solid fa-house"></i>
+          Main
+        </a>
+        <a href="#!" class="collection-item students-link">
+          <i class="fa-solid fa-people-group"></i>
+          Students
+        </a>
+        <a href="#!" class="collection-item courses-link">
+          <i class="fa-solid fa-book"></i>
+          Courses
+        </a>
+        <a href="#!" class="collection-item professors-link">
+          <i class="fa-solid fa-user-graduate"></i>
+          professors
+        </a>
+        <a href="#!" class="collection-item about-us-link">
+          <i class="fa-solid fa-circle-info"></i>
+          About us
+        </a>
+
         <?php elseif($_SESSION['user_type'] === 'professor'):?>
-        <a href="#!" class="collection-item main-link active">Main</a>
-        <a href="#!" class="collection-item courses-link">My Courses</a>
-        <a href="#!" class="collection-item about-us-link">About us</a>
+
+        <a href="#!" class="collection-item main-link active">
+          <i class="fa-solid fa-house"></i>
+          Main
+        </a>
+        <a href="#!" class="collection-item courses-link">
+          <i class="fa-solid fa-book"></i>
+          My Courses
+        </a>
+        <a href="#!" class="collection-item about-us-link">
+          <i class="fa-solid fa-circle-info"></i>
+          About us
+        </a>
+
         <?php elseif($_SESSION['user_type'] === 'student'):?>
-        <a href="#!" class="collection-item main-link active">Main</a>
-        <a href="#!" class="collection-item courses-link">My Courses</a>
-        <a href="#!" class="collection-item about-us-link">About us</a>
+        
+        <a href="#!" class="collection-item main-link active">
+          <i class="fa-solid fa-house"></i>
+          Main
+        </a>
+        <a href="#!" class="collection-item courses-link">
+          <i class="fa-solid fa-book"></i>
+          My Courses
+        </a>
+        <a href="#!" class="collection-item about-us-link">
+          <i class="fa-solid fa-circle-info"></i>
+          About us
+        </a>
         <?php endif;?>
       </div>
     </aside>
