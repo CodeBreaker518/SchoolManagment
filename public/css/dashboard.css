@@ -232,9 +232,60 @@
   height: 100vh;
 }
 
+/* Main content */
+.main-content-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: #fff;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.main-content-section > strong {
+  color: #333;
+  font-weight: bold;
+  font-size: 24px;
+}
+.technologies strong {
+  font-size: 1.2rem;
+}
+
+.main-content-section h4 {
+  margin-top: 0;
+  color: #333;
+  font-size: 24px;
+}
+
+.main-content-section h5 {
+  margin-top: 0;
+  color: #666;
+  font-size: 1.5rem;
+}
+
+.main-content-section .technologies ul {
+  list-style: circle;
+  padding-left: 20px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.main-content-section .technologies li {
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
 #modal1 {
   border-radius: 20px !important;
   padding: 50px !important;
+}
+/* modal change photo */
+#modal2 {
+  color: var(--color-gris-oscuro);
+  padding: 2rem;
+  border-radius: 20px;
+  height: 600px;
 }
 #modal3 {
   border-radius: 20px !important;
@@ -260,6 +311,13 @@
   border-radius: 20px !important;
   padding: 50px !important;
 }
+/* modal change photo */
+#modal9 {
+  color: var(--color-gris-oscuro);
+  padding: 2rem;
+  border-radius: 20px;
+}
+
 .yes-no-btns {
   display: flex;
   flex-direction: row;
@@ -350,14 +408,6 @@
   display: block !important;
 }
 
-/* modal change photo */
-#modal2 {
-  color: var(--color-gris-oscuro);
-  padding: 2rem;
-  border-radius: 20px;
-  height: 600px;
-}
-
 .current-photo {
   display: flex;
   justify-content: center;
@@ -406,6 +456,58 @@
 .upload-image-btn:hover {
   background-color: var(--color-azul-ug);
   color: var(--color-gris-claro);
+}
+
+/* Change password */
+
+.change-password-title {
+  text-align: center;
+}
+.change-password-section {
+  padding: 1rem;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+}
+.change-password-section p {
+  line-height: 3;
+}
+
+.change-password-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.change-password-container {
+  display: flex;
+  justify-content: center;
+}
+.change-password-btn {
+  margin-top: 1rem;
+  text-align: center;
+  background-color: var(--color-dorado);
+  color: var(--color-gris-oscuro);
+}
+
+.card-action {
+  display: flex;
+  justify-content: center;
+}
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.toggle-password {
+  opacity: 0.5;
+  position: absolute;
+  right: 20px;
+  bottom: 25px;
+  cursor: pointer;
+}
+.toggle-password:hover {
+  opacity: 1;
 }
 
 @media (max-width: 700px) {
@@ -474,5 +576,3 @@
     transform: translateY(0);
   }
 }
-
-/* No encontre donde iba esto, asi que lo puse hasta abajo xd */

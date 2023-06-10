@@ -68,6 +68,8 @@ CREATE TABLE IF NOT EXISTS records
     rec_cour_id INT NOT NULL,
     rec_stu_id INT NOT NULL,
 
+    UNIQUE(rec_cour_id, rec_stu_id),
+
     PRIMARY KEY(rec_id),
     CONSTRAINT fk_courses
         FOREIGN KEY(rec_cour_id)
