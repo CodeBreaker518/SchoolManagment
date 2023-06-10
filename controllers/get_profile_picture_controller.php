@@ -11,7 +11,6 @@ if (mysqli_connect_errno()) {
     die("Error de conexión: " . mysqli_connect_error());
 }
 
-
 // Verificar si el usuario ha iniciado sesión
 $userId = $_SESSION['user_id'];
 $userRole = $_SESSION['user_type'];
@@ -29,11 +28,6 @@ if ($userRole == 'student') {
 }
 
 $result = mysqli_query($conection, $sql);
-
-// ...
-
-// Continuación del código anterior
-
 if ($result) {
     // Verificar si se encontró la imagen del usuario
     if (mysqli_num_rows($result) > 0) {
@@ -52,16 +46,13 @@ if ($result) {
         // Cierre el resultado
         mysqli_free_result($result);
     } else {
-        echo "No se encontró ninguna imagen para el usuario actual.";
+        echo "There's no image for the actual user";
         exit;
     }
 } else {
     echo "Error en la consulta: " . mysqli_error($conection);
     exit;
 }
-
-// Mostrar la imagen en la etiqueta <img>
-// echo '<img class="user-image responsive-img" src="data:image/jpeg;base64,' . base64_encode($imageData) . '" alt="user image" />';
 
 $conection->close();
 ?>
