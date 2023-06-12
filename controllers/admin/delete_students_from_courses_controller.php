@@ -88,7 +88,9 @@ if ($validStudent) {
         echo "Error deleting the student from the course: " . mysqli_error($connection);
     }
 } else {
-    echo "Invalid data";
+    echo "Error: no existe ese registro.";
+        header("Refresh: 1; URL=../../views/dashboard.php");
+        exit();
 }
 
 mysqli_close($connection);
