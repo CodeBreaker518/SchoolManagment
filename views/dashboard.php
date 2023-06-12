@@ -395,7 +395,7 @@
                     <div class="collapsible-header"><?php echo $course['cour_name']; ?></div>
                     <div class="collapsible-body">
                       <span>Description: <?php echo $course['cour_description']; ?></span><br>
-                      <span>Semester: <?php echo $course['semester']; ?></span><br>
+                      <span>Semester: <?php echo $course['cour_semester']; ?></span><br>
                       <span>Days: <?php echo $course['cour_days']; ?></span><br>
                       <span>Hour: <?php echo $course['cour_hourstart']; ?></span><br>
                     </div>
