@@ -37,6 +37,15 @@ if ($courseResult && mysqli_num_rows($courseResult) > 0) {
 
 if($validCourse && $validStudent)
 {
+    // Verificar si el registro ya existe
+    $existingRecordQuery = "SELECT * FROM records WHERE rec_cour_id = '$courId' AND rec_stu_id = '$stuId'";
+    $existingRecordResult = mysqli_query($conection, $existingRecordQuery);
+    if ($existingRecordResult && mysqli_num_rows($existingRecordResult) > 0) {
+        // Registro duplicado, mostrar mensaje de error breve y redirigir al dashboard
+        echo "Error: El registro ya existe.";
+        header("Refresh: 1; URL=../../views/dashboard.php");
+        exit();
+    }
     $query = "INSERT INTO records (rec_cour_id, rec_stu_id) VALUES ('$courId','$stuId')";
     $result = mysqli_query($conection, $query);
     

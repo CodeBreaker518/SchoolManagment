@@ -26,6 +26,10 @@ try {
   $teachersStmt = $pdo->query($teachersQuery);
   $teachers = $teachersStmt->fetchAll(PDO::FETCH_ASSOC);
 
+  $modalCoursesQuery = "SELECT * FROM courses";
+  $modalCoursesStmt = $pdo->query($modalCoursesQuery);
+  $modalCourses = $modalCoursesStmt->fetchAll(PDO::FETCH_ASSOC);
+
 } catch (PDOException $e) {
   echo "Error de conexión: " . $e->getMessage();
   die();

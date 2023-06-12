@@ -45,7 +45,7 @@
   <main class="main-container"> 
     <aside class="side-bar">
       <div class="logo-img">
-        <img class="logo-ug responsive-img" src="https://intranet3.ugto.mx/ServicioSocial/img/logo_ug.c96b0c58.png" alt="">
+        <img class="logo-ug responsive-img" src="../public/assets/images/logo_ug.c96b0c58.png" alt="">
       </div>
       <div class="collection">
         <?php if($_SESSION['user_type'] === 'ADMIN'):?>
@@ -175,7 +175,7 @@
                         <?php
                           $studentCoursesName = getStudentCourses($student['stu_id']);
                           if ($studentCoursesName === "Unknown") { 
-                            echo 'No assigned';
+                            echo 'Not assigned';
                           } else { 
                             echo '<select>';
                             echo '<option disabled selected> Courses </option>';
@@ -208,6 +208,8 @@
                       </button>
                       <button class="waves-effect waves-light btn green modal-trigger asign-student-btn"  data-target="modal4" data-id="<?php echo $course['cour_id']; ?>">+<i class="fa-solid fa-people-group"></i>
                       </button>
+                      <button class="waves-effect waves-light btn red modal-trigger delete-student-btn"  data-target="modal11" data-id="<?php echo $course['cour_id']; ?>">X<i class="fa-solid fa-people-group"></i>
+                      </button>
                       <button class="waves-effect waves-light btn amber accent-4 modal-trigger edit-courses-btn"  data-target="modal5" data-id="<?php echo $course['cour_id']; ?>"><i class="material-icons">edit</i>
                       </button>
                       <button class="waves-effect waves-light btn red modal-trigger delete-courses-btn" data-target="modal6" data-id="<?php echo $course['cour_id']; ?>"><i class="material-icons">delete</i>
@@ -225,7 +227,7 @@
                         $professorexists = getProfessorName($course['cour_teach_id']);
                         if($professorexists === "Unknown") 
                         { 
-                          echo 'no assigned'; 
+                          echo 'not assigned'; 
                         }else 
                         { 
                           echo getProfessorName($course['cour_teach_id']); 
@@ -267,7 +269,7 @@
                         <?php 
                           $courses = getProfessorCourses($teacher['teach_id']);
                           if ($courses === "Unknown") { 
-                            echo 'No assigned'; 
+                            echo 'Not assigned'; 
                           } else { 
                             echo '<select>';
                             echo '<option disabled selected> Courses </option>';
@@ -392,8 +394,10 @@
                   <li>
                     <div class="collapsible-header"><?php echo $course['cour_name']; ?></div>
                     <div class="collapsible-body">
-                      <span>Course ID: <?php echo $course['cour_id']; ?></span><br>
                       <span>Description: <?php echo $course['cour_description']; ?></span><br>
+                      <span>Semester: <?php echo $course['semester']; ?></span><br>
+                      <span>Days: <?php echo $course['cour_days']; ?></span><br>
+                      <span>Hour: <?php echo $course['cour_hourstart']; ?></span><br>
                     </div>
                   </li>
                 <?php endif; ?>
@@ -508,8 +512,10 @@
                   <li>
                     <div class="collapsible-header"><?php echo $course['cour_name']; ?></div>
                     <div class="collapsible-body">
-                      <span>Course ID: <?php echo $course['cour_id']; ?></span><br>
                       <span>Description: <?php echo $course['cour_description']; ?></span><br>
+                      <span>Semester: <?php echo $course['cour_semester']; ?></span><br>
+                      <span>Days: <?php echo $course['cour_days']; ?></span><br>
+                      <span>Hour: <?php echo $course['cour_hourstart']; ?></span><br>
                     </div>
                   </li>
                 <?php endif; ?>
@@ -676,35 +682,43 @@
   
   <div id="modal3" class="modal assign-teacher">
     <div class="card-content card-courses">
-        <span class="card-title">Choose a teacher for this course</span>
-        <form action="../controllers/admin/assign_teacher_oncourse_controller.php" method="POST">
-            <input type="hidden" name="id" id="assignTeacherCourseIdInput" value="">
-            <div class="input-field col s12">
-              <select name="teacher" required>
-                <option value="" disabled selected>Teachers</option>
-                <?php foreach ($teachers as $teacher): ?>
-                    <?php 
-                        $assignedTeacherId = getAssignedTeacherId($courseId);
-                        if ($assignedTeacherId !== null && $assignedTeacherId == $teacher['teach_id']): ?>
-                            <option value="<?php echo $teacher['teach_id']; ?>" disabled selected><?php echo $teacher['teach_name']; ?> (assigned)</option>
-                        <?php else: ?>
-                            <option value="<?php echo $teacher['teach_id']; ?>"><?php echo $teacher['teach_name']; ?></option>
-                    <?php endif; ?>
-                <?php endforeach; ?>
-              </select>
-
-            </div>
-            <div class="card-action">
-                <button class="btn waves-effect waves-light" type="submit" name="action">Register
-                    <i class="material-icons right">send</i>
-                </button>
-            </div>
-        </form>
-        <div class="card-action">
+      <span class="card-title">Choose a teacher for this course</span>
+      <form id="assignTeacherForm" action="../controllers/admin/assign_teacher_oncourse_controller.php" method="POST">
+        <input type="hidden" name="id" id="assignTeacherCourseIdInput" value="">
+        <div class="input-field col s12">
+          <select name="teacher" required>
+            <option value="" disabled selected>Teachers</option>
+            <?php foreach ($teachers as $teacher):
+              $teacherId = $teacher['teach_id'];
+              $isAssigned = false;
+              foreach ($modalCoursesStmt as $courseModal):
+                $courseId = $courseModal['cour_id'];
+                $assignedTeacherId = getAssignedTeacherId($courseId);
+                if ($assignedTeacherId !== null && $assignedTeacherId == $teacherId) {
+                  $isAssigned = true;
+                  break;
+                }
+              endforeach;
+              if ($isAssigned):
+            ?>
+              <option value="<?php echo $teacherId; ?>" disabled>
+                <?php echo $teacher['teach_name']; ?> (assigned)
+              </option>
+            <?php else: ?>
+              <option value="<?php echo $teacherId; ?>"><?php echo $teacher['teach_name']; ?></option>
+            <?php endif;
+            endforeach; ?>
+          </select>
         </div>
+        <div class="card-action">
+          <button class="btn waves-effect waves-light" type="submit" name="action">Register
+            <i class="material-icons right">send</i>
+          </button>
+        </div>
+      </form>
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
     </div>
   </div>
 
@@ -890,6 +904,32 @@
     <div class="modal-footer">
     </div>
   </div>
+
+  <div id="modal11" class="modal delete_student_from_course">
+  <div class="card-content card-courses">
+    <span class="card-title">Choose a student to delete from the course</span>
+    <form id="deleteStudentForm" action="../controllers/admin/delete_students_from_courses_controller.php" method="POST">
+      <input type="hidden" name="id" id="deleteStudentCourseInput" value="">
+      <div class="input-field col s12">
+        <select name="student" required>
+            <option value="" disabled selected>Students</option>
+          <?php foreach ($students as $student): ?>          
+            <option value="<?php echo $student['stu_id']; ?>"><?php echo $student['stu_name']; ?></option>
+          <?php endforeach; ?>
+        </select>
+      </div>
+      <div class="card-action">
+        <button class="btn waves-effect waves-light" type="submit" name="action">Delete
+          <i class="material-icons right">send</i>
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+  </div>
+</div>
+
   <!-- app.js -->
   <script src="../public/js/dashboard.js"></script>
   <!-- including materialize js -->

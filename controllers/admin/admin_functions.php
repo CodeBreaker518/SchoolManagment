@@ -119,5 +119,66 @@ function getAssignedTeacherId($courseId) {
     }
 }
 
+function getTeacherById($teacherId)
+{
+  // Establecer la conexión a la base de datos
+    $host = 'localhost';
+    $dbName = 'school_db';
+    $user = 'root';
+    $password = '';
+
+    try {
+        // Se establece la conexion a la Db utilizando la clase 'PDO'
+        $dsn = "mysql:host=$host;dbname=$dbName";
+        $pdo = new PDO($dsn, $user, $password);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        // Consulta para obtener los datos del profesor por su ID
+        $query = "SELECT * FROM teachers WHERE teach_id = ?";
+        $stmt = $pdo->prepare($query);
+        $stmt->execute([$teacherId]);
+        $teacher = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Cerrar la conexión a la base de datos
+        $pdo = null;
+
+        return $teacher;
+    } catch (PDOException $e) {
+        echo "Error de conexión: " . $e->getMessage();
+        die();
+    }
+}
+function getStudentById($studentId)
+{
+    // Establecer la conexión a la base de datos
+    $host = 'localhost';
+    $dbName = 'school_db';
+    $user = 'root';
+    $password = '';
+
+    try {
+        // Se establece la conexion a la Db utilizando la clase 'PDO'
+        $dsn = "mysql:host=$host;dbname=$dbName";
+        $pdo = new PDO($dsn, $user, $password);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        // Consulta para obtener los datos del estudiante por su ID
+        $query = "SELECT * FROM students WHERE stu_id = ?";
+        $stmt = $pdo->prepare($query);
+        $stmt->execute([$studentId]);
+        $student = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Cerrar la conexión a la base de datos
+        $pdo = null;
+
+        return $student;
+    } catch (PDOException $e) {
+        echo "Error de conexión: " . $e->getMessage();
+        die();
+    }
+}
+
+
+
 
 ?>

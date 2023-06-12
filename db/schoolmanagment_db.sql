@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS courses
 	CONSTRAINT fk_teacher
 		FOREIGN KEY (cour_teach_id) 
         REFERENCES teachers(teach_id)
-        ON UPDATE SET NULL
+        ON UPDATE CASCADE
         ON DELETE SET NULL
 );
 
