@@ -1,36 +1,47 @@
 <?php
-
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
 session_start();
 
+require_once('../admin/admin_functions.php');
+
 $host = "localhost";
-$database = "school_db"; 
-$username = "root"; 
-$db_password = ""; 
+$database = "school_db";
+$username = "root";
+$db_password = "";
 
-$conection = mysqli_connect($host, $username, $db_password, $database);
+$connection = mysqli_connect($host, $username, $db_password, $database);
 
-if (!$conection) {
-    die("Error al conectar a la base de datos: " . mysqli_connect_error());
+if (!$connection) {
+    die("Error al conectar con la base de datos: " . mysqli_connect_error());
 }
 
-$id = $_POST['id'];
-echo $id;
-$query = "DELETE FROM courses WHERE cour_id = '$id'";
+$courId = $_POST['id'];
+$studentId = $_POST['student'];
 
-$result = mysqli_query($conection, $query);
+$validStudent = false;
+$validCourse = false;
 
-if ($result) {
-    $setTimeOut = 0.5;
-    $url = '../../views/dashboard.php';
-    ?>
+$studentQuery = "SELECT * FROM records WHERE rec_cour_id = '$courId' AND rec_stu_id = '$studentId'";
+$studentResult = mysqli_query($connection, $studentQuery);
+if ($studentResult && mysqli_num_rows($studentResult) > 0) {
+    $validStudent = true;
+}
+
+if ($validStudent) {
+    $query = "DELETE FROM records WHERE rec_cour_id = '$courId' AND rec_stu_id = '$studentId'";
+    $result = mysqli_query($connection, $query);
+
+    if ($result) {
+        $setTimeOut = 0.5;
+        $url = '../../views/dashboard.php';
+        ?>
         <!DOCTYPE html>
         <html>
             <head>
                 <!-- including materialize css -->
-            <link rel="stylesheet" href="../../public/css/materialize.min.css">
+                <link rel="stylesheet" href="../../public/css/materialize.min.css">
                 <title>Loading...</title>
                 <style>
                 #loadingContainer {
@@ -66,17 +77,19 @@ if ($result) {
             <body>
                 <div id="loadingContainer">
                     <div class="spinner"></div>
-                    <h1 class="center valing-wrapper">Deleting course...</h1>
+                    <h1 class="center valing-wrapper">Deleting student from this course...</h1>
                 </div>
             <!-- including materialize js -->
             <script src="../../public/js/materialize.min.js"></script>
             </body>
         </html>
         <?php
+    } else {
+        echo "Error deleting the student from the course: " . mysqli_error($connection);
+    }
 } else {
-    echo "Error al eliminar datos: " . mysqli_error($conection);
+    echo "Invalid data";
 }
 
-mysqli_close($conection);
-
+mysqli_close($connection);
 ?>

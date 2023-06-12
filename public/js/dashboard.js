@@ -42,6 +42,9 @@ document.addEventListener('DOMContentLoaded', () => {
   //asign students variables
   var assignStudentBtn = document.querySelectorAll('.asign-student-btn')
   var assignStudentCourseIdInput = document.querySelector('#assignStudentCourseIdInput')
+  //delete students from courses variables
+  var deleteStudentBtn = document.querySelectorAll('.delete-student-btn')
+  var deleteStudentCourseIdInput = document.querySelector('#deleteStudentCourseInput')
 
   //////////////////////////////////////////////////
   ////////////Admin controller functions////////////
@@ -94,6 +97,13 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', function () {
       var courseId = this.getAttribute('data-id')
       assignStudentCourseIdInput.value = courseId
+    })
+  })
+  //delete student from course function
+  deleteStudentBtn.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var courseId = this.getAttribute('data-id')
+      deleteStudentCourseIdInput.value = courseId
     })
   })
 
